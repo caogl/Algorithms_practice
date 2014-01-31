@@ -48,6 +48,7 @@ node* lca(node* root, node* node1, node *node2)
 
 void lca1(node* root, node* node1, node* node2, node* & ans)
 {
+	//base case
 	if(!isAns(root, node1) || !isAns(root, node2))
 		return;
 	ans=root;
@@ -57,6 +58,7 @@ void lca1(node* root, node* node1, node* node2, node* & ans)
 
 bool isAns(node* node1, node* node2)
 {
+	//two base cases
 	if(node1==NULL || node2==NULL)
 		return false;
 	if(node1==node2)
