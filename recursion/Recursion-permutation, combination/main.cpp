@@ -24,6 +24,7 @@ int main()
 
 void geneComb(const vector<char>& in, vector<char>& out, int startPos)
 {
+	//basecase: startPos==in.size()
 	for(unsigned int i=startPos; i<in.size(); i++)
 	{
 		out.push_back(in[i]);
