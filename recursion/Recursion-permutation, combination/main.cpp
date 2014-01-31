@@ -38,6 +38,7 @@ void geneComb(const vector<char>& in, vector<char>& out, int startPos)
 }
 void genePerm(const vector<char>& in, vector<char>& out, vector<bool>& used)
 {
+	//basecase
 	if(out.size()==in.size())
 	{
 		for(unsigned int i=0; i<in.size(); i++)
@@ -45,6 +46,7 @@ void genePerm(const vector<char>& in, vector<char>& out, vector<bool>& used)
 		cout<<endl;
 		return;
 	}
+	//recursion
 	for(unsigned int i=0; i<in.size(); i++)
 	{
 		if(used[i]){}
