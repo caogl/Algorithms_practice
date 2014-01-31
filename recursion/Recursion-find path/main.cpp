@@ -17,9 +17,11 @@ int main()
 
 void findPath(int graph[][4], pair<int, int> *path, int rowNum, int colNum, int row, int col, int& count)
 {
+	//basecase one
 	if(graph[row][col]==0 || row==rowNum || col==colNum) // Notice the attainable inf of row and col should be rowNum-1 and colNum-1!!
 		return;
 	path[row+col]=make_pair(row, col);
+	//basecase two
 	if((row+col)==(rowNum+colNum-2))
 	{
 		count++;
