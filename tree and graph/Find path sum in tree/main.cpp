@@ -16,8 +16,8 @@ struct node
 		right=NULL;
 	}
 };
-void findAndPrintSum(node *root, int sum, int& level, vector<int>& v);
-void print(const vector<int>& vec, int level);
+void findAndPrintSum(node *root, int sum, vector<int>& v);
+void print(const vector<int>& vec, int startPos);
 
 int main()
 {
@@ -44,32 +44,32 @@ int main()
 	root1->right->right->right=new node(15);
 	int level=0;
 	vector<int> vec;
-	findAndPrintSum(root1, 12, level, vec);
+	findAndPrintSum(root1, 12, vec);
 	system("PAUSE");
 	return 0;
 }
 
-void print(const vector<int>& vec, int level)
+void print(const vector<int>& vec, int startPos)
 {
-	cout<<"The path is: ";
-	for(unsigned int i=level; i<vec.size(); i++)
+	for(unsigned int i=startPos; i<vec.size(); i++)
 		cout<<vec[i]<<" ";
 	cout<<endl;
 }
 
-void findAndPrintSum(node *root, int sum, int& level, vector<int>& v)
+void findAndPrintSum(node *root, int sum, vector<int>& v)
 {
 	if(root==NULL)
 		return;
 	v.push_back(root->data);
 	int tmp=0;
-	for(int i=level; i>=0; i--)
+	int vecSize=v.size();
+	// Should avoid using unsigned int to compare with 0!
+	for(int i=vecSize-1; i>=0; i--)
 	{
 		tmp+=v[i];
 		if(tmp==sum)
 			print(v, i);
 	}
-	level++;
-	findAndPrintSum(root->left, sum, level, v);
-	findAndPrintSum(root->right, sum, level, v);
+	findAndPrintSum(root->left, sum, v);
+	findAndPrintSum(root->right, sum, v);
 }
