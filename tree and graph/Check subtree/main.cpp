@@ -34,10 +34,6 @@ int main()
 	root1->right->right->left=new node(13);
 	root1->right->right->right=new node(15);
 	node *root2=root1->left->right;
-	//cout<<root2->data<<" "<<root2->left->data<<" "<<root2->right->data;
-	//node *root3=root1->right->left;
-	//root3->right=NULL;
-	//root3->right=new node(100);
 	node *root3=new node(4);
 	root3->left=new node(2);
 	root3->right=new node(6);
@@ -57,7 +53,7 @@ int main()
 	return 0;
 }
 
-bool isSubtree(node *root1, node *root2)
+bool isSubtree(node *root1, node *root2) // check whether root2 is a subtree of root1
 {
 	if(root1==NULL)
 		return false;
