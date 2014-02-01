@@ -30,7 +30,6 @@ int main()
 
 void inorderTraverse(node *root)
 {
-	//cout<<"haha"<<" ";
 	if(root==NULL)
 		return;
 	inorderTraverse(root->left);
@@ -39,7 +38,7 @@ void inorderTraverse(node *root)
 }
 node* listToTree(int* sortedArray, int begin, int end)
 {
-	//cout<<"haha"<<" ";
+	//base case
 	if(begin>end)
 		return NULL;
 	int mid=(begin+end)/2;
