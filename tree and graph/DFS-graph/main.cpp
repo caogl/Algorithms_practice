@@ -43,16 +43,12 @@ bool DFS(const vector<vector<int> > graph, int p1, int p2)
 	{
 		tmp=s.top();
 		s.pop(); //Must pop here, rather than before the end bracket of the first while loop!!!
-		//cout<<"top elemnet in stack: "<<s.top()<<" ";
 		while(!test[tmp].empty())
 		{
-			//cout<<"the back element: "<<test[s.top()].back()<<" ";
-			//cout<<"size: "<<test[s.top()].size()<<" ";
 			if(test[tmp].back()==p2)
 				return true;
 			s.push(test[tmp].back());
 			test[tmp].pop_back();
-			//cout<<"size: "<<s.size()<<" ";
 		}
 	}
 	return false;
