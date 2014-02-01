@@ -72,6 +72,7 @@ int height(node *root)
 
 void checkBalance(node *root, int depth, vector<int>& depthVec)
 {
+	//base case
 	if(root==NULL)
 		return;
 	//cout<<root->data<<" ";
