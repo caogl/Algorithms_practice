@@ -55,6 +55,7 @@ int main()
 
 node* nextAns(node* node1)
 {
+	// if the right subtree is not empty
 	if(node1->right!=NULL)
 	{
 		node *result=node1->right;
@@ -66,6 +67,7 @@ node* nextAns(node* node1)
 	} 
 	else
 	{
+		// find the first parent whose data is bigger than the current node
 		while(node1->parent!=NULL)
 		{
 			if(node1->parent->data>node1->data)
