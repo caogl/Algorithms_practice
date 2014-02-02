@@ -13,6 +13,8 @@ int main()
 
 void outputBracket(char *out, int left, int right, int total, bool isLeft, int num)
 {
+	// check that the number of left barcket is greater than the number of right bracket, left bracket does not
+	// exceed the possible maximum value
 	if(right>left || left>num || right>num)
 		return;
 	if(isLeft)
@@ -21,8 +23,6 @@ void outputBracket(char *out, int left, int right, int total, bool isLeft, int n
 		out[total]='}';
 	if(left==num && right==num)
 	{
-		//cout<<left<<" "<<right<<endl;
-		//cout<<"aaaaa "<<total;
 		for(int i=0; i<=total; i++) // notice here it is <=total !!
 		{
 			cout<<out[i];
