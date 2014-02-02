@@ -6,7 +6,8 @@ void outputBracket(char *out, int left, int right, int total, bool isLeft, int s
 int main()
 {
 	char out[6];
-	outputBracket(out, 0, -1, 0, true, 2); // Notice here the starting value for right must be -1, or there will be one less right bracket
+	outputBracket(out, 0, -1, 0, true, 2); // Notice here the starting value for right must be -1, 
+	                                       // or there will be one less right bracket
 	system("PAUSE");
 	return 0;
 }
