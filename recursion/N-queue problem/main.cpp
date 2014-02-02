@@ -32,6 +32,7 @@ void print(int *c, int dim)
 
 void search(int *c, int dim, int r, int& count)
 {
+	// base case
 	if(r==dim)
 	{
 		count++;
