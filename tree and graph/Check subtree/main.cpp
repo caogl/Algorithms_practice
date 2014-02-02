@@ -55,6 +55,7 @@ int main()
 
 bool isSubtree(node *root1, node *root2) // check whether root2 is a subtree of root1
 {
+	// two base cases
 	if(root1==NULL)
 		return false;
 	if(root1->data==root2->data)
@@ -68,6 +69,7 @@ bool isSubtree(node *root1, node *root2) // check whether root2 is a subtree of 
 
 bool match(node *node1, node *node2)
 {
+	// three base cases
 	if(node1==NULL && node2==NULL)
 		return true;
 	else if(node1==NULL || node2==NULL)
