@@ -5,8 +5,8 @@ using namespace std;
 int LAS(int *l, int n);
 int main()
 {
-	int l[]={5,3,4,8,6,7};
-	cout<<"The longest sub-acending sequnence is: "<<LAS(l, 6)<<endl;
+	int l[]={5,9,3,4,8,6,7,10,1,2,9,11,12,14,13,-10,-9,-8,-7,-6,-5,15,-4,-3,-1,0};
+	cout<<"The longest sub-acending sequnence is: "<<LAS(l, 26)<<endl;
 	system("PAUSE");
 	return 0;
 }
