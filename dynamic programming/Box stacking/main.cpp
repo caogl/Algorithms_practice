@@ -60,18 +60,12 @@ int boxStacking(const vector<box>& vec)
 	sort(boxVec.begin(), boxVec.end(), comp);
 	for(unsigned int i=0; i<boxVec.size(); i++)
 		maxHeight[i]=boxVec[i].h;
-	//for(unsigned int i=0; i<boxVec.size(); i++)
-	//{
-		//cout<<boxVec[i].h<<" "<<boxVec[i].d<<" "<<boxVec[i].w<<endl;
-	//}
 	for(unsigned int i=0; i<boxVec.size(); i++)
 	{
 		for(unsigned int j=0; j<i; j++)
 			if(boxVec[j].d<=boxVec[i].d && maxHeight[i]<maxHeight[j]+boxVec[i].h)
 				maxHeight[i]=maxHeight[j]+boxVec[i].h;
 	}
-	//for(unsigned int i=0 ;i<maxHeight.size(); i++)
-		//cout<<maxHeight[i]<<" ";
 	cout<<endl;
 	return *max_element(maxHeight.begin(), maxHeight.end());
 }
