@@ -51,6 +51,7 @@ int boxStacking(vector<box>& vec)
 {
 	boxComp comp;
 	vector<int> maxHeight(vec.size());
+	// MUST perform the sort here
 	sort(vec.begin(), vec.end(), comp);
 	for(unsigned int i=0; i<vec.size(); i++)
 		maxHeight[i]=vec[i].h;
