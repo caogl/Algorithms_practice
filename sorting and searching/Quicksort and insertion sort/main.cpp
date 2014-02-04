@@ -39,7 +39,7 @@ void quickSort(vector<int>& vec, int left, int right)
 		{
 			while(vec[++i]<pivot){}
 			while(vec[--j]>pivot){}
-			if(i<j)
+			if(i<j) // notice that here the condition check cannot be replaced by "if(i!=j)"!!
 				swap(vec[i], vec[j]);
 			else
 				break;
@@ -61,7 +61,7 @@ int pickPivot(vector<int>& vec, int left, int right)
 	if(vec[center]<vec[right])
 		swap(vec[center], vec[right]);
 	swap(vec[center], vec[right-1]);
-	return vec[right-1];
+	return vec[right-1]; // Put the pivot element in this location
 }
 void output(const vector<int>& vec)
 {
