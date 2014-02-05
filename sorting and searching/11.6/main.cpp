@@ -12,7 +12,7 @@ int main()
 	result=search(a, 5, 5, 9);
 	cout<<"The number 9 locate in the position: "<<result.first<<" "<<result.second<<endl;
 	system("PAUSE");
-    return 0;
+	return 0;
 }
 
 pair<int, int> search(int a[][5], int m, int n, int x)
