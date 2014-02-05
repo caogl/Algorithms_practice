@@ -18,7 +18,7 @@ int search(int *a, int x, int left, int right)
 		return mid;
 	if(a[mid]>a[right]) // which means the first half is sorted
 	{
-		if(x<a[mid] && x>a[right])
+		if(x<a[mid] && x>a[right]) // if x is located on left half of the array
 			return search(a, x, left, mid-1);
 		else
 			return search(a, x, mid+1, right);
