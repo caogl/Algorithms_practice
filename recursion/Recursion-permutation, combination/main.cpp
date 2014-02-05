@@ -25,14 +25,15 @@ int main()
 void geneComb(const vector<char>& in, vector<char>& out, int startPos)
 {
 	//basecase: startPos==in.size()
+	if(startPos==in.size())
+		return;
 	for(unsigned int i=startPos; i<in.size(); i++)
 	{
 		out.push_back(in[i]);
 		for(unsigned int j=0; j<out.size(); j++)
 			cout<<out[j];
 		cout<<endl;
-		if(i<in.size())
-			geneComb(in, out, i+1);
+		geneComb(in, out, i+1);
 		out.pop_back();
 	}
 }
