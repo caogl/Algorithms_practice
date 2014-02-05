@@ -13,7 +13,7 @@ int LCSubStr(char *X, char *Y, int m, int n)
     for (int i=1; i<=m; i++)
     {
         for (int j=1; j<=n; j++)
-		{
+	{
             if (X[i-1] == Y[j-1])
             {
                 LCSuff[i][j] = LCSuff[i-1][j-1] + 1;
