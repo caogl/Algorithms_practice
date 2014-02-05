@@ -9,7 +9,6 @@ int LCSubStr(char *X, char *Y, int m, int n)
 	vector<int> tmp(n+1, 0);
 	LCSuff.assign(m+1, tmp);
     int result = 0;  // To store length of the longest common substring
- 
     for (int i=1; i<=m; i++)
     {
         for (int j=1; j<=n; j++)
