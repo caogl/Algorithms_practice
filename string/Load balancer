@@ -1,0 +1,63 @@
+#include<iostream>
+#include<ctime>
+#include<cstdlib>
+#include<vector>
+using namespace std;
+
+double unirand();
+double unifRand(double a, double b);
+void seed();
+char loadBalancer(char *a, double *b);
+
+int main()
+{
+	seed();
+	char a[]={'a','b','c'};
+	double b[]={1,1,8};
+	for(int i=0; i<20; i++)
+	{
+		cout<<loadBalancer(a, b)<<" ";
+	}
+	system("PAUSE");
+	return 0;
+}
+
+double unirand()
+{
+	return rand()/double(RAND_MAX);
+}
+
+double unifRand(double a, double b)
+{
+	return (b-a)*unirand()+a;
+}
+
+void seed()
+{
+	srand(time(0));
+}
+
+char loadBalancer(char *a, double *b)
+{
+	vector<char> aa;
+	vector<double> bb;
+	for(int i=0; i<3; i++)
+		aa.push_back(a[i]);
+	for(int i=0; i<3; i++)
+		bb.push_back(b[i]);
+	double upper=0;
+	for(int i=0; i<3; i++)
+		upper+=b[i];
+	double prob=unifRand(0, upper);
+	vector<double> cc=bb;
+	for(int i=1; i<3; i++)
+	{
+		cc[i]=cc[i]+cc[i-1];
+		//cout<<cc[0]<<" "<<cc[1]<<" "<<cc[2]<<" ";
+	}
+	for(int i=0; i<3; i++)
+	{
+		if(prob<=cc[i])
+			return a[i];
+	}
+}
