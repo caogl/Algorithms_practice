@@ -3,7 +3,7 @@
 #include<vector>
 using namespace std;
 
-void printP(int num);
+void printP(int num); // number of parenthesis
 void printP(string& out, int num, int left, int right);
 
 int main()
@@ -24,6 +24,12 @@ void printP(string& out, int num, int left, int right)
 	{
 		return;
 	}
+	if(out.size()==num*2)
+	{
+		cout<<left<<" "<<right<<" "<<out<<endl;
+		return;
+
+	}
 	out+='{';
 	left++;
 	printP(out, num, left, right);
@@ -31,13 +37,6 @@ void printP(string& out, int num, int left, int right)
 	out=out.substr(0, out.size()-1);
 	out+='}';
 	right++;
-	if(out.size()==num*2)
-	{
-		cout<<left<<" "<<right<<" "<<out<<endl;
-		right--;
-		out=out.substr(0, out.size()-1);
-		return;
-	}
 	printP(out, num, left, right);
 	right--;
 	out=out.substr(0, out.size()-1);
