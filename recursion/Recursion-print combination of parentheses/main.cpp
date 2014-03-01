@@ -1,35 +1,44 @@
 #include<iostream>
+#include<string>
+#include<vector>
 using namespace std;
 
-void outputBracket(char *out, int left, int right, int total, bool isLeft, int num);
+void printP(int num);
+void printP(string& out, int num, int left, int right);
 
 int main()
 {
-	char out[6];
-	outputBracket(out, 1, 0, 1, true, 3); // Notice here the starting value for right must be -1, or there will be one less right bracket
-	system("PAUSE");
+	printP(3);
 	return 0;
 }
 
-void outputBracket(char *out, int left, int right, int total, bool isLeft, int num)
+void printP(int num)
 {
-	// check that the number of left barcket is greater than the number of right bracket, left bracket does not
-	// exceed the possible maximum value
-	if(right>left || left>num)
+	string out;
+	printP(out, num, 0, 0);
+}
+
+void printP(string& out, int num, int left, int right)
+{
+	if(left<right || left>num)
+	{
 		return;
-	if(isLeft==true)
-		out[total-1]='{';
-	else
-		out[total-1]='}';
-	if(right==num)
-	{
-		for(int i=0; i<total; i++)
-			cout<<out[i];
-		cout<<endl;
 	}
-	else
+	out+='{';
+	left++;
+	printP(out, num, left, right);
+	left--;
+	out=out.substr(0, out.size()-1);
+	out+='}';
+	right++;
+	if(out.size()==num*2)
 	{
-		outputBracket(out, left+1, right, total+1, true, num);
-		outputBracket(out, left, right+1, total+1, false, num);
+		cout<<left<<" "<<right<<" "<<out<<endl;
+		right--;
+		out=out.substr(0, out.size()-1);
+		return;
 	}
+	printP(out, num, left, right);
+	right--;
+	out=out.substr(0, out.size()-1);
 }
