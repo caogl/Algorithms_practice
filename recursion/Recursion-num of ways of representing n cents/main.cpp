@@ -1,30 +1,38 @@
 #include<iostream>
 using namespace std;
 
-void countComb(int sum, int target, int quant, int& count);
+int countComb(int target);
+void countComb(int target, int currentSum, int quant, int& count);
 
 int main()
 {
-	int sum=0, target=26, quant=25, count=0;
-	countComb(sum, target, quant, count);
-	cout<<"The total possible combination is: "<<count<<endl;
-	system("PAUSE");
+	cout<<"There are totally "<<countComb(26)<<" ways of representing 26";
 	return 0;
 }
 
-void countComb(int sum, int target, int quant, int& count)
+int countComb(int target)
 {
-	if(sum>=target)
+	int count=0;
+	int quant=25;
+	int currentSum=0;
+	countComb(target, currentSum, quant, count);
+	return count;
+}
+void countComb(int target, int currentSum, int quant, int& count)
+{
+	if(currentSum>=target)
 	{
-		if(sum==target)
+		if(currentSum==target)
 			count++;
 		return;
 	}
 	if(quant>=25)
-		countComb(sum+25, target, 25, count);
+		countComb(target, currentSum+25, 25, count);
 	if(quant>=10)
-		countComb(sum+10, target, 10, count);
+		countComb(target, currentSum+10, 10, count);
 	if(quant>=5)
-		countComb(sum+5, target, 5, count);
-	countComb(sum+1, target, 1, count);
+		countComb(target, currentSum+5, 5, count);
+	if(quant>=1)
+		countComb(target, currentSum+1, 1, count);
+
 }
