@@ -24,8 +24,9 @@ int main()
 	root->right->left=newNode(125);
 	root->right->left->left=newNode(110);
 	root->right->right=newNode(175);
-	//cout<<LCA(root, 125, 175);
-	preOrderTraversal(root);
+	cout<<LCA(root, 125, 175)<<endl;
+	cout<<LCA(root, 25, 125)<<endl;
+	//preOrderTraversal(root);
 	//cout<<endl;
 	//prsStack(root);
 	system("PAUSE");
@@ -43,15 +44,12 @@ Node* newNode(int data1)
 
 int LCA(Node* root, int value1, int value2)
 {
-	while(true)
-	{
-		if(root->data>=value1 && root->data<=value2)
-			return root->data;
-		else if(root->data>=value1 && root->data>=value2)
-			root=root->left;
-		else
-			root=root->right;
-	}
+	if(root->data>=value1 && root->data<=value2)
+		return root->data;
+	else if(root->data>=value1 && root->data>=value2)
+		return LCA(root->left, value1, value2);
+	else
+		return LCA(root->right, value1, value2);
 }
 
 void preOrderTraversal(Node* root)
