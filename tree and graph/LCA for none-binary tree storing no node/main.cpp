@@ -15,8 +15,8 @@ struct node
 };
 
 node* lca(node* root, node* node1, node *node2);
-void lca1(node* root, node* node1, node *node2, node* & ans);
-bool isAns(node* node1, node* node2);
+void lca(node* root, node* node1, node* node2, node* & ans);
+bool isAns(node* root, node* node1);
 
 int main()
 {
@@ -42,26 +42,24 @@ int main()
 node* lca(node* root, node* node1, node *node2)
 {
 	node* ans=root;
-	lca1(root, node1, node2, ans);
+	lca(root, node1, node2, ans);
 	return ans;
 }
 
-void lca1(node* root, node* node1, node* node2, node* & ans)
+void lca(node* root, node* node1, node* node2, node* & ans)
 {
-	//base case
 	if(!isAns(root, node1) || !isAns(root, node2))
 		return;
 	ans=root;
-	lca1(root->left, node1, node2, ans);
-	lca1(root->right, node1, node2, ans);
+	lca(root->left, node1, node2, ans);
+	lca(root->right, node1, node2, ans);
 }
 
-bool isAns(node* node1, node* node2)
+bool isAns(node* root, node* node1)
 {
-	//two base cases
-	if(node1==NULL || node2==NULL)
+	if(root==NULL || node1==NULL)
 		return false;
-	if(node1==node2)
+	if(root==node1)
 		return true;
-	return(isAns(node1->left, node2) || isAns(node1->right, node2));
+	return (isAns(root->left, node1) || isAns(root->right, node1));
 }
