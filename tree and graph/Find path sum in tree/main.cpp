@@ -16,60 +16,66 @@ struct node
 		right=NULL;
 	}
 };
-void findAndPrintSum(node *root, int sum, vector<int>& v);
-void print(const vector<int>& vec, int startPos);
+
+vector<vector<int> > findPathSum(node* root, int target);
+void findPathSum(node* root, int target, vector<int>& tmp, vector<vector<int> >& result);
 
 int main()
 {
 	node *root1=new node(8);
 	root1->left=new node(4);
-	//root1->left->parent=root1;
-	root1->right=new node(12);
-	//root1->right->parent=root1;
+	root1->right=new node(2);
 	root1->left->left=new node(2);
-	//root1->left->left->parent=root1->left;
-	node *root2=root1->left->right=new node(6);
-	//root1->left->right->parent=root1->left;
-	node *root3=root1->right->left=new node(10);
-	//root1->right->left->parent=root1->right;
+	root1->left->right=new node(6);
+	root1->right->left=new node(5);
 	root1->right->right=new node(14);
-	root1->right->right=root1->right;
 	root1->left->left->left=new node(1);
 	root1->left->left->right=new node(3);
-	root1->left->right->left=new node(5);
+	root1->left->right->left=new node(4);
 	root1->left->right->right=new node(7);
 	root1->right->left->left=new node(9);
 	root1->right->left->right=new node(11);
 	root1->right->right->left=new node(13);
 	root1->right->right->right=new node(15);
-	int level=0;
-	vector<int> vec;
-	findAndPrintSum(root1, 12, vec);
-	system("PAUSE");
+	vector<vector<int> > result=findPathSum(root1, 14);
+	for(unsigned int i=0; i<result.size(); i++)
+	{
+		for(unsigned int j=0; j<result[i].size(); j++)
+			cout<<result[i][j]<<" ";
+		cout<<endl;
+	}
+	system("pause");
 	return 0;
 }
 
-void print(const vector<int>& vec, int startPos)
+vector<vector<int> > findPathSum(node* root, int target)
 {
-	for(unsigned int i=startPos; i<vec.size(); i++)
-		cout<<vec[i]<<" ";
-	cout<<endl;
+	vector<vector<int> > result;
+	vector<int> tmp;
+	findPathSum(root, target, tmp, result);
+	return result;
 }
 
-void findAndPrintSum(node *root, int sum, vector<int>& v)
+void findPathSum(node* root, int target, vector<int>& tmp, vector<vector<int> >& result)
 {
 	if(root==NULL)
 		return;
-	v.push_back(root->data);
-	int tmp=0;
-	int vecSize=v.size();
-	// Should avoid using unsigned int to compare with 0!
-	for(int i=vecSize-1; i>=0; i--)
+	tmp.push_back(root->data);
+	int sum=0;
+	for(int i=tmp.size()-1; i>=0; i--)
 	{
-		tmp+=v[i];
-		if(tmp==sum)
-			print(v, i);
+		sum+=tmp[i];
+		if(sum==target)
+		{
+			vector<int> resultElem;
+			for(int j=i; j<tmp.size(); j++)
+			{
+				resultElem.push_back(tmp[j]);
+			}
+			result.push_back(resultElem);
+		}
 	}
-	findAndPrintSum(root->left, sum, v);
-	findAndPrintSum(root->right, sum, v);
+	vector<int> tmp1(tmp), tmp2(tmp);
+	findPathSum(root->left, target, tmp1, result);
+	findPathSum(root->right, target, tmp2, result);
 }
