@@ -15,10 +15,11 @@ struct node
 		right=NULL;
 	}
 };
-void checkBalance(node *root, int depth, vector<int>& depthVec);
-bool isBalanced(const vector<int>& vec);
-bool isAVLBalanced(node *root);
-int height(node *root);
+
+bool isBalanced(node* root);
+void isBalanced(node* root, int tmpHeight, vector<int>& height);
+bool isAVLBalanced(node* root);
+int height(node* root);
 
 int main()
 {
@@ -36,15 +37,8 @@ int main()
 	root1->right->left->left=new node(9);
 	root1->right->left->right=new node(11);
 	root1->left->left->left->left=new node(13);
-	//root1->right->right->left=new node(13);
-	//root1->right->right->right=new node(15);
-	vector<int> depthVec;
-	int depth=0;
-	checkBalance(root1, depth, depthVec);
-	for(unsigned int i=0; i<depthVec.size(); i++)
-		cout<<depthVec[i]<<" ";
-	cout<<endl;
-	if(isBalanced(depthVec)==true)
+
+	if(isBalanced(root1)==true)
 		cout<<"The tree is balanced"<<endl;
 	else
 		cout<<"The tree is not balanced"<<endl;
@@ -56,42 +50,42 @@ int main()
 	return 0;
 }
 
-bool isAVLBalanced(node *root)
+bool isBalanced(node* root)
 {
 	if(root==NULL)
 		return true;
-	return (abs(height(root->left)-height(root->right))<=1 && isAVLBalanced(root->left) && isAVLBalanced(root->right));
+	vector<int> height; // the height vector, each correspond to one leaf node
+	int tmpHeight=1;
+	isBalanced(root, tmpHeight, height);
+	//for(int i=0; i<height.size(); i++)
+		//cout<<height[i]<<" ";
+	//cout<<endl;
+	return(*max_element(height.begin(), height.end())-*min_element(height.begin(), height.end())<=1);
 }
 
-int height(node *root)
+void isBalanced(node* root, int tmpHeight, vector<int>& height)
+{
+	if(root->left==NULL && root->right==NULL)
+	{
+		height.push_back(tmpHeight);
+		return;
+	}
+	if(root->left!=NULL)
+		isBalanced(root->left, tmpHeight+1, height);
+	if(root->right!=NULL)
+		isBalanced(root->right, tmpHeight+1, height);
+}
+
+bool isAVLBalanced(node* root)
+{
+	if(root==NULL)
+		return true;
+	return(abs(height(root->left)-height(root->right))<=1 && isAVLBalanced(root->left) && isAVLBalanced(root->right));
+}
+
+int height(node* root)
 {
 	if(root==NULL)
 		return 0;
 	return max(height(root->left), height(root->right))+1;
-}
-
-void checkBalance(node *root, int depth, vector<int>& depthVec)
-{
-	//base case
-	if(root==NULL)
-		return;
-	//cout<<root->data<<" ";
-	//depth++;
-	if(root->left==NULL && root->right==NULL)
-	{
-		//cout<<"haha"<<" ";
-		depthVec.push_back(depth+1);
-	}
-	checkBalance(root->left, depth+1, depthVec);
-	checkBalance(root->right, depth+1, depthVec);
-	//depth--;
-}
-
-bool isBalanced(const vector<int>& vec)
-{
-	int max=*(max_element(vec.begin(), vec.end()));
-	int min=*(min_element(vec.begin(), vec.end()));
-	if((max-min)>=2)
-		return false;
-	else return true;
 }
