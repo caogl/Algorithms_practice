@@ -1,0 +1,63 @@
+#include<iostream>
+using namespace std;
+
+struct node
+{
+	int data;
+	node *next;
+	node(int data1)
+	{
+		data=data1;
+		next=NULL;
+	}
+};
+
+void printList(node* head);
+node* reverseList(node* &head);
+void reverseList(node* &head, node* &newHead);
+
+int main()
+{
+	node* head=new node(1);
+	head->next=new node(2);
+	head->next->next=new node(3);
+	head->next->next->next=new node(4);
+	head->next->next->next->next=new node(5);
+	head->next->next->next->next->next=new node(6);
+	printList(head);
+	node* newHead=reverseList(head);
+	printList(newHead);	
+	return 0;
+}
+
+void printList(node* head)
+{
+	while(head!=NULL)
+	{
+		cout<<head->data<<" ";
+		head=head->next;
+	}
+	cout<<endl;
+}
+
+node* reverseList(node* &head)
+{
+	node *newHead;
+	reverseList(head, newHead);
+	return newHead;
+}
+
+void reverseList(node* &head, node* &newHead)
+{
+	if(head==NULL)
+		return;
+	node* rest=head->next;
+	if(rest==NULL)
+	{
+		newHead=head;
+		return;
+	}
+	reverseList(rest, newHead);
+	head->next->next=head;
+	head->next=NULL;
+}
