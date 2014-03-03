@@ -9,7 +9,7 @@ struct node
 };
 node* init(int a[], int n);
 void removeDuplicate1(node* head); // Direct, not the in place method.
-void removeDuplicate2(node* head); // The in place method
+void removeDuplicate2(node* head); // The in place method with constant additional memory
 void printList(node* head);
 
 int main()
@@ -52,60 +52,45 @@ node* init(int a[], int n)
 	return head;
 }
 
-/*   //This is a self-written version, but it is very subtle and easy to make mistakes, since addtional checks must be applied
 void removeDuplicate2(node* head)
 {
-	node *tmp=head;
-	node *tmp1=tmp;
-	int tmpInt;
-	while(tmp!=NULL)
+	if(head==NULL || head->next==NULL)
+	return;
+	node* checkStart1;
+	node* checkStart2;
+	while(head->next!=NULL)
 	{
-		tmpInt=tmp->data;
-		while(tmp1->next!=NULL)
+		checkStart1=head;
+		checkStart2=head->next;
+		while(checkStart2!=NULL)
 		{
-			if(tmp1->next->data==tmpInt)
+			if(checkStart2->data==head->data)
 			{
-				node *d=tmp1->next;
-				tmp1->next=tmp1->next->next;
-				delete d;
+				if(checkStart2->next!=NULL)
+				{
+					node* tmp=checkStart2;
+					checkStart2=checkStart2->next;
+					checkStart1->next=checkStart2;
+					delete tmp;
+				}
+				else
+				{
+					delete checkStart2;
+					checkStart1->next=NULL;
+					checkStart2=NULL;
+				}
 			}
-			tmp1=tmp1->next;
-			if(tmp1==NULL) // additional check must be applied here to avoid "NULL->next" mistake
-				break;
+			if(checkStart2!=NULL) // since checkStart2 has moved, remember whenever a node tries 
+					      // to access next, test whether it is NULL first!!!
+			{
+				checkStart1=checkStart1->next;
+				checkStart2=checkStart2->next;
+			}
 		}
-		tmp=tmp->next;
-		tmp1=tmp;
+		head=head->next;
 	}
 }
-*/
 
-void removeDuplicate2(node* head)
-{
-	node *a, *b, *c;
-	c=head;
-	while(c!=NULL)
-	{
-		a=c;
-		b=a->next;
-		int tmp=c->data;
-		while(b!=NULL)
-		{
-			if(b->data==tmp)
-			{
-				node *d=b;
-				a->next=b->next;
-				b=b->next;
-				delete d;
-			}
-			else
-			{
-				a=a->next;
-				b=b->next;
-			}
-		}
-		c=c->next;
-	}
-}
 
 void removeDuplicate1(node* head)
 {
