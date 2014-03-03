@@ -1,0 +1,35 @@
+class Solution 
+{
+public:
+    string expandAroundCenter(string s, int l, int r)
+    {
+        int n=s.length();
+        while(l>=0 && r<n && s[l]==s[r])
+        {
+            l--;
+            r++;
+        }
+        return s.substr(l+1, r-l-1);
+    }
+    string longestPalindrome(string s)
+    {
+        if(s.length()==0 || s.length()==1)
+            return s;
+        string result=s.substr(0, 1);
+        int n=s.length();
+        for(int i=0; i<n; i++)
+        {
+            string p1=expandAroundCenter(s, i, i);
+            if(p1.length()>result.length())
+            {
+                result=p1;
+            }
+            string p2=expandAroundCenter(s, i, i+1);
+            if(p2.length()>result.length())
+            {
+                result=p2;
+            }
+        }
+        return result;
+    }
+};
