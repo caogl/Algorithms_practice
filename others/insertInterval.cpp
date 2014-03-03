@@ -54,7 +54,6 @@ int main()
 
 void print(vector<Interval>& intervals)
 {
-	cout<<"haha"<<endl;
 	for(unsigned int i=0; i<intervals.size(); i++)
 		cout<<"["<<intervals[i].start<<","<<intervals[i].end<<"]"<<" ";
 	cout<<endl;
