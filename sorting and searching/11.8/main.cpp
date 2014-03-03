@@ -19,10 +19,6 @@ int main()
 	node* head=new node(8);
 	int a[]={4,6,5,1,7,9,10,2,0};
 	buildTree(a, 9, head);
-	//if(head==NULL)
-		//cout<<"hahahhaha";
-	//cout<<head->data<<" "<<head->left->data<<endl;
-	//<<" "<<head->left->left->data<<" "<<head->right<<endl;
 	cout<<"The rank of 2 is: "<<getRank(head, 2)<<endl;
 	cout<<"The rank of 4 is: "<<getRank(head, 4)<<endl;
 	cout<<"The rank of 6 is: "<<getRank(head, 6)<<endl;
@@ -36,37 +32,33 @@ void buildTree(int *a, int size, node* & head)
 {
 	for(int i=0; i<size; i++)
 	{
-		//cout<<"haha";
 		insert(head, a[i]);
 	}
 }
+
 void insert(node * &head, int data1)
 {
 	if(head==NULL)
 	{
-		//cout<<"haha";
 		head=new node(data1);
-		//cout<<head->data<<" ";
 		return;
 	}
-	//cout<<head->data<<" "<<head->leftSize<<endl;
-	if(data1<head->data)
-	{
-		//cout<<"haha ";
-		insert(head->left, data1);
-		head->leftSize++;
-		//cout<<head->data<<" "<<head->leftSize<<endl;
-	}
-	else
+	else if(head->data<data1)
 		insert(head->right, data1);
+	else
+	{
+		head->leftSize++;
+		insert(head->left, data1);
+	}
 }
+
 int getRank(node* head, int x)
 {
 	if(head==NULL)
 		return 0;
-	if(x==head->data)
+	else if(head->data==x)
 		return head->leftSize;
-	if(x<head->data)
+	else if(head->data>x)
 		return getRank(head->left, x);
 	else
 		return head->leftSize+1+getRank(head->right, x);
