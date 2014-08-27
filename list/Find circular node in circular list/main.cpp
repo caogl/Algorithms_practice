@@ -8,7 +8,8 @@ struct node
 	node* next;
 };
 node* init(int a[], int n, int m);
-node* checkCircle(node *head);
+node* checkCircle1(node *head);
+bool checkCircle2(node *head); // using constant extra space, leetcode, no test in main() function
 void printList(node* head);
 
 int main()
@@ -16,7 +17,7 @@ int main()
 	int a[]={0,1,2,3,4,5,6,7,8,9};
 	node *testHead=init(a, 10, 6);
 	//printList(testHead);
-	node *circleNode=checkCircle(testHead);
+	node *circleNode=checkCircle1(testHead);
 	cout<<"the circle point is: "<<circleNode->data<<endl;
 	cout<<endl;
 	system("PAUSE");
@@ -47,7 +48,25 @@ node* init(int a[], int n, int m)
 	return head;
 }
 
-node* checkCircle(node *head)
+bool checkCircle2(node *head)
+{
+        if(head==nullptr)
+            return false;
+        ListNode *head1=head->next;
+        while(head!=nullptr && head1!=nullptr)
+        {
+            if(head==head1)
+                return true;
+            head=head->next;
+            if(head1->next!=nullptr)
+                head1=head1->next->next;
+            else
+                return false;
+        }
+        return false;
+}
+
+node* checkCircle1(node *head)
 {
 	unordered_set<node*> hashSet;
 	while(head!=NULL)
