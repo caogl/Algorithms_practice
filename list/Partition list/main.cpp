@@ -55,7 +55,6 @@ ListNode* partition(ListNode* head, int x)
 		{
 			if(cur->val<x)
 			{
-				//cout<<cur->val<<endl;
 				prev->next=cur;
 				prev=prev->next;
 				prevCur->next=cur->next;
