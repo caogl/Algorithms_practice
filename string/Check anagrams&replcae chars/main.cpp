@@ -39,7 +39,7 @@ void checkAnagram(string& a, string& b)
 {
 	string a1=a;
 	string b1=b;
-	sort(a1.begin(), a1.end());
+	sort(a1.begin(), a1.end()); // Notice that sort() is a void function!!!!!!!!!!!!!!
 	sort(b1.begin(), b1.end());
 	if(a1.compare(b1)==0)
 		cout<<a<<" and "<<b<<" are anagram"<<endl;
