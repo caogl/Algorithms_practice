@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include<algorithm>
 using namespace std;
 
 void checkAnagram(string& a, string& b); 
@@ -36,26 +37,13 @@ void replaceSpace(string& a)
 
 void checkAnagram(string& a, string& b)
 {
-	if(a.length()!=b.length())
-	{
-		cout<<"These two strings are not anagrams"<<endl;
-		return;
-	}
-	vector<int> buffer(256);
-	int n=a.length();
-	for(int i=0; i<n; i++)
-	{
-		buffer[(int)a[i]]++;
-		buffer[(int)b[i]]--;
-	}
-	for(int i=0; i<n; i++)
-	{
-		if(buffer[i]!=0)
-		{
-			cout<<"These two strings are not anagrams"<<endl;
-			return;
-		}
-	}
-	cout<<"These two strings are anagrams"<<endl;
+	string a1=a;
+	string b1=b;
+	sort(a1.begin(), a1.end());
+	sort(b1.begin(), b1.end());
+	if(a1.compare(b1)==0)
+		cout<<a<<" and "<<b<<" are anagram"<<endl;
+	else
+		cout<<a<<" and "<<b<<" are not anagram"<<endl;
 	return;
 }
