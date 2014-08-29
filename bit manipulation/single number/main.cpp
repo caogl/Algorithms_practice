@@ -23,7 +23,7 @@ int singleNumber(int A[], int n)  // for leetcode "single number"
 }
 
 
-int singleNumber2(int A[], int n)
+int singleNumber2(int A[], int n) // for leetcode "single number ||"
 {
 	vector<int> bitMap(32, 0);
 	for(int i=0; i<n; i++)
