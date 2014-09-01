@@ -1,57 +1,103 @@
+#include<vector>
+#include<string>
 #include<iostream>
 using namespace std;
 
-void search(int *c, int dim, int r, int& count);
-void print(int *c, int dim);
+vector<vector<string> > solveNQueens(int n);
+void solveNQueens(int n, int cur, vector<int>& tmp, vector<vector<string> >& result);
+vector<string> convert(vector<int>& vec);
 
 int main()
 {
-	int c[8];
-	int r=0, count=0, dim=5;
-	search(c, dim, r, count);
-	cout<<"There are "<<count<<" possible solutions";
-	system("PAUSE");
+	vector<vector<string> > result=solveNQueens(4);
+	
+	for(int i=0; i<result.size(); i++)
+	{
+		for(int j=0; j<result[i].size(); j++)
+			cout<<result[i][j]<<endl;
+		cout<<endl;
+	}
 	return 0;
 }
 
-void print(int *c, int dim)
+vector<vector<string> > solveNQueens(int n)
 {
-	for(int i=0; i<dim; i++)
-	{
-		for(int j=0; j<dim; j++)
-		{
-			if(c[i]==j)
-				cout<<"1 ";
-			else
-				cout<<"0 ";
-		}
-		cout<<endl;
-	}
-	cout<<endl;
+        int cur=0;
+        vector<vector<string> > result;
+        vector<int> tmp(n);
+        solveNQueens(n, cur, tmp, result);
+        return result;
 }
 
-void search(int *c, int dim, int r, int& count)
+
+void solveNQueens(int n, int cur, vector<int>& tmp, vector<vector<string> >& result)
 {
-	// base case
-	if(r==dim)
-	{
-		count++;
-		print(c, dim);
-		return;
-	}
-	for(int i=0; i<dim; i++)
-	{
-		c[r]=i;
-		bool prune=false;
-		for(int j=0; j<r; j++)
-		{
-			if(c[j]==c[r] || abs(j-r)==abs(c[j]-c[r]))
-			{
-				prune=true;
-				break;
-			}
-		}
-		if(prune==false)
-			search(c, dim, r+1, count);
-	}
+        if(cur==n)
+        {
+            vector<string> Queen=convert(tmp);
+            result.push_back(Queen);
+            return;
+        }
+        
+        for(int i=0; i<n; i++)
+        {
+            tmp[cur]=i; // tmp keeps increasing the size, wrong
+            bool prune=false;
+            for(int j=0; j<cur; j++)
+            {
+                if(tmp[j]==tmp[cur] || abs(cur-j)==abs(tmp[cur]-tmp[j]))
+                {
+                    prune=true;
+                    break;
+                }
+            }
+            if(prune==false)
+            {
+		vector<int> tmp1(tmp);
+                solveNQueens(n, cur+1, tmp1, result);
+            }
+        }
+}
+
+/* buggy solution:: easy to make this kind of mistake
+void solveNQueens(int n, int cur, vector<int>& tmp, vector<vector<string> >& result)
+{
+        if(cur==n)
+        {
+            vector<string> Queen=convert(tmp);
+            result.push_back(Queen);
+            return;
+        }
+        
+        for(int i=0; i<n; i++)
+        {
+            tmp.push_back(i); // bug(1): tmp keeps increasing the size, wrong
+            bool prune=false;
+            for(int j=0; j<cur; j++)
+            {
+                if(tmp[j]==tmp[i] || abs(i-j)==abs(tmp[i]-tmp[j])) //bug(2)
+                {
+                    prune=true;
+                    break;
+                }
+            }
+            if(prune==false)
+            {
+                vector<int> tmp1(tmp);
+                solveNQueens(n, cur+1, tmp1, result);
+            }
+        }
+}
+*/
+
+vector<string> convert(vector<int>& vec)
+{
+        vector<string> result;
+        for(int i=0; i<vec.size(); i++)
+        {
+            string str(vec.size(), '.');
+            str[vec[i]]='Q';
+            result.push_back(str);
+        }
+        return result;
 }
