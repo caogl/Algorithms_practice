@@ -24,7 +24,7 @@ vector<vector<string> > solveNQueens(int n)
 {
         int cur=0;
         vector<vector<string> > result;
-        vector<int> tmp(n);
+        vector<int> tmp;
         solveNQueens(n, cur, tmp, result);
         return result;
 }
@@ -32,6 +32,11 @@ vector<vector<string> > solveNQueens(int n)
 
 void solveNQueens(int n, int cur, vector<int>& tmp, vector<vector<string> >& result)
 {
+	//cout<<cur<<endl;
+	//for(int i=0; i<tmp.size(); i++)
+		//cout<<tmp[i]<<" ";
+	//cout<<endl;
+
         if(cur==n)
         {
             vector<string> Queen=convert(tmp);
@@ -41,11 +46,13 @@ void solveNQueens(int n, int cur, vector<int>& tmp, vector<vector<string> >& res
         
         for(int i=0; i<n; i++)
         {
-            tmp[cur]=i; // tmp keeps increasing the size, wrong
+            //tmp[cur]=i; // tmp keeps increasing the size, wrong
+            vector<int> tmp1(tmp);
+	    tmp1.push_back(i);
             bool prune=false;
             for(int j=0; j<cur; j++)
             {
-                if(tmp[j]==tmp[cur] || abs(cur-j)==abs(tmp[cur]-tmp[j]))
+                if(tmp1[j]==tmp1[cur] || abs(cur-j)==abs(tmp1[cur]-tmp1[j]))
                 {
                     prune=true;
                     break;
@@ -53,7 +60,6 @@ void solveNQueens(int n, int cur, vector<int>& tmp, vector<vector<string> >& res
             }
             if(prune==false)
             {
-		vector<int> tmp1(tmp);
                 solveNQueens(n, cur+1, tmp1, result);
             }
         }
