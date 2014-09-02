@@ -1,33 +1,51 @@
 #include<iostream>
 using namespace std;
 
-int search(int *a, int x, int left, int right);
+int search(int A[], int n, int target);
+int search(int A[], int begin, int end, int target);
 
 int main()
 {
-	int a[]={15,16,19,20,25,1,3,4,5,7,10,14};
-	cout<<"The element 5 is in the position: "<<search(a, 5, 0, 11)<<endl;
-	system("PAUSE");
-    return 0;
+	//int a[]={15,16,19,20,25,1,3,4,5,7,10,14};
+	int a[]={1, 3};
+	cout<<"The element is in the position: "<<search(a, 2, 3)<<endl;
+    	return 0;
 }
 
-int search(int *a, int x, int left, int right)
+int search(int A[], int n, int target) 
 {
-	int mid=(left+right)/2;
-	if(a[mid]==x)
-		return mid;
-	if(a[mid]>a[right]) // which means the first half is sorted
-	{
-		if(x<a[mid] && x>a[right]) // if x is located on left half of the array
-			return search(a, x, left, mid-1);
-		else
-			return search(a, x, mid+1, right);
-	}
-	else // which means the second half is sorted
-	{
-		if(x>a[mid] && x<a[right])
-			return search(a, x, mid+1, right);
-		else
-			return search(a, x, left, mid-1);
-	}
+        if(n==0)
+            return -1;
+        return search(A, 0, n-1, target);
+}
+    
+int search(int A[], int begin, int end, int target)
+{
+        if(begin>end)
+            return -1;
+        int mid=(begin+end)/2;
+        if(A[mid]==target)
+            return mid;
+        if(A[mid]>A[end]) // the first half is sorted
+        {
+            if(target>=A[begin] && target<A[mid])
+	    {
+                return search(A, begin, mid-1, target);
+	    }
+            else
+	    {
+                return search(A, mid+1, end, target);
+	    }
+        }
+        else // the second half is sorted
+        {
+            if(target>A[mid] && target<=A[end]) // notice <= cannot be <!!!
+	    {
+                return search(A, mid+1, end, target);
+	    }
+            else
+	    {
+                return search(A, begin, mid-1, target);
+	    }
+        }
 }
