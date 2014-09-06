@@ -1,8 +1,19 @@
-class Solution 
+#include<iostream>
+#include<vector>
+using namespace std;
+
+string expandAroundCenter(string s, int l, int r);
+string longestPalindrome(string s);
+
+int main()
 {
-public:
-    string expandAroundCenter(string s, int l, int r)
-    {
+	string s="abcdefggfqwertrewjisdkddkmnnm";
+	cout<<longestPalindrome(s)<<endl;
+	return 0;
+}
+
+string expandAroundCenter(string s, int l, int r)
+{
         int n=s.length();
         while(l>=0 && r<n && s[l]==s[r])
         {
@@ -10,9 +21,10 @@ public:
             r++;
         }
         return s.substr(l+1, r-l-1); // The substracted string length is r-l+1-2=r-l-1
-    }
-    string longestPalindrome(string s)
-    {
+}
+
+string longestPalindrome(string s)
+{
         if(s.length()==0 || s.length()==1)
             return s;
         string result=s.substr(0, 1);
@@ -31,5 +43,4 @@ public:
             }
         }
         return result;
-    }
-};
+}
