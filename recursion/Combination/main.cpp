@@ -127,7 +127,7 @@ void subsets(const vector<int>& S, int startPos, vector<int>& tmp, vector<vector
             tmp1.push_back(S[i]);
             result.push_back(tmp1);
             subsets(S, i+1, tmp1, result);
-            while(i<S.size()-1 && S[i+1]==S[i]) // There two lines makes a difference and jumps the duplicate!
+            while(i<S.size()-1 && S[i+1]==S[i]) // These two lines makes a difference and jumps the duplicate!
                 i++; //......
         }
 }
