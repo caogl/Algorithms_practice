@@ -67,6 +67,8 @@ vector<Interval> insert(vector<Interval> &intervals, Interval newInterval)
 		return result;
 	}
 	vector<Interval>::iterator itr;
+
+	// first insert the new interval into the right place
 	for(itr=intervals.begin(); itr!=intervals.end(); itr++)
 	{
 		if(itr->start>newInterval.start)
@@ -77,6 +79,10 @@ vector<Interval> insert(vector<Interval> &intervals, Interval newInterval)
 	}
 	if(itr==intervals.end())
 		intervals.push_back(newInterval);
+	// the result for the example test case would be:
+	// [1,2]->[3,5]->[4,9]->[6,7]->[8,10]->[12,16]
+	
+	// then merge intervals: push into new vector and merge meanwhile
 	result.push_back(*intervals.begin());
 	for(itr=intervals.begin()+1; itr!=intervals.end(); itr++)
 	{
