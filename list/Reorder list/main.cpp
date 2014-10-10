@@ -2,7 +2,7 @@
 using namespace std;
 
 /* logic:
- * http://fisherlei.blogspot.com/search?q=rotate+list
+ * http://yucoding.blogspot.com/2013/12/leetcode-question-reorder-list.html
  * !! notice the corner case when k>=length of list
 */
 
