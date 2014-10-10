@@ -1,3 +1,5 @@
+// reference: http://fisherlei.blogspot.com/search?q=Copy+List+with+Random+Pointer
+
 #include<iostream>
 using namespace std;
 
