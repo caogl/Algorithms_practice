@@ -36,7 +36,9 @@ void nextPermutation(vector<int> &num)
 	int swap_index=i;
 	while(j<num.size())
 	{
-		if(num[j]>num[i] && num[j]<=min)
+		// careful checking, the number to exchange may not be one number bigger than partition one
+		// find the smallest one bigger than to partition number!
+		if(num[j]>num[i] && num[j]<=min) 
 		{
 			swap_index=j;
 			min=num[j];
@@ -49,7 +51,7 @@ void nextPermutation(vector<int> &num)
 		swap(num[i], num[swap_index]);
 		reverse(num.begin()+i+1, num.end());
 	}
-	else
+	else // which means that all numbers are in descending order
 		reverse(num.begin(), num.end());	
 }
 
