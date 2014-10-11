@@ -11,6 +11,12 @@ int main()
 		cout<<ratings[i]<<" ";
 	cout<<endl;
 	cout<<candy(ratings)<<endl;
+
+	vector<int> ratings1={1,2,6,5,4,3};
+	for(int i=0; i<ratings1.size(); i++)
+		cout<<ratings1[i]<<" ";
+	cout<<endl;
+	cout<<candy(ratings1)<<endl;
 	return 0;
 }
 
