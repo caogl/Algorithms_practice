@@ -4,6 +4,9 @@
 #include<utility>
 using namespace std;
 
+// Since we need to change every 'O' surrounded by 'X' into 'X', we start BFS search from every 'O'
+// on the edge of the region, and mark every reached 'O' with 'False', which means that they are not
+// surround by 'X'. Finally, every unreached 'O' are marked with 'True', then turn these into 'X'.
 void solve(vector<vector<char> > &board);
 
 int main()
@@ -41,7 +44,7 @@ void solve(vector<vector<char> > &board)
 	int n=board[0].size();
 
 	vector<bool> tmp(n, true);
-	vector<vector<bool> > bitMap(m, tmp);
+	vector<vector<bool> > bitMap(m, tmp); // whether the 'O' can be reached (not surround by 'X')
 
 	queue<pair<int, int> > q;
 
