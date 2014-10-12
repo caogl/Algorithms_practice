@@ -28,7 +28,7 @@ unordered_set<string> stringToHash(string* s, int num)
 
 int ladderLength(string start, string end, unordered_set<string> &dict)
 {
-	int level=0;
+	int level=1;
 	if(start==end)
 		return level;
 	int curLevelNum=0; // the number of string in current level
@@ -37,7 +37,6 @@ int ladderLength(string start, string end, unordered_set<string> &dict)
 	queue<string> q;
 	q.push(start);
 	visited.insert(start);
-	level++;
 	string curString;
 	while(!q.empty())
 	{
