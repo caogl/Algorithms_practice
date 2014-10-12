@@ -16,10 +16,6 @@ void combine(vector<int>& num, int k, int startPos, vector<int>& tmp, vector<vec
 vector<vector<int> > subsetsWithDup(vector<int> &S);
 void subsets(const vector<int>& S, int startPos, vector<int>& tmp, vector<vector<int> >& result);
 
-// leetcode question "combination sum"
-vector<vector<int> > combinationSum(vector<int> &candidates, int target);
-void combinationSum(const vector<int>& candidates, int target, int sum, int startPos, vector<int> tmp, vector<vector<int> >& result);
-
 int main()
 {
 	string inChar="1234";
@@ -51,18 +47,6 @@ int main()
 			cout<<result2[i][j];
 		cout<<endl;
 	}
-	
-	cout<<endl;
-	vector<int> vec1={2,3,6,2,7};
-	vector<vector<int> >result3=combinationSum(vec1, 7);
-	for(unsigned int i=0; i<result3.size(); i++)
-	{
-		for(int j=0; j<result3[i].size(); j++)
-			cout<<result3[i][j];
-		cout<<endl;
-	}
-
-	return 0;
 }
 
 vector<string> geneComb(const string str)
@@ -143,33 +127,4 @@ void subsets(const vector<int>& S, int startPos, vector<int>& tmp, vector<vector
             while(i<S.size()-1 && S[i+1]==S[i]) // These two lines makes a difference and jumps the duplicate!
                 i++; //......
         }
-}
-
-vector<vector<int> > combinationSum(vector<int> &candidates, int target)
-{
-	vector<vector<int> > result;
-	vector<int> tmp;
-	sort(candidates.begin(), candidates.end());
-	combinationSum(candidates, target, 0, 0, tmp, result);
-	return result;
-}
-
-void combinationSum(const vector<int>& candidates, int target, int sum, int startPos, vector<int> tmp, vector<vector<int> >& result)
-{
-	if(sum>target)
-		return;
-	if(sum==target)
-	{
-		result.push_back(tmp);
-		return;
-	}
-
-	for(int i=startPos; i<candidates.size(); i++)
-	{
-		vector<int> tmp1(tmp);
-		tmp1.push_back(candidates[i]);
-		combinationSum(candidates, target, sum+candidates[i], i, tmp1, result);
-		while(i<candidates.size()-1 && candidates[i]==candidates[i+1])
-			i++;
-	}
 }
