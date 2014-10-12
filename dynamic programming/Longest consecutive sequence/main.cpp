@@ -22,7 +22,7 @@ int longestConsecutive(vector<int> &num)
         {
             if(num[i-1]==num[i]-1)
                 longest[i]=longest[i-1]+1;
-            else if(num[i-1]==num[i]) //Important step
+            else if(num[i-1]==num[i]) // Important step, after sorting, there may be consecutive duplicate sequence
                 longest[i]=longest[i-1];
         }        
         return *max_element(longest.begin(), longest.end());
