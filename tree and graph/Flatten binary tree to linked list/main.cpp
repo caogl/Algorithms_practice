@@ -52,8 +52,6 @@ void inorderTraversal(TreeNode* head)
 
 void flatten(TreeNode *root) 
 {
-	if(root==nullptr)
-		return;
 	while(root!=nullptr)
 	{
 		if(root->left!=nullptr)
@@ -67,4 +65,5 @@ void flatten(TreeNode *root)
 		}
 		root=root->right;
 	}
+	return;
 }
