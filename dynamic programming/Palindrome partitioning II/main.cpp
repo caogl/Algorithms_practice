@@ -16,8 +16,9 @@ int minCut(string s)
 	if(s.size()==1)
 		return 0;
 	int dp[s.size()]; 
-	bool isPalindrome[s.size()][s.size()];
+	bool isPalindrome[s.size()][s.size()]; // two dimension array record whether s[i, j] is palindrome
 
+	// determine above array is a iterative way rather than computing every substring
 	for(int i=0; i<s.size(); i++)
 	{
 		for(int j=0; j<=i; j++)
@@ -46,7 +47,7 @@ int minCut(string s)
 		{
 			if(isPalindrome[j][i])
 			{
-				if(j==0)
+				if(j==0) // from start to the current position is a palindrome, no partition needed
 					dp[i]=0;
 				else
 					dp[i]=min(dp[i], dp[j-1]+1);
