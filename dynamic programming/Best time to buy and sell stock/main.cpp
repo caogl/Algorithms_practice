@@ -30,6 +30,7 @@ int maxProfit1(vector<int> &prices)
 	return profit;
 }
 
+//Since we can make unlimited transactions, this question turns to sum all the positive price difference
 int maxProfit2(vector<int> &prices)
 {
 	if(prices.size()==0)
