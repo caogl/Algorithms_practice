@@ -2,6 +2,13 @@
 #include<iostream>
 using namespace std;
 
+/* dp: for substring s[1:i], the number of decode ways depend on the decode ways of s[1:(i-1)] and s[1:(i-2)]
+ * (1) if s[i]==0 and s[i-1]==1 or 2, then only s[i] is a valid number, no new number added else,
+ *     the decode ways of s[1:i] is same as s[1:(i-1)]
+ * (2) if s[i-1]==1 or 2, then s[i-1]+s[i] is a valid number, also s[i] is valid, so decode ways of s[1:i]=decode
+ *     ways of s[1:(i-1)] plus s[i:(i-2)]
+ * (3) for other conditions, decode ways same as that of s[i-1]
+*/
 int numDecodings(string s);
 
 int main()
