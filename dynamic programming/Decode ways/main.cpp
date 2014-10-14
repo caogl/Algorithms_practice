@@ -26,33 +26,32 @@ int main()
 
 int numDecodings(string s)
 {
-        if(s.size()==0)
-            return 0;
-        int dp[s.size()+1];
-        dp[0]=1;
-        if(s[0]!='0')
-            dp[1]=1;
-        else
-            dp[1]=0;
-	string s1=" "+s;
-        for(int i=2; i<=s.size(); i++) // notice the index!!!!
+    if(s.size()==0)
+        return 0;
+    s=" "+s;
+    int dp[s.size()];
+    dp[0]=1; // !!! used when decode ways s[2]=s[0]+s[1], eg, s[1:2]=26, or decode ways s[2]=s[0], eg: s[1:2]=10
+    if(s[1]=='0')
+        dp[1]=0;
+    else
+        dp[1]=1;
+
+    for(int i=2; i<s.size(); i++)
+    {
+        if(s[i]=='0')
         {
-	    if(s1[i]=='0')
-	    {
-		if(s1[i-1]=='1' || s1[i-1]=='2')
-			dp[i]=dp[i-2];
-		else
-			return 0; //no way to decode
-	    }
-            else if(s1[i-1]=='1' || (s1[i-1]=='2' && s1[i]>'0' && s1[i]<='6'))
-	    {
-                dp[i]=dp[i-1]+dp[i-2];
-	    }
+            if(s[i-1]=='1' || s[i-1]=='2')
+                dp[i]=dp[i-2];
             else
-	    {
-                dp[i]=dp[i-1];
-	    }
+                return 0; // no way to decode
         }
-        
-        return dp[s.size()];
+        else if(s[i-1]=='1' || s[i-1]=='2' && s[i]<='6' && s[i]>'0')
+        {
+            dp[i]=dp[i-1]+dp[i-2];
+        }
+        else
+            dp[i]=dp[i-1];
+    }
+    
+    return dp[s.size()-1];
 }
