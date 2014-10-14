@@ -9,6 +9,7 @@ using namespace std;
  *     ways of s[1:(i-1)] plus s[i:(i-2)]
  * (3) for other conditions, decode ways same as that of s[i-1]
 */
+
 int numDecodings(string s);
 
 int main()
