@@ -22,6 +22,7 @@ int main()
 	return 0;
 }
 
+// delete starting and trailing zeros
 string deleteSpace(const char* s)
 {
 	if(strlen(s)==0)
@@ -41,7 +42,7 @@ string deleteSpace(const char* s)
 bool isValid(string &s)
 {
 	int i=0;// position
-	// check if '.', 'e' or '0-9' exists
+	// check if '.', 'e' or '0-9' exists before the current position
 	bool e=false;
 	bool dot=false;
 	bool digit=false;
