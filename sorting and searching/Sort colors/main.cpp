@@ -2,7 +2,8 @@
 #include<algorithm>
 using namespace std;
 
-//Note: we can use counting sort for easy solution, if not allowed use this
+// Note: we can use counting sort for easy solution, this is a two pass algorithm
+// If only one pass is allowed, here is the code
 void sortColors(int A[], int n);
 
 int main()
