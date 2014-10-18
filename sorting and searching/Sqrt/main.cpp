@@ -9,7 +9,8 @@ int main()
 	double a=4.9;
 	int b=(int)a;
 	cout<<b<<endl;
-
+	// result is 4
+	
 	cout<<sqrt(4)<<endl<<sqrt(2)<<endl<<sqrt(15)<<endl;
 	return 0;
 }
