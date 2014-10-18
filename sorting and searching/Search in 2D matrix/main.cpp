@@ -1,4 +1,7 @@
 // Given a matrix in which each row and each column is sorted, write a method to find an element in it.
+// 让我们来看看右上角， 设要查找的元素为x，比如x比右上角元素5大，那么它也会比第一行的其它元素都大。 
+// 因此可以去掉第一行；如果它比右上角元素小，那么它也会比最后一列的元素都小， 因此可以去掉最后一列；
+// 然后这样不断地比下去，只需要O(m+n)的时间就查找完。
 // This is the version in "cracking the coding interview", not the leetcode one, the latter is very easy
 #include<iostream>
 #include<utility>
