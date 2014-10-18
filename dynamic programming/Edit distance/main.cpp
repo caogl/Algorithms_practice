@@ -24,11 +24,13 @@ int minDistance(string word1, string word2)
         if(s2==0)
             return s1;
         vector<int> vec1(s2+1);
+	// the dp matrix, where vec[i][j] means that after vec[i][j] steps, word1[0:i] is made == word2[0:j]
         vector<vector<int> > vec(s1+1, vec1); 
         for(int i=0; i<s1+1; i++)
             vec[i][0]=i;
         for(int i=0; i<s2+1; i++)
             vec[0][i]=i;
+
         int m1, m2, m3;
         for(int i=1; i<s1+1; i++)
         {
