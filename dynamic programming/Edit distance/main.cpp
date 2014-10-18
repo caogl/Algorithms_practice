@@ -24,7 +24,6 @@ int minDistance(string word1, string word2)
         if(s2==0)
             return s1;
         vector<int> vec1(s2+1);
-	// the minimum distance of transforming from word1[0:i] to word2[0:j]
         vector<vector<int> > vec(s1+1, vec1); 
         for(int i=0; i<s1+1; i++)
             vec[i][0]=i;
