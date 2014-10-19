@@ -42,17 +42,8 @@ bool isValid(vector<vector<char> >& board, int i1, int j1)
 {
 	for(int i=0; i<9; i++)
 	{
-		for(int j=0; j<9; j++)
-		{
-			if(j1!=j && board[i1][j]==board[i1][j1])
-			{
-				return false;
-			}
-			if(i1!=i && board[i][j1]==board[i1][j1])
-			{
-				return false;
-			}
-		}
+		if((i1!=i || j1!=j) && (board[i1][j1]==board[i][j]))
+			return false;
 	}
 	
 	int rowNum=i1/3;
