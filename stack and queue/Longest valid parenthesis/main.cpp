@@ -21,26 +21,29 @@ int main()
 
 int longestValidParentheses(string s) 
 {
-        int last=-1; // last invalid position impossible to start with
-        int maxLen=0;
         stack<int> stack1;
+        int lasPos=0; // the valid start position
+        int maxP=0;
         for(int i=0; i<s.size(); i++)
         {
             if(s[i]=='(')
                 stack1.push(i);
-            else 
+            else
             {
-                if(!stack1.empty())
+                if(stack1.size()==1) // the stack will be empty
                 {
                     stack1.pop();
-                    if(stack1.empty())
-                        maxLen=max(maxLen, i-last);
-                    else
-                        maxLen=max(maxLen, i-stack1.top());
+                    maxP=max(maxP, i-lasPos+1);
+                }
+                else if(stack1.size()>1) // will now more '(' from than valid start position
+                {    
+		    // must pop first to deal with if s="(()()"
+                    stack1.pop();
+                    maxP=max(maxP, i-stack1.top());
                 }
                 else
-                    last=i;
+                    lasPos=i+1;
             }
         }
-        return maxLen;
-}
+        return maxP;
+    }
