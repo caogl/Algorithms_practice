@@ -1,6 +1,5 @@
 // interview question form datarobot
 // calculate the remainder without division and moduler
-/*-- Notice that there is still a possible of overflow, when d^shift can cause overflow
 
 #include<iostream>
 using namespace std;
@@ -16,6 +15,10 @@ int main()
 	cout<<"The correct remainder is: "<<m%d<<endl;
 	int result=m;
 	
+
+	/*-- Notice that there is a possible of overflow, when d^shift can cause overflow,
+         *  this is impossible to avoid, eg when the dividend is 10 digits starting with 1!*/
+
 	int bitDist=1; // the longest big shift(<<) distance so that after the 
 		       // shift the shift number is smaller than dvidend
 	result=(d<<bitDist);
