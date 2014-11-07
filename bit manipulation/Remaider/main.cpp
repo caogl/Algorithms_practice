@@ -13,29 +13,31 @@ int main()
 	int d;
 	cin>>d;
 	cout<<"The correct remainder is: "<<m%d<<endl;
-	int result=m;
+	long long result=m;
 	
 
 	/*-- Notice that there is a possible of overflow, when d^shift can cause overflow,
-         *  this is impossible to avoid, eg when the dividend is 10 digits starting with 1!*/
+         *  use long long instead!!! */
+	long long m1=m; 
+	long long d1=d;
 
 	int bitDist=1; // the longest big shift(<<) distance so that after the 
 		       // shift the shift number is smaller than dvidend
-	result=(d<<bitDist);
-	while(result<=m)
+	result=(d1<<bitDist);
+	while(result<=m1)
 	{
 		bitDist++;
-		result=(d<<bitDist);
+		result=(d1<<bitDist);
 	}
 	bitDist--;
 	
 	// to make up the dividend, and get the remainder
-	result=m;
+	result=m1;
 	for(int i=bitDist; i>=0; i--)
 	{
-		if(result>=(d<<i))
+		if(result>=(d1<<i))
 		{
-			result-=(d<<i);
+			result-=(d1<<i);
 		}
 	}
 	cout<<"The calculated result is: "<<result<<endl;
