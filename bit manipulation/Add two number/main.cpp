@@ -7,8 +7,8 @@ int add(int a, int b)
 {
 	if(b==0)
 		return a;
-	int sum=a^b;
-	int carry=((a & b)<<1);
+	int sum=a^b; //各位相加，不计进位
+	int carry=((a & b)<<1); //记下进位
 	return add(sum, carry);
 }
 int main()
