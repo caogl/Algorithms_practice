@@ -127,23 +127,23 @@ void inOrderTraversal(Node* root)
 
 void inStack(Node* root)
 {
-	// root here performs as a current node to explore
+	Node* current=root; // current node to explore
 	stack<Node*> stack1;
-	while(!stack1.empty() || root!=nullptr)
+	while(!stack1.empty() || current!=nullptr)
 	{
 		//if current node is not nullptr, go left until there are no left nodes
-		if(root!=nullptr) 
+		if(current!=nullptr) 
 		{
-			stack1.push(root);
-			root=root->left;
+			stack1.push(current);
+			current=current->left;
 		}
 		else
 		{
 			// if current is nullptr, means the top element is the leftmost, print, explore the right of the top as current
 			cout<<stack1.top()->data<<" ";
-			root=stack1.top();
+			current=stack1.top();
 			stack1.pop();
-			root=root->right;
+			current=current->right;
 		}
 	}
 
