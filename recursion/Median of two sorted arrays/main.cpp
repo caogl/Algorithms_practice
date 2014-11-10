@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 
+/* reference: http://www.acmerblog.com/leetcode-median-of-two-sorted-arrays-5330.html*/
 /* There is a trival O(m+n) time solution, here the solution is O(log(m+n)) */
 
 double findMedianSortedArrays(int A[], int m, int B[], int n);
