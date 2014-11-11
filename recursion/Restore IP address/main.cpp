@@ -41,9 +41,9 @@ vector<string> restoreIpAddresses(string s)
 /* notice the reference and intermediate variable!!! */
 void help(string& s, string& tmp, vector<string>& result, int kth)
 {
-	if(kth==4) // all the numbers are explored and string is splited throughly
+	if(kth==4) 
 	{
-		if(s.empty())
+		if(s.empty()) // all the numbers are explored and string is splited throughly
 			result.push_back(tmp);
 		return;
 	}
