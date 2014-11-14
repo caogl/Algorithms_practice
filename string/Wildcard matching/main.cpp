@@ -41,7 +41,8 @@ bool isMatch(const char* s, const char* p)
 
 	while(*s!='\0')
 	{
-		/* must be if all here because you need to always check whether s is '\0' */
+		/* must be if all here because you need to always check whether s is '\0' 
+		   in all of the three if statement, if *s=='\0', the if condition no longer true!*/
 		if((*s==*p) || (*p=='?'))	
 		{
 			s++;
