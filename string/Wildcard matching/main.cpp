@@ -71,7 +71,8 @@ bool isMatch(const char* s, const char* p)
 }
 
 
-/* time limit exceed for recursive solution , although tried to optimize, also cannot pass ("b", "??")
+/* time limit exceed for recursive solution , this one although tried to optimize, also cannot pass ("b", "??")
+   but should pay attention to (1)(2) optimization
 bool isMatch(const char* s, const char* p)
 {
 	bool match=false;
@@ -114,7 +115,8 @@ void isMatch(const char* s, const char* p, bool& match)
 	}
 }
 
-*********initial solution, pass the test cases listed  ************
+*********initial solution, pass the test cases listed, but time limit exceeded for very large case,
+         should not exist error  ************
 class Solution {
 public:
 bool isMatch(const char* s, const char* p)
