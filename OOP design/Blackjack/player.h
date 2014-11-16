@@ -6,7 +6,7 @@ class Player // abstract class
 {
 public:
 	Player();
-	~Player(){};
+	virtual ~Player(){}; /* always make destructor virtual!! */
 	int getScore(); // get the score for each player
 	void add(Card& card); // give a new card to a player
 	virtual void clear(); // clear all the cards at hand for a play and make socre 0 to start a new game
