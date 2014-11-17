@@ -1,3 +1,5 @@
+/* idea: while working on the current level by current=current->next, update and connect next node of the lower level! */
+
 #include<iostream>
 #include<cmath>
 #include<queue>
