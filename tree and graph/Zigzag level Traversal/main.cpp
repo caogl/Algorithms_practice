@@ -1,4 +1,5 @@
-// idea: using the property of queues, using two queuse interchangably to keep track oth the node
+// idea: using the property of stacks, as opposed to the BFS by queue, and 
+//       using two queuse interchangably to keep track oth the node
 
 #include<iostream>
 #include<vector>
