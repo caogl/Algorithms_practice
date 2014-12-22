@@ -59,12 +59,12 @@ TreeNode* sortedListToBST(ListNode* &head, int begin, int end)
 		return nullptr;
 	int mid=(begin+end)/2;
 	TreeNode* leftNode=sortedListToBST(head, begin, mid-1);
-	TreeNode* root=new TreeNode(head->val);
+	TreeNode* parent=new TreeNode(head->val);
 	head=head->next;
 	TreeNode* rightNode=sortedListToBST(head, mid+1, end);
-	root->left=leftNode;
-	root->right=rightNode;
-	return root;
+	parent->left=leftNode;
+	parent->right=rightNode;
+	return parent;
 }
 
 void inorderTraversal(TreeNode* root)
