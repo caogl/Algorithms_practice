@@ -1,5 +1,7 @@
 //如果我们有面值为1元、3元和5元的硬币若干枚，如何用最少的硬币凑够11元？
 //(表面上这道题可以用贪心算法，但贪心算法无法保证可以求出解，比如1元换成2元的时候)
+//Also Epic interview question: given a centain dose, give the optimal number of combination of pills that adds up to be equal to this amount!
+//
 
 #include<iostream>
 #include<vector>
@@ -14,9 +16,14 @@ int main()
 	coin[0]=1;
 	coin[1]=3;
 	coin[2]=5;
-	cout<<"The smallest coin number for the sum of 11 is: "<<findCoinSum(11, coin)<<endl;
-	cout<<"The smallest coin number for the sum of 10 is: "<<findCoinSum(10, coin)<<endl;
-	system("PAUSE");
+	cout<<"The smallest coin number for the sum of 11 is: "<<findCoinSum(11, coin)<<endl; //3
+	cout<<"The smallest coin number for the sum of 10 is: "<<findCoinSum(10, coin)<<endl; //2
+
+	// epic corner case, greedy algorithm would produce result of 11, correct solution is 3
+	coin[1]=20;
+	coin[2]=50;
+	cout<<"The smallest coin number for the sum of 60 is: "<<findCoinSum(60, coin)<<endl; //3
+
 	return 0;
 }
 
