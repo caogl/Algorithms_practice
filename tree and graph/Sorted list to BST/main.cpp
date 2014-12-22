@@ -1,3 +1,6 @@
+// use bottom-up recursion instead of top-down: creates nodes bottom-up, and assign nodes to its parents
+// reference: leetcode official clean code handbook
+
 #include<iostream>
 using namespace std;
 
