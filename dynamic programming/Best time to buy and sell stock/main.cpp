@@ -59,7 +59,7 @@ int maxProfit3(vector<int> &prices)
 	}
 	
 	int result=profit;
-	if(prices.size()<4)
+	if(prices.size()<4) // can only perform one transaction at maximum
 		return result;
 	
 	int dp2[prices.size()]; // the profit of the second trade
