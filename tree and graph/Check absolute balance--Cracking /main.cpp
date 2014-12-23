@@ -1,6 +1,11 @@
 //cracking the coding interview
 //for the definition of the balance here, and the solution, refer to: http://www.hawstein.com/posts/4.1.html 
-
+/*
+Implement a function to check if a tree is balanced. For the purposes of this question, a balanced tree is defined to be a 
+tree such that no two leaf nodes differ in distance from the root by more than one.
+本题的平衡指的是这棵树任意两个叶子结点到根结点的距离之差不大于1
+对于本题，只需要求出离根结点最近和最远的叶子结点， 然后看它们到根结点的距离之差是否大于1即可
+*/
 
 #include<iostream>
 #include<vector>
