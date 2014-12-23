@@ -1,3 +1,5 @@
+// reference: http://fisherlei.blogspot.com/2012/12/leetcode-gray-code.html
+
 #include<iostream>
 #include<vector>
 using namespace std;
