@@ -16,11 +16,26 @@ int main()
 	long long result=m;
 	
 
-	/*-- Notice that there is a possible of overflow, when d^shift can cause overflow,
-         *  use long long instead!!! */
+	/*(1)-- Notice that there is a possible of overflow, when d^shift can cause overflow,
+         *      use long long instead!!! */
 	long long m1=m; 
 	long long d1=d;
 
+	/*(2)-- Notice that we should go from the high bit to low bit! */
+	for(int i=31; i>=0; i--)
+	{
+		if(result>=(d1<<i))
+		{
+			result-=(d1<<i);
+		}
+	}
+
+	cout<<"The calculated result is: "<<result<<endl;
+	return 0;
+
+/*
+ * 	all these are optionl
+ *
 	int bitDist=1; // the longest big shift(<<) distance so that after the 
 		       // shift the shift number is smaller than dvidend
 	result=(d1<<bitDist);
@@ -40,7 +55,5 @@ int main()
 			result-=(d1<<i);
 		}
 	}
-	cout<<"The calculated result is: "<<result<<endl;
-
-	return 0;
+*/
 }
