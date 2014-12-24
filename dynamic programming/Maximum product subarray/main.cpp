@@ -27,6 +27,11 @@ int maxProduct(int A[], int n)
 	int result=A[0];
 	for(int i=1; i<n; i++)
 	{
+		/* wrong answer! because maxCur changes, must preallocate two temp-variable!
+		maxCur=max(max(maxCur*A[i], minCur*A[i]), A[i]);
+            	minCur=min(min(maxCur*A[i], minCur*A[i]), A[i]);
+            	maxV=max(maxCur, maxV);
+		*/
 		int tmp1=curMax*A[i];
 		int tmp2=curMin*A[i];
 		curMax=max(max(tmp1, tmp2), A[i]);
