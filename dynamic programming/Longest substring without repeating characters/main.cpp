@@ -28,7 +28,6 @@ int lengthOfLongestSubstring(string s)
 		if(lasPos[s[i]-'a']>start) // repeated found
 		{
 			start=lasPos[s[i]-'a'];
-			maxLength=max(maxLength, i-start);
 			lasPos[s[i]-'a']=i;
 		}
 		else
