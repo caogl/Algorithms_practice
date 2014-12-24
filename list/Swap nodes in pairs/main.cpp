@@ -1,6 +1,16 @@
 #include<iostream>
 using namespace std;
 
+/*
+	1->2->3->4->5
+	(-1)->1->2->3->4->5
+	(-1)->1-> <-2 3->4->5
+	(-1)->2->1->3->4->5
+	...... 
+	key: keep track of 4 positions: prevCon (keep track of the previous node before the swapping pair)
+					prev, con (the swapping node)
+					post (the starting position of next possible pair)
+*/
 struct ListNode
 {
 	int val;
@@ -32,36 +42,36 @@ int main()
 	return 0;
 }
 
-ListNode *swapPairs(ListNode *head)
+ListNode *swapPairs(ListNode *head) 
 {
-	if(head==nullptr || head->next==nullptr)
-		return head;
-	ListNode* sudoHead=new ListNode(-1);
-	sudoHead->next=head;
-	ListNode* prev=sudoHead;
-	ListNode* cur=head;
-	ListNode* post=head->next;
-	ListNode* temp;
-	while(post!=nullptr)
-	{
-		temp=post->next;
-		prev->next=post;
-		post->next=cur;
-		cur->next=temp;
-
-		prev=post;
-		cur=prev->next;
-		post=cur->next;
-		if(post==nullptr)
-			break;
-		prev=prev->next;
-		cur=cur->next;
-		post=post->next;
-	}	
-	
-	head=sudoHead->next;
-	delete sudoHead;
-	return head;
+        if(head==nullptr)
+            return head;
+            
+        ListNode* sudoHead=new ListNode(-1);
+        sudoHead->next=head;
+        
+        ListNode* prevCon=sudoHead;
+        ListNode* prev=head;
+        ListNode* cur=head->next;
+        ListNode* post;
+        while(cur!=nullptr)
+        {
+            post=cur->next;
+            cur->next=prev;
+            prev->next=post;
+            prevCon->next=cur;
+            
+            prevCon=prev;
+            prev=post;
+            if(prev!=nullptr)
+                cur=prev->next;
+            else
+                break;
+        }
+        
+        head=sudoHead->next;
+        delete sudoHead;
+        return head;
 }
 
 void printList(ListNode* head)
