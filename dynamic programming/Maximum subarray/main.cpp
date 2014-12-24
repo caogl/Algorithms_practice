@@ -14,6 +14,7 @@ int main()
 	return 0;
 }
 
+// can be further optimized using constant memory -- only keep B[i-1] and B[i] and track maxSum
 int maxSubArray(int A[], int n)
 {
         if(n==1)
