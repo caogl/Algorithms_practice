@@ -15,18 +15,16 @@ RandomListNode *copyRandomList(RandomListNode *head);
 int main()
 {
 	RandomListNode* head1=new RandomListNode(1);
-	//RandomListNode* head2=head1->next=new RandomListNode(2);
-	//RandomListNode* head3=head1->next->next=new RandomListNode(3);
-	//head1->random=head3;
-	//head3->random=head2;
-	//RandomListNode* head4=head1->next->next->next=new RandomListNode(4);
-	//RandomListNode* head5=head1->next->next->next->next=new RandomListNode(5);
-	//head1->random=head2;
-	//head2->random=head2;
-	//head4->random=head1;
+	RandomListNode* head2=head1->next=new RandomListNode(2);
+	RandomListNode* head3=head1->next->next=new RandomListNode(3);
+	head1->random=head3;
+	head3->random=head2;
+	RandomListNode* head4=head1->next->next->next=new RandomListNode(4);
+	RandomListNode* head5=head1->next->next->next->next=new RandomListNode(5);
+	head1->random=head2;
+	head2->random=head2;
+	head4->random=head1;
 
-	//head->next->next->next->next->next=new ListNode(6);
-	//head->next->next->next->next->next->next=new ListNode(7);
 	printList(head1);
 
 	RandomListNode* newHead=copyRandomList(head1);
