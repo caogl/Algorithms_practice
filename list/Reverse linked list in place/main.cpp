@@ -91,8 +91,9 @@ ListNode *reverseBetween(ListNode *head, int m, int n)
 		post=temp;
 		steps--;
 	}
-	prev->next->next=post;
-	prev->next=cur;
+	
+	prev->next->next=post; // notice that after the loop, the three relative position are moved one back!!
+	prev->next=cur; // careful---error prone!
 	ListNode* result=sudoHead->next;
 	delete sudoHead;
 	return result;
