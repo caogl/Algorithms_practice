@@ -34,49 +34,42 @@ int main()
 	return 0;
 }
 
-RandomListNode *copyRandomList(RandomListNode *head)
+RandomListNode *copyRandomList(RandomListNode *head) 
 {
-	if(head==nullptr)
-		return head;
+        if(head==nullptr)
+            return nullptr;
 
-	// step 1: insert nodes
-	RandomListNode* cur=head;
-	RandomListNode* temp;
-	while(cur!=nullptr)
-	{
-		temp=cur->next;
-		cur->next=new RandomListNode(cur->label);
-		cur->next->next=temp;
-		cur=temp;
-	}
+        // step1: insert node
+        RandomListNode* head1=head;
+        while(head1!=nullptr)
+        {
+            RandomListNode* prev=head1;
+            head1=head1->next;
+            prev->next=new RandomListNode(prev->label);
+            prev->next->next=head1;
+        }
 
-	// step 2: copy random pointer
-	cur=head;
-	while(cur!=nullptr)
-	{
-		temp=cur->next;
-		if(cur->random!=nullptr)
-			temp->random=cur->random->next;
-		else
-			temp->random=nullptr;
-		cur=cur->next->next;
-	}
-
-	// step 3: decouple two list
-	temp=head->next;
-	cur=head;
-	
-        RandomListNode* result=temp;
-	while(temp!=nullptr)
-	{
-		cur->next=temp->next;
-		if(temp->next!=nullptr)
-			temp->next=temp->next->next;
-		cur=cur->next;
-		temp=temp->next;
-	}
-	
-	return result;
+        // step2: copy random pointer
+        RandomListNode* prev=head;
+        while(prev!=nullptr)
+        {
+            head1=prev->next;
+	    if(prev->random!=nullptr)  // Important check, or there may be prev->random=nullptr:--error!
+            	head1->random=prev->random->next;
+            prev=prev->next->next;
+        }
+                
+	// step3: split
+        RandomListNode* returnHead=head->next;
+        prev=head;
+        while(prev!=nullptr)
+        {
+            head1=prev->next;
+            if(head1!=nullptr)
+                prev->next=head1->next; //check
+            prev=head1;
+        }
+        return returnHead;
 }
 
 void printList(RandomListNode* head)
