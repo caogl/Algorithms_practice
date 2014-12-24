@@ -14,7 +14,7 @@ int main()
 	return 0;
 }
 
-// can be further optimized using constant memory -- only keep B[i-1] and B[i] and track maxSum
+/* can be further optimized using constant memory -- only keep B[i-1] and B[i] and track maxSum
 int maxSubArray(int A[], int n)
 {
         if(n==1)
@@ -32,4 +32,25 @@ int maxSubArray(int A[], int n)
             if(B[i]>max)
                 max=B[i];
         return max;
+}
+*/
+
+// O(n) time and O(1) memory
+int maxSubArray(int A[], int n) 
+{
+        int cur;
+        int prev=A[0];
+        int maxV=A[0];
+        
+        for(int i=1; i<n; i++)
+        {
+            if(prev>=0)
+                cur=prev+A[i];
+            else
+                cur=A[i];
+            maxV=max(maxV, cur);
+            prev=cur;
+        }
+        
+        return maxV;
 }
