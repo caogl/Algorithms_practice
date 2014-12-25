@@ -17,31 +17,24 @@ int main()
 	return 0;
 }
 
-int jump(int A[], int n)
+int jump(int A[], int n) 
 {
-	if(n<2) // must check the trival case here!, or, cannot pass [0] case!
-		return 0;
-
+        if(n<=1) // for handle the corner case [0]
+            return 0;
+            
         int minStep[n];
-	int farestReached=0; /* only need to update smallest distance from the farest can be reached in previous positions*/
         minStep[0]=0;
-        for(int i=1; i<n-1; i++)
-        {
-            minStep[i]=INT_MAX;
-        }
+        int reached=0;
+            
         for(int i=0; i<n; i++)
         {
-	    if(A[i]+i>farestReached)
-	    {
-            	for(int j=farestReached+1; j<=A[i]+i; j++)
-            	{
-                	if(j>=n-1)
-                    		return minStep[i]+1;
-                	minStep[j]=min(minStep[i]+1, minStep[j]);
-		}
-		farestReached=A[i]+i;
-            }
-        }	
+            if(A[i]+i>=n-1)
+                return minStep[i]+1;
+            /* only need to update smallest distance from the farest can be reached in previous positions*/
+            for(int j=reached+1; j<=A[i]+i; j++) 
+                minStep[j]=minStep[i]+1;
+            reached=max(reached, A[i]+i);
+        }
 }
 
 /* This initial try will cause time out 
