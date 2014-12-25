@@ -15,7 +15,6 @@ int main()
 	value.push_back(make_pair(7, 28));
 	cout<<"The most value the thief can take with bag 11 is: "<<knapsack(value, 11)<<endl;
 	cout<<"The most value the thief can take with bag 12 is: "<<knapsack(value, 12)<<endl;
-	system("PAUSE");
 	return 0;
 }
 
