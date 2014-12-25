@@ -64,7 +64,7 @@ void isMatch(const char *s, const char *p, bool& match)
 		return;
 
 	/* recursive */
-	//(1): if the next char of p is not '*', must match the current char
+	//(1): if the next char of p is not '*', move to p+1, must match the current char
 	if(*(p+1)!='*')
 	{
 		if(*p!=*s && *p!='.')
@@ -72,7 +72,7 @@ void isMatch(const char *s, const char *p, bool& match)
 		else
 			isMatch(s+1, p+1, match);
 	}
-	//(2): if next char of p is '*'
+	//(2): if next char of p is '*', move to p+2
 	else
 	{
 		isMatch(s, p+2, match); // '*' matches 0 preceding char
@@ -94,7 +94,7 @@ void isMatch(const char *s, const char *p, bool& match)
 			}
 		}
 /*
- * 		-------------slow, time limit exceeded!-------------
+ * -------------slow, time limit exceeded!-------------
 		// '*' matches 1 or more chars
 		if(*p==*s)
 		{
