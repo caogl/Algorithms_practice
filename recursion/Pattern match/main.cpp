@@ -51,7 +51,7 @@ void match(string& pattern, string& data, unordered_map<char, string>& map1, uno
 	/* recursive */
 	if(map1.find(pattern[0])==map1.end())
 	{
-		for(int i=1; i<=data.size(); i++)
+		for(int i=1; i<=data.size(); i++) // notice the <=!!!
 		{
 			if(matched.find(data.substr(0, i))==matched.end()) // for test4 and test5
 			{
@@ -68,7 +68,7 @@ void match(string& pattern, string& data, unordered_map<char, string>& map1, uno
 	}
 	else
 	{
-		for(int i=1; i<=data.size(); i++)
+		for(int i=1; i<=data.size(); i++) // notice the <=!!
 		{
 			if(data.substr(0, i)==map1[pattern[0]])
 			{
