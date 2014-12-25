@@ -41,16 +41,16 @@ int numDecodings(string s)
         if(s[i]=='0')
         {
             if(s[i-1]=='1' || s[i-1]=='2')
-                dp[i]=dp[i-2];
+                dp[i]=dp[i-2]; /* state transformation (1), notice that dp[i-2]!! */
             else
                 return 0; // no way to decode
         }
         else if(s[i-1]=='1' || s[i-1]=='2' && s[i]<='6' && s[i]>'0')
         {
-            dp[i]=dp[i-1]+dp[i-2];
+            dp[i]=dp[i-1]+dp[i-2]; /* state transformation (2) */
         }
         else
-            dp[i]=dp[i-1];
+            dp[i]=dp[i-1]; /* state transformation (3) */
     }
     
     return dp[s.size()-1];
