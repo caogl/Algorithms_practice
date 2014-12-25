@@ -32,7 +32,7 @@ int numDecodings(string s)
     int dp[s.size()];
     dp[0]=1; // !!! used when decode ways s[2]=s[0]+s[1], eg, s[1:2]=26, or decode ways s[2]=s[0], eg: s[1:2]=10
     if(s[1]=='0')
-        dp[1]=0;
+        return 0;
     else
         dp[1]=1;
 
