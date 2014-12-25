@@ -16,11 +16,11 @@ void match(string& pattern, string& data, unordered_map<char, string>& map1, uno
 
 int main()
 {
-	cout<<match("abba", "redbluebluered")<<endl;
-	cout<<match("abba", "redblueyellowred")<<endl;
-	cout<<match("abca", "redblueyellowred")<<endl;
-	cout<<match("aaaa", "redredredred")<<endl;
-	cout<<match("abba", "redredredred")<<endl; //!!! important, cannot create map1[b]==map1[a]
+	cout<<match("abba", "redbluebluered")<<endl; // test1
+	cout<<match("abba", "redblueyellowred")<<endl; // test2
+	cout<<match("abca", "redblueyellowred")<<endl; //test3
+	cout<<match("aaaa", "redredredred")<<endl; //test4
+	cout<<match("abba", "redredredred")<<endl; //test5 !!! important, cannot create map1[b]==map1[a]
 	return 0;
 }
 
@@ -53,7 +53,7 @@ void match(string& pattern, string& data, unordered_map<char, string>& map1, uno
 	{
 		for(int i=1; i<=data.size(); i++)
 		{
-			if(matched.find(data.substr(0, i))==matched.end())
+			if(matched.find(data.substr(0, i))==matched.end()) // for test4 and test5
 			{
 				string data1=data.substr(0, i);
 				string data2=data.substr(i, data.size()-i);
