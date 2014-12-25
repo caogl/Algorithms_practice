@@ -12,7 +12,7 @@
 using namespace std;
 
 bool match(string pattern, string data);
-void match(string& pattern, string& data, unordered_map<string, string>& map1, unordered_set<string>& matched, bool &find);
+void match(string& pattern, string& data, unordered_map<char, string>& map1, unordered_set<string>& matched, bool &find);
 
 int main()
 {
@@ -29,13 +29,13 @@ bool match(string pattern, string data)
 	string pattern1=pattern;
 	string data1=data;
 	bool find=false;
-	unordered_map<string, string> map1;
+	unordered_map<char, string> map1;
 	unordered_set<string> matched;
 	match(pattern1, data1, map1, matched, find);
 	return find;
 }
 
-void match(string& pattern, string& data, unordered_map<string, string>& map1, unordered_set<string>& matched, bool &find)
+void match(string& pattern, string& data, unordered_map<char, string>& map1, unordered_set<string>& matched, bool &find)
 {
 	/* base case */
 	if(pattern.size()==0 && data.size()==0)
@@ -50,7 +50,7 @@ void match(string& pattern, string& data, unordered_map<string, string>& map1, u
 
 	/* recursive */
         // must use substr! cannot use [0], see http://stackoverflow.com/questions/26900197/string-c-manipulation 
-	if(map1.find(pattern.substr(0, 1))==map1.end())
+	if(map1.find(pattern[0])==map1.end())
 	{
 		for(int i=1; i<=data.size(); i++)
 		{
@@ -58,12 +58,12 @@ void match(string& pattern, string& data, unordered_map<string, string>& map1, u
 			{
 				string data1=data.substr(0, i);
 				string data2=data.substr(i, data.size()-i);
-				map1[pattern.substr(0, 1)]=data1;
+				map1[pattern[0]]=data1;
 				matched.insert(data1);
 				string pattern1=pattern.substr(1, pattern.size()-1);
 				match(pattern1, data2, map1, matched, find);
 				matched.erase(data1);
-				map1.erase(pattern.substr(0, 1));
+				map1.erase(pattern[0]);
 			}
 		}
 	}
@@ -71,7 +71,7 @@ void match(string& pattern, string& data, unordered_map<string, string>& map1, u
 	{
 		for(int i=1; i<=data.size(); i++)
 		{
-			if(data.substr(0, i)==map1[pattern.substr(0, 1)])
+			if(data.substr(0, i)==map1[pattern[0]])
 			{
 				data=data.substr(i, data.size()-i);
 				pattern=pattern.substr(1, pattern.size()-1);
