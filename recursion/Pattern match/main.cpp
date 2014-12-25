@@ -49,7 +49,6 @@ void match(string& pattern, string& data, unordered_map<char, string>& map1, uno
 	}
 
 	/* recursive */
-        // must use substr! cannot use [0], see http://stackoverflow.com/questions/26900197/string-c-manipulation 
 	if(map1.find(pattern[0])==map1.end())
 	{
 		for(int i=1; i<=data.size(); i++)
