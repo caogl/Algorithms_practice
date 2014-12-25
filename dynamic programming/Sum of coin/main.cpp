@@ -6,6 +6,7 @@
 #include<iostream>
 #include<vector>
 #include<climits>
+#include<algorithm>
 using namespace std;
 
 int findCoinSum(int target, const vector<int>& coin);
@@ -29,19 +30,15 @@ int main()
 
 int findCoinSum(int target, const vector<int>& coin)
 {
-	vector<int> min;
-	min.assign(target+1, INT_MAX);
-	min[0]=0;
+	vector<int> minArray(target+1, INT_MAX);
+	minArray[0]=0;
 	for(int i=0; i<=target; i++)
 	{
 		for(int j=0; j<coin.size(); j++)
 		{
-			if(coin[j]<=i && min[i-coin[j]]+1<min[i])
-			{
-				//cout<<"haha ";
-				min[i]=min[i-coin[j]]+1;
-			}
+			if(coin[j]<=i)
+				minArray[i]=min(minArray[i-coin[j]]+1, minArray[i]);
 		}
 	}
-	return min[target];
+	return minArray[target];
 }
