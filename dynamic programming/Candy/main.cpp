@@ -44,7 +44,7 @@ int candy(vector<int> &ratings)
 	// adjust the decreasing sequence
         for(int i=ratings.size()-1; i>=1; i--)
         {
-            if(ratings[i]<ratings[i-1] && candy[i]>=candy[i-1]) // the seond if condition is important!
+            if(ratings[i]<ratings[i-1] && candy[i]>=candy[i-1]) // the seond if condition is important!!!
                 candy[i-1]=candy[i]+1;
         }
 	
