@@ -50,9 +50,10 @@ TreeNode* sortedListToBST(ListNode *head)
 		head1=head1->next;
 		len++;
 	}
-	TreeNode* root=sortedListToBST(head, 0, len-1);
+	return sortedListToBST(head, 0, len-1);
 }
 
+// must pass ListNode* by reference! because in first recursive call need to change head after it return!
 TreeNode* sortedListToBST(ListNode* &head, int begin, int end)
 {
 	if(begin>end)
