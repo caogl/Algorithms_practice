@@ -41,12 +41,13 @@ int candy(vector<int> &ratings)
                 candy[i-1]=candy[i]+1;
         }
         
-	//demo of the candy distribution
+	/*demo of the candy distribution
 	for(int i=0; i<candy.size(); i++)
 	{
 		cout<<candy[i]<<" ";
 	}
 	cout<<endl;
+	*/
 	
         int result=0;
         for(int i=0; i<candy.size(); i++)
