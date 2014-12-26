@@ -40,7 +40,7 @@ TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder, int pstart, int
 	/* find the pivot: since preorder[0] is the root, split from here */
 	TreeNode* parent=new TreeNode(preorder[pstart]);
 	int pivotInorder=0;
-	for(int i=istart; i<=inorder.size(); i++)
+	for(int i=istart; i<=iend; i++)
 	{
 		if(inorder[i]==preorder[pstart])
 		{
