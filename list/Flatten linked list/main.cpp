@@ -68,40 +68,52 @@ int main()
 	return 0;
 }
 
+/* Notice that different from Sort List Leetcode question, here there are two directions, 
+ * notice the direction in merge is always down!!! */
 ListNode* merge(ListNode* node1, ListNode* node2)
 {
-	ListNode* sudoHead=new ListNode(-1);
-	ListNode* current=sudoHead;
+	if(node1==nullptr)	return node2;
+	if(node2==nullptr)	return node1;
+
+	ListNode* head;
+	if(node1->val<node2->val)
+	{
+		head=node1;
+		node1=node1->down;
+	}
+	else
+	{
+		head=node2;
+		node2=node2->down;
+	}
+	ListNode* head0=head;
+	
 	while(node1!=nullptr && node2!=nullptr)
 	{
 		if(node1->val<node2->val)
 		{
-			current->down=node1;
+			head->down=node1;
 			node1=node1->down;
-			current=current->down;
 		}
 		else
 		{
-			current->down=node2;
+			head->down=node2;
 			node2=node2->down;
-			current=current->down;
 		}
+		head=head->down;
 	}
 	if(node1!=nullptr)
-		current->down=node1;
-	if(node2!=nullptr)
-		current->down=node2;
-	
-	ListNode* head=sudoHead->down;
-	delete sudoHead;
-	return head;
+		head->down=node1;
+	else
+		head->down=node2;
+	return head0;
 }
 
 ListNode* flatten(ListNode* head)
 {
 	if(head==nullptr || head->next==nullptr)
 		return head;
-	
-	return merge(head, flatten(head->next));
+
+	return merge(head, flatten(head->next));	
 }
 
