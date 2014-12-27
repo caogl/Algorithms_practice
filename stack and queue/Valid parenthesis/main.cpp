@@ -32,6 +32,5 @@ bool isValid(string s)
 			stack1.pop();
 		}		
 	}
-	if(stack1.empty())	return true;
-	else	return false;
+	return stack1.empty();
 }
