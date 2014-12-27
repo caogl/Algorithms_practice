@@ -1,9 +1,9 @@
 /*
 Given a link list with right pointers and each element of the list has a down link contains another link list with down pointers as:
 
- 5 -> 7 -> 9 -> 18
+ 5 -> 6 -> 9 -> 18
  |    |    |    |
-10    6    14   20
+10    7    14   20
  |    |    |    |
 11    8    19   22
  |    |         |
@@ -43,9 +43,9 @@ int main()
 	head->down->down=new ListNode(11);
 	head->down->down->down=new ListNode(12);
 	head->down->down->down->down=new ListNode(15);
-	head->next=new ListNode(7);
+	head->next=new ListNode(6);
 	head=head->next;
-	head->down=new ListNode(6);
+	head->down=new ListNode(7);
 	head->down->down=new ListNode(8);
 	head->down->down->down=new ListNode(13);
 	head->next=new ListNode(9);
