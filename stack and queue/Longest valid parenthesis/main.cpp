@@ -21,7 +21,7 @@ int main()
 
 int longestValidParentheses(string s) 
 {
-        stack<int> stack1;
+        stack<int> stack1; // the positions of '('
         int lasPos=0; // the valid start position
         int maxP=0;
         for(int i=0; i<s.size(); i++)
