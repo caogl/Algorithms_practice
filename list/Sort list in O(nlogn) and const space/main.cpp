@@ -1,8 +1,6 @@
 #include<iostream>
 using namespace std;
 
-//My own solution is space and time right, but cannot pass leetcode test cases
-
 struct ListNode
 {
 	int val;
