@@ -36,6 +36,7 @@ ListNode *insertionSortList(ListNode *head)
 	ListNode* cur=sudoHead; // !!! cur->next is the real node that we want to perform insert on
 	ListNode* pre;
 
+	/* manipulate the insertion on pre->next and cur->next pointer rathen than pre and cur */  
 	while(cur->next!=nullptr)
 	{
 		pre=sudoHead;
