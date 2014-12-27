@@ -84,7 +84,7 @@ ListNode *reverseKGroup(ListNode *head, int k)
 	}
 	head0->next=prev;
 
-	ListNode* result=sudoHead->next; //Important!!!
+	ListNode* result=sudoHead->next; 
 	delete sudoHead;
 	return result;
 }
