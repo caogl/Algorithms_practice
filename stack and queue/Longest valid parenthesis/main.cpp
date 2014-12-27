@@ -37,11 +37,11 @@ int longestValidParentheses(string s)
                 }
                 else if(stack1.size()>1) // will now more '(' from than valid start position
                 {    
-		    // must pop first to deal with if s="(()()"
+		    // must pop first to deal with if s="((()()"
                     stack1.pop();
                     maxP=max(maxP, i-stack1.top());
                 }
-                else
+                else // the stack is empty-> ')' cannot be a valid start position
                     lasPos=i+1;
             }
         }
