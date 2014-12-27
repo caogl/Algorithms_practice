@@ -50,7 +50,7 @@ int minCut(string s)
 				if(j==0) // from start to the current position is a palindrome, no partition needed
 					dp[i]=0;
 				else
-					dp[i]=min(dp[i], dp[j-1]+1);
+					dp[i]=min(dp[i], dp[j-1]+1); // notice the index: j-1 rathen than j
 			}
 		}
 	}
