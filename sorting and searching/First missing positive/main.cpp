@@ -18,7 +18,7 @@ int main()
 	cout<<firstMissingPositive(A, 4)<<endl;
 	int B[]={3, 4, -1, 1};
 	cout<<firstMissingPositive(B, 4)<<endl;
-	int C[]={1, 4, -1, 1};
+	int C[]={1, 4, -1, 1};  // handle duplicate elements
 	cout<<firstMissingPositive(C, 4)<<endl;
 
 	return 0;
