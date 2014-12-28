@@ -1,5 +1,6 @@
-// reference: http://blog.csdn.net/kenden23/article/details/13871699
 /*
+Straightforward throught:
+http://blog.csdn.net/kenden23/article/details/13871699
 1. 假设圈的周长L, a is the distance before entering the circle, b is the distance between the cycle node
    and the meeting node
 2. 那么相遇的时候slow走：a + b,而fast走：a + b + n*L，（n代表fast走了多少圈）
@@ -7,6 +8,9 @@
 4 从相遇点的时候开始，放一个指针从开始点走起，另一个指针继续走，而且这时走的速度都是一样的，
   那么当一个指针从开始点X走到循环圈点Y的时候，走了a路程，而另一个指针走的路程是n*L-b，
   那么两者的路程是一样的，相遇点必然是Y。
+  
+General Proof:
+http://fisherlei.blogspot.com/2013/11/leetcode-linked-list-cycle-ii-solution.html
 */
 
 #include<iostream>
