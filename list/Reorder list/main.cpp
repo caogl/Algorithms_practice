@@ -66,7 +66,7 @@ void reorderList(ListNode *head)
         head1=head;
 
         /* step(3): merge two list */
-        head1=head1->next; // This step necessary! or when head=head2, head1 still equals head, mess......
+        head1=head1->next; // This step necessary!!! or when head=head2, head1 still equals head, mess......!!!
         while(head1!=nullptr || head2!=nullptr)
         {
             if(head2!=nullptr)
