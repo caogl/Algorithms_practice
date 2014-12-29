@@ -1,6 +1,5 @@
-// idea: using the property of stacks, as opposed to the BFS by queue, and 
-//       using two queuse interchangably to keep track oth the node
-
+// idea: using the property of stacks, as opposed to the BFS by queue, 
+//       two stacks: preLevel and curLevel until next level is empty
 #include<iostream>
 #include<vector>
 #include<stack>
@@ -38,60 +37,59 @@ int main()
 vector<vector<int> > zigzagLevelOrder(TreeNode *root)
 {
 	vector<vector<int> > result;
-	if(root!=nullptr)
-	{
-		vector<int> vec;
-		vec.push_back(root->val);
-		result.push_back(vec);
-	}
-	else
+	if(root==nullptr)
 		return result;
 
-	vector<stack<TreeNode*> > levelStack(2);
-	int cur=1;
-	levelStack[0].push(root);
-	while(!levelStack[!cur].empty())
+	stack<TreeNode*> preLevel;
+	stack<TreeNode*> curLevel;
+	stack<TreeNode*> emptyStack;
+	preLevel.push(root);
+	result.push_back(vector<int> (1, root->val));
+	bool odd=false;
+	
+	while(true)
 	{
 		vector<int> vec;
-		if(cur&1) // odd level
+		while(!preLevel.empty())
 		{
-			while(!levelStack[!cur].empty())
+			if(odd)
 			{
-				TreeNode* tmp=levelStack[!cur].top();
-				if(tmp->right)
+				if(preLevel.top()->left!=nullptr)
 				{
-					vec.push_back(tmp->right->val);
-					levelStack[cur].push(tmp->right);
+					vec.push_back(preLevel.top()->left->val);
+					curLevel.push(preLevel.top()->left);
 				}
-				if(tmp->left)
+				if(preLevel.top()->right!=nullptr)
 				{
-					vec.push_back(tmp->left->val);
-					levelStack[cur].push(tmp->left);
+					vec.push_back(preLevel.top()->right->val);
+					curLevel.push(preLevel.top()->right);
 				}
-				levelStack[!cur].pop();
 			}
+			else
+			{
+				if(preLevel.top()->right!=nullptr)
+				{
+					vec.push_back(preLevel.top()->right->val);
+					curLevel.push(preLevel.top()->right);
+				}
+				if(preLevel.top()->left!=nullptr)
+				{
+					vec.push_back(preLevel.top()->left->val);
+					curLevel.push(preLevel.top()->left);
+				}
+			}
+			preLevel.pop();
 		}
-		else // even level
+		
+		if(!vec.empty())
 		{
-			while(!levelStack[!cur].empty()) // odd level
-			{
-				TreeNode* tmp=levelStack[!cur].top();
-				if(tmp->left)
-				{
-					vec.push_back(tmp->left->val);
-					levelStack[cur].push(tmp->left);
-				}
-				if(tmp->right)
-				{
-					vec.push_back(tmp->right->val);
-					levelStack[cur].push(tmp->right);
-				}
-				levelStack[!cur].pop();
-			}
-		}
-		if(!vec.empty()) // important check!
 			result.push_back(vec);
-		cur=!cur;
+			preLevel=curLevel;
+			curLevel=emptyStack;;
+			odd=!odd;
+		}
+		else // next level is empty
+			break;
 	}
 	return result;
 } 
