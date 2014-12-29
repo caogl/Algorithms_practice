@@ -17,7 +17,7 @@ struct node
 /* lca for binary tree using no extra space*/
 /* reference: http://www.hawstein.com/posts/4.6.html */
 node* lca(node* root, node* node1, node *node2);
-void lca(node* root, node* node1, node* node2, node* & ans);
+void lca(node* root, node* node1, node* node2, node* &ans);
 bool isAns(node* root, node* node1);
 
 /* lca for a binary search tree */
@@ -43,15 +43,16 @@ int main()
 
 node* lca(node* root, node* node1, node *node2)
 {
-	node* ans=root;
+	node* ans;
 	lca(root, node1, node2, ans);
 	return ans;
 }
 
-void lca(node* root, node* node1, node* node2, node* & ans)
+void lca(node* root, node* node1, node* node2, node* &ans) // notice the pass by reference!!!
 {
 	if(!isAns(root, node1) || !isAns(root, node2))
 		return;
+	
 	ans=root;
 	lca(root->left, node1, node2, ans);
 	lca(root->right, node1, node2, ans);
@@ -59,7 +60,7 @@ void lca(node* root, node* node1, node* node2, node* & ans)
 
 bool isAns(node* root, node* node1)
 {
-	if(root==NULL || node1==NULL)
+	if(root==nullptr)
 		return false;
 	if(root==node1)
 		return true;
