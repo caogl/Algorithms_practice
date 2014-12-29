@@ -1,5 +1,6 @@
 // idea: using the property of stacks, as opposed to the BFS by queue, 
 //       two stacks: preLevel and curLevel until next level is empty
+
 #include<iostream>
 #include<vector>
 #include<stack>
