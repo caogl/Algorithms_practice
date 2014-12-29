@@ -1,3 +1,6 @@
+// idea: while recursively copy the graph node, we need to keep track of whether the neight node of every vertex is created
+//       before. If not, create one and add the edge. If yes, just add the edge 
+
 #include<iostream>
 #include<unordered_map>
 #include<unordered_set>
@@ -31,6 +34,7 @@ int main()
 	head2->neighbors.push_back(head2);
 	printGraph(head0);
 
+	cout<<"Here is the copied graph: "<<endl;
 	UndirectedGraphNode* head3=cloneGraph(head0);
 	printGraph(head3);
 
@@ -73,10 +77,10 @@ void printGraph(UndirectedGraphNode* node, unordered_set<UndirectedGraphNode*>& 
 	visited.insert(node);
 	for(int i=0; i<node->neighbors.size(); i++)
 	{
-		if(node->neighbors[i]==node || visited.find(node->neighbors[i])==visited.end())
-			cout<<node->neighbors[i]->label<<" ";
+		cout<<node->neighbors[i]->label<<" ";
 	}
 	cout<<endl;
+
 	for(int i=0; i<node->neighbors.size(); i++)
 	{
 		if(visited.find(node->neighbors[i])==visited.end())
