@@ -18,7 +18,7 @@ struct UndirectedGraphNode
 UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node);
 UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node, unordered_map<int, UndirectedGraphNode*>& visited);
 void printGraph(UndirectedGraphNode* node);
-void printGraph(UndirectedGraphNode* node, unordered_set<UndirectedGraphNode*>& visited);
+void printGraph(UndirectedGraphNode* node, unordered_set<int>& visited);
 
 int main()
 {
@@ -65,16 +65,16 @@ UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node, unordered_map<int, Un
 
 void printGraph(UndirectedGraphNode* node)
 {
-	unordered_set<UndirectedGraphNode*> visited;
+	unordered_set<int> visited;
 	printGraph(node, visited);
 }
 
-void printGraph(UndirectedGraphNode* node, unordered_set<UndirectedGraphNode*>& visited)
+void printGraph(UndirectedGraphNode* node, unordered_set<int>& visited)
 {
 	if(node==nullptr)
 		return;
 	cout<<node->label<<"	";
-	visited.insert(node);
+	visited.insert(node->label);
 	for(int i=0; i<node->neighbors.size(); i++)
 	{
 		cout<<node->neighbors[i]->label<<" ";
@@ -83,7 +83,7 @@ void printGraph(UndirectedGraphNode* node, unordered_set<UndirectedGraphNode*>& 
 
 	for(int i=0; i<node->neighbors.size(); i++)
 	{
-		if(visited.find(node->neighbors[i])==visited.end())
+		if(visited.find(node->neighbors[i]->label)==visited.end())
 			printGraph(node->neighbors[i]);
 	}
 }
