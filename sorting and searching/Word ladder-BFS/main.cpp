@@ -48,10 +48,10 @@ int ladderLength(string start, string end, unordered_set<string> &dict)
 			for(int j=0; j<26; j++)
 			{
 				s[i]='a'+j;
-				if(s==end) //found
-					return level+1;
 				if(dict.find(s)!=dict.end() && visited.find(s)==visited.end())
 				{
+					if(s==end) //found
+						return level+1; //+1 important!!!
 					q.push(s);
 					curLevelNum++;
 					visited.insert(s);
