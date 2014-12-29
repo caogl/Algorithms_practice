@@ -43,7 +43,7 @@ int main()
 
 UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node)
 {
-	unordered_map<int, UndirectedGraphNode*> visited;
+	unordered_map<int, UndirectedGraphNode*> visited; // must use int as the key to track!!!
 	return cloneGraph(node, visited);
 }
 
