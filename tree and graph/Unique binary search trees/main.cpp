@@ -1,4 +1,6 @@
 // reference: http://fisherlei.blogspot.com/2013/03/leetcode-unique-binary-search-trees.html
+// use the property of BST, all the left nodes must be smaller than the current node while right nodes bigger
+// then get the dp function: dp[i]=dp[j]*dp[i-j-1]
 
 #include<iostream>
 #include<vector>
