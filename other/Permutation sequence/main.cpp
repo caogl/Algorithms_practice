@@ -74,7 +74,9 @@ string getPermutation(int n, int k)
 	}
 	reverse(factorial.begin(), factorial.end());
 
-	k--; // very important, because count actually start from 0!!! for any (n-1)!, if not, (n-1)!/(n-1)!=1
+	k--; // very important, because count actually start from 0!!! 
+	     // if not, for k=1 to (n-1)!, the first sequence char should be 0
+	     // but then for (n-1)! , (n-1)!/[(n-1)!]=1, the first sequence char is 1 !!!
 	string result;
 	for(int i=0; i<n; i++)
 	{
