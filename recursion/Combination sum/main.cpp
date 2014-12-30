@@ -4,7 +4,7 @@
 using namespace std;
 
 vector<vector<int> > combinationSum(vector<int> &candidates, int target);
-void combinationSum(const vector<int>& candidates, int target, int sum, int startPos, vector<int>& tmp, vector<vector<int> >& result);
+void combinationSum(vector<vector<int> >& result, vector<int> & candidates, int target, vector<int>& tmp, int currentSum, int startPos);
 
 int main()
 {
@@ -18,30 +18,30 @@ int main()
 	}
 }
 
-vector<vector<int> > combinationSum(vector<int> &candidates, int target)
+vector<vector<int> > combinationSum(vector<int> &candidates, int target) 
 {
-	vector<vector<int> > result;
-	vector<int> tmp;
-	sort(candidates.begin(), candidates.end());
-	combinationSum(candidates, target, 0, 0, tmp, result);
-	return result;
+        sort(candidates.begin(), candidates.end());
+        vector<vector<int> > result;
+        vector<int> tmp;
+        int currentSum=0;
+        int startPos=0;
+        combinationSum(result, candidates, target, tmp, currentSum, startPos);
+        return result;
 }
-
-void combinationSum(const vector<int>& candidates, int target, int sum, int startPos, vector<int>& tmp, vector<vector<int> >& result)
+    
+void combinationSum(vector<vector<int> >& result, vector<int> & candidates, int target, vector<int>& tmp, int currentSum, int startPos)
 {
-	if(sum==target)
-	{
-		result.push_back(tmp);
-		return;
-	}
-	if(sum>target)
-		return;
-
-	for(int i=startPos; i<candidates.size(); i++)
-	{
-		vector<int> tmp1(tmp);
-		tmp1.push_back(candidates[i]);
-		// to allow sam repeated numbers choosen unlimited times, start from i rather than i+1
-		combinationSum(candidates, target, sum+candidates[i], i, tmp1, result);
-	}
+        if(currentSum>=target)
+        {
+            if(currentSum==target)
+                result.push_back(tmp);
+            return;
+        }
+        
+        for(int i=startPos; i<candidates.size(); i++)
+        {
+            tmp.push_back(candidates[i]);
+            combinationSum(result, candidates, target, tmp, currentSum+candidates[i], i);
+            tmp.pop_back();
+        }
 }
