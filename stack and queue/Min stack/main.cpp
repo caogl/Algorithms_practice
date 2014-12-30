@@ -1,3 +1,5 @@
+// reference: http://www.hawstein.com/posts/3.2.html
+
 #include<iostream>
 #include<utility>
 #include<vector>
