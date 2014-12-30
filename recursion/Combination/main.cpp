@@ -10,7 +10,7 @@ void geneComb(vector<string>& result, string str, string& out, int startPos);
 
 // leetcode question, generate fixed length combination sequence
 vector<vector<int> > combine(int n, int k);
-void combine(vector<int>& num, int k, int startPos, vector<int>& tmp, vector<vector<int> >& result);
+void combine(vector<vector<int> >& result, vector<int>& tmp, int startPos, int n, int k);
 
 // leetcode question "subsets II"
 vector<vector<int> > subsetsWithDup(vector<int> &S);
@@ -71,32 +71,28 @@ void geneComb(vector<string>& result, string str, string& out, int startPos)
 	}
 }
 
-vector<vector<int> > combine(int n, int k)
+vector<vector<int> > combine(int n, int k) 
 {
-        vector<int> num(n);
-        for(int i=0; i<n; i++)
-            num[i]=i+1;
         vector<vector<int> > result;
         vector<int> tmp;
-        combine(num, k, 0, tmp, result);
+        int startPos=0;
+        combine(result, tmp, startPos, n, k);
         return result;
 }
-
-void combine(vector<int>& num, int k, int startPos, vector<int>& tmp, vector<vector<int> >& result)
+    
+void combine(vector<vector<int> >& result, vector<int>& tmp, int startPos, int n, int k)
 {
         if(tmp.size()==k)
         {
             result.push_back(tmp);
             return;
         }
-        if(startPos==num.size())
-            return;
-
-        for(int i=startPos; i<num.size(); i++)
+        
+        for(int i=startPos; i<n; i++)
         {
-            vector<int> tmp1(tmp);
-            tmp1.push_back(num[i]);
-            combine(num, k, i+1, tmp1, result);
+            tmp.push_back(i+1);
+            combine(result, tmp, i+1, n, k);
+            tmp.pop_back();
         }
 }
 
