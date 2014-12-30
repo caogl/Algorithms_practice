@@ -4,9 +4,9 @@
 using namespace std;
 
 vector<vector<int> > permute(vector<int> &num);
-void permute(vector<int>& num, vector<int>& tmp, vector<vector<int> >& result, vector<bool>& used);
+void permute(vector<int>& num, vector<bool>& used, vector<int>& tmp, vector<vector<int> >& result, int startPos);
 vector<vector<int> > permuteUnique(vector<int> &num);
-void permuteUnique(vector<int>& num, vector<int>& tmp, vector<vector<int> >& result, vector<bool>& used);
+void permuteUnique(vector<int>& num, vector<bool>& used, vector<int>& tmp, vector<vector<int> >& result, int startPos);
 
 int main()
 {
@@ -51,16 +51,17 @@ int main()
 
 vector<vector<int> > permute(vector<int> &num) 
 {
-        vector<int> tmp;
-        vector<vector<int> > result;
         vector<bool> used(num.size(), false);
-        permute(num, tmp, result, used);
+        int startPos=0;
+        vector<vector<int> > result;
+        vector<int> tmp;
+        permute(num, used, tmp, result, startPos);
         return result;
 }
-
-void permute(vector<int>& num, vector<int>& tmp, vector<vector<int> >& result, vector<bool>& used)
+    
+void permute(vector<int>& num, vector<bool>& used, vector<int>& tmp, vector<vector<int> >& result, int startPos)
 {
-        if(tmp.size()==num.size())
+        if(startPos==num.size())
         {
             result.push_back(tmp);
             return;
@@ -68,47 +69,47 @@ void permute(vector<int>& num, vector<int>& tmp, vector<vector<int> >& result, v
         
         for(int i=0; i<num.size(); i++)
         {
-            if(used[i]){}
-            else
+            if(!used[i])
             {
-                vector<int> tmp1(tmp);
-                tmp1.push_back(num[i]);
-                vector<bool> used1(used);
-                used1[i]=true;
-                permute(num, tmp1, result, used1);
+                tmp.push_back(num[i]);
+                used[i]=true;
+                permute(num, used, tmp, result, startPos+1);
+                used[i]=false;
+                tmp.pop_back();
             }
         }
 }
 
 vector<vector<int> > permuteUnique(vector<int> &num)
 {
-        sort(num.begin(), num.end()); // give ordering
-        vector<int> tmp;
+        sort(num.begin(), num.end());
+        vector<bool> used(num.size(), false); // give ordering !!!
+        int startPos=0;
         vector<vector<int> > result;
-        vector<bool> used(num.size(), false);
-        permuteUnique(num, tmp, result, used);
+        vector<int> tmp;
+        permuteUnique(num, used, tmp, result, startPos);
         return result;
 }
-
-void permuteUnique(vector<int>& num, vector<int>& tmp, vector<vector<int> >& result, vector<bool>& used)
+    
+void permuteUnique(vector<int>& num, vector<bool>& used, vector<int>& tmp, vector<vector<int> >& result, int startPos)
 {
-        if(tmp.size()==num.size())
+        if(startPos==num.size())
         {
             result.push_back(tmp);
             return;
         }
-
+        
         for(int i=0; i<num.size(); i++)
         {
-	    // when duplicate meets, give it an ordering
-            if(used[i] || ((i>0) && (num[i-1]==num[i]) && !used[i-1])){}
-            else
+            if(i>0 && num[i]==num[i-1] && !used[i-1]) // when duplicate meets, give it an ordering
+                continue;
+            if(!used[i])
             {
-                vector<int> tmp1(tmp);
-                tmp1.push_back(num[i]);
-                vector<bool> used1(used);
-                used1[i]=true;
-                permuteUnique(num, tmp1, result, used1);
+                tmp.push_back(num[i]);
+                used[i]=true;
+                permuteUnique(num, used, tmp, result, startPos+1);
+                used[i]=false;
+                tmp.pop_back();
             }
         }
 }
