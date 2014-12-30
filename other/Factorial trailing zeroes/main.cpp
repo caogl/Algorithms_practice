@@ -1,3 +1,5 @@
+// reference: http://www.hawstein.com/posts/19.3.html
+
 #include<iostream>
 using namespace std;
 
