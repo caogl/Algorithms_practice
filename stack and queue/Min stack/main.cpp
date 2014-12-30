@@ -42,7 +42,7 @@ class MinStack
 public:
     void push(int x) 
     {
-        if(Stack.size()==0 || Min.top()>=x)
+        if(Stack.size()==0 || Min.top()>=x) // first check condition important !!!
             Min.push(x);
 	Stack.push(x);
     }
