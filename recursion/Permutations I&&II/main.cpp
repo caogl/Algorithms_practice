@@ -82,8 +82,8 @@ void permute(vector<int>& num, vector<bool>& used, vector<int>& tmp, vector<vect
 
 vector<vector<int> > permuteUnique(vector<int> &num)
 {
-        sort(num.begin(), num.end());
-        vector<bool> used(num.size(), false); // give ordering !!!
+        sort(num.begin(), num.end()); // give ordering!!! important!!!
+        vector<bool> used(num.size(), false); 
         int startPos=0;
         vector<vector<int> > result;
         vector<int> tmp;
