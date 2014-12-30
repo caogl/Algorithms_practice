@@ -22,36 +22,33 @@ int main()
 
 void nextPermutation(vector<int> &num)
 {
-	if(num.size()<2)
-		return;
-	int i=num.size()-2;
-	while(i>=0)
-	{
-		if(num[i]<num[i+1])
-			break;
-		i--;
-	}
-	int j=i+1;
-	int min=INT_MAX;
-	int swap_index=i;
-	while(j<num.size())
-	{
-		// careful checking, the number to exchange may not be one number bigger than partition one
-		// find the smallest one bigger than to partition number!
-		if(num[j]>num[i] && num[j]<=min) 
-		{
-			swap_index=j;
-			min=num[j];
-		}
-		j++;
-	}
-
-	if(swap_index!=i)
-	{
-		swap(num[i], num[swap_index]);
-		reverse(num.begin()+i+1, num.end());
-	}
-	else // which means that all numbers are in descending order
-		reverse(num.begin(), num.end());	
+        if(num.size()<=1)
+            return;
+        int index1=-1;
+        for(int i=num.size()-2; i>=0; i--)
+        {
+            if(num[i]<num[i+1])
+            {
+                index1=i;
+                break;
+            }
+        }
+        if(index1==-1) // if the last sequence order
+        {
+            reverse(num.begin(), num.end());
+            return;
+        }
+        
+        int index2=-1;
+        for(int i=num.size()-1; i>=0; i--)
+        {
+            if(num[i]>num[index1])
+            {
+                index2=i;
+                swap(num[index1], num[index2]);
+                reverse(num.begin()+index1+1, num.end()); // here it is index1 rather than index2 !!
+                break;
+            }
+        }
 }
 
