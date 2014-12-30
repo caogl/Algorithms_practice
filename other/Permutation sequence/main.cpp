@@ -82,8 +82,7 @@ string getPermutation(int n, int k)
 	{
 		int digit=k/factorial[i];
 		result=result+to_string(digits[digit]);
-		for(int j=digit+1; j<n; j++)
-			digits[j-1]=digits[j];
+		digits.erase(digits.begin()+digit);
 		k=k%factorial[i];
 	}
 	return result;
