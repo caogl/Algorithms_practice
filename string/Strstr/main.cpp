@@ -2,41 +2,43 @@
 #include<cstring>
 using namespace std;
 
-char *strStr(char *haystack, char *needle);
+int strStr(char *haystack, char *needle);
+bool compare(char* str1, char* str2, int len2);
 
 int main()
 {
 	char a[]="a";
 	char b[]="a";
-	char* result=strStr(a, b);
-	cout<<a<<endl<<b<<endl<<result<<endl;
+	cout<<a<<endl<<b<<endl<<strStr(a, b)<<endl;
 
 	char c[]="abcdefg";
 	char d[]="def";
-	result=strStr(c, d);
-	cout<<c<<endl<<d<<endl<<result<<endl;
+	cout<<c<<endl<<d<<endl<<strStr(c, d)<<endl;
 
 	return 0;
 }
 
-char *strStr(char *haystack, char *needle)
+int strStr(char *haystack, char *needle)
 {
         int len1=strlen(haystack);
         int len2=strlen(needle);
         if(haystack==nullptr || needle==nullptr || len2>len1)
         {
-            return nullptr;
+            return -1;
         }
-        char tmp[len2+1];
-	tmp[len2]='\0';
 
         for(int i=0; i<=len1-len2; i++)
         {
-            memcpy(tmp, &haystack[i], len2);
-            if(strcmp(tmp, needle)==0)
-	    {
-                return &haystack[i];
-	    }
+            if(compare(needle, &haystack[i], len2))
+                return i;
         }
-        return nullptr;
+        return -1;
+}
+
+bool compare(char* str1, char* str2, int len2)
+{
+    for(int i=0; i<len2; i++)
+        if(str1[i]!=str2[i])
+            return false;
+    return true;
 }
