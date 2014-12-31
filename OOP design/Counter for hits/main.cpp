@@ -27,57 +27,81 @@ We can have a rolling window array of 900 elements to store the hit in each seco
 
 #include<iostream>
 #include<unistd.h>
+#include<cstring>
 #include<ctime>
 using namespace std;
 
-template <int N=900>
+const int N=10; // here fore test simplicity
+
 class Counter
 {
 public:
- 	Counter()
+	Counter()
 	{
+		lastTime=time(nullptr);
+		sum=0;
+		lastPos=0;
 		memset(count, 0, sizeof(count));
-  		lastPosition = 0;
-  		sum = 0;
-  		lastTime = time(nullptr);
 	}
 	void hit()
 	{
-  		move();
-  		count[lastPosition]++;
-  		sum++;
- 	}
-	int getcount() 
+		move();
+		count[lastPos]++;
+		sum++;
+	}
+	int getCount()
 	{
-  		move();
-  		return sum;
- 	}
+		move();
+		return sum;
+	}
 private:
-	int count[N];
-	int lastPosition;
- 	int lastTime;
- 	int sum;
-
- 	void move() 
+	void move()
 	{
-		int t = time(NULL);
-		int gap = min(t - lastTime, N);
-		for (int k = 0; k < gap; ++k)
+		int t=time(nullptr);
+		int cutSize=min(t-lastTime, N);
+		for(int i=0; i<cutSize; i++)
 		{
-   			lastPosition = (lastPosition + 1) % N;
-   			sum -= count[lastPosition];
-   			count[lastPosition] = 0;
-  		}
-  		lastTime = t;
- 	}
+			lastPos=(lastPos+1)%N;
+			// order important! must change the lastPosto lastPos+1 first!
+			sum-=count[lastPos];
+			count[lastPos]=0;
 
+		}
+		lastTime=t;
+	}
+	
+	int sum;
+	int lastTime;
+	int count[N];
+	int lastPos;
 };
+
+int main()
+{
+	Counter counter;
+	for(int i=0; i<10; i++)
+		counter.hit();
+	sleep(2);
+	for(int i=0; i<5; i++)
+		counter.hit();
+	sleep(3);
+	cout<<counter.getCount()<<endl;
+	for(int i=0; i<10; i++)
+		counter.hit();
+	sleep(6);
+	cout<<counter.getCount()<<endl;
+	sleep(3);
+	cout<<counter.getCount()<<endl;
+	
+	return 0;
+}
 
 /*
  * What if we want full accuracy? Actually this is simpler, as we don¿t have much room for optimization. 
  * What we need is to record all the raw data. We can use a queue for the purpose.
  */
 
+/*
 class Counter 
 {
 public:
@@ -103,6 +127,8 @@ private:
       			hits.pop();
     	}
 };
+
+*/
 
 /*
 This is simpler, accurate, but cost more memory and less efficient. for example, if we use the counter for QPS, 
