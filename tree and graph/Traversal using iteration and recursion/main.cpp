@@ -15,39 +15,8 @@ void preOrderTraversal(Node* root);
 void preStack(Node* root);
 /* 100 50 25 75 150 125 110 175 */
 
-
-
 void inOrderTraversal(Node* root);
 void inStack(Node* root);
-
-/*
- * Using two stacks one for parent and one for child
- * Push the root node to the child stack.
-   while child stack is not empty
-   Pop a node from the child stack, and push it to the parent stack.
-   Push its left child followed by its right child to the child stack.
-   end while
-   Now the parent stack would have all the nodes ready to be traversed in post-order. 
-   Pop off the nodes from the parent stack one by one and you will have the post order traversal of the tree.
-   Demo:
-           100
-          /    \
-           
-        /        \
-      50         150
-     /  \       /   \
-   25   75    125   175
-              /
-           110
-
-         child                  parent
-   (1)     100
-   (2)   150  50                  100
-   (3)  175 125 50              150 100
-   (4)   125  50              175 150 100
-   (5)  110 50              125 175 150 100
-   ......
- */
 
 void postOrderTraversal(Node* root);
 void postStack(Node* root);
@@ -125,6 +94,32 @@ void inOrderTraversal(Node* root)
 	inOrderTraversal(root->right);
 }
 
+/*
+   Demo:
+           100
+           /  \
+           
+        /        \
+      50         150
+     /  \       /   \
+   25   75    125   175
+              /
+           110
+   
+      	stack elements(bottom to top)		current		pop and print
+   (0)  empty  					100
+   (1)  100					50
+   ...
+   (2)  100-50-25				nullptr		25
+   (3)	100-50					nullptr		50
+   (4)	100-75					75
+   (5)  100-75					nullptr		75
+   (6)	100					nullptr		100
+   (7)	150					125
+   (8)  150-125					110
+   ......
+*/
+
 void inStack(Node* root)
 {
 	Node* current=root; // current node to explore
@@ -146,27 +141,6 @@ void inStack(Node* root)
 			current=current->right;
 		}
 	}
-
-	/*   Would fall into deadloop!, becasue 25->75, then left not nullptr, go back and forth  
-        
-	if(root!=nullptr)
-		stack1.push(root);
-	while(!stack1.empty())
-	{
-		Node* tmp=stack1.top();
-		if(tmp->left==nullptr)
-		{
-			cout<<tmp->data<<" ";
-			stack1.pop();
-			if(tmp->right!=nullptr)
-				stack1.push(tmp->right);
-		}
-		else
-		{
-			stack1.push(tmp->left);
-		}
-	}
-	*/
 }
 
 void postOrderTraversal(Node* root)
@@ -177,6 +151,35 @@ void postOrderTraversal(Node* root)
 	postOrderTraversal(root->right);
 	cout<<root->data<<" ";
 }
+
+/*
+ * Using two stacks one for parent and one for child
+ * Push the root node to the child stack.
+   while child stack is not empty
+   Pop a node from the child stack, and push it to the parent stack.
+   Push its left child followed by its right child to the child stack.
+   end while
+   Now the parent stack would have all the nodes ready to be traversed in post-order. 
+   Pop off the nodes from the parent stack one by one and you will have the post order traversal of the tree.
+   Demo:
+           100
+          /    \
+           
+        /        \
+      50         150
+     /  \       /   \
+   25   75    125   175
+              /
+           110
+
+         child                  parent
+   (1)     100
+   (2)   150  50                  100
+   (3)  175 125 50              150 100
+   (4)   125  50              175 150 100
+   (5)  110 50              125 175 150 100
+   ......
+ */
 
 void postStack(Node* root)
 {
