@@ -1,7 +1,14 @@
+/*
+ * idea : keep two levels, and keep a "backtracking precessor" map, then finally recover the route through this map from end to start
+ *        cannot use a queue, use a two level data structure, because there are multiple possible shortest paths, we need to maintain
+ *        the whole layer, because any word in this layer may be a precessor to "end"
+ */
+
 #include<unordered_map>
 #include<unordered_set>
 #include<vector>
 #include<string>
+#include<algorithm>
 #include<iostream>
 using namespace std;
 
@@ -22,7 +29,7 @@ int main()
 	vector<vector<string> > result=findLadders(start, end, dict);
 	for(int i=0; i<result.size(); i++)
 	{
-		for(int j=0; j<result[i]; j++)
+		for(int j=0; j<result[i].size(); j++)
 			cout<<result[i][j]<<" ";
 		cout<<endl;
 	}
@@ -43,7 +50,9 @@ vector<vector<string> > findLadders(string start, string end, unordered_set<stri
         
         while(true)
         {
+	    /* here change two two level data structure indexes to avoid the copy overhead !!!*/
             swap(current, previous);
+	    /* clean all the current levels, this is why queue is hard to be used */
             level[current].clear();
             for(auto itr=level[previous].begin(); itr!=level[previous].end(); itr++)
                 dict.erase(*itr);
@@ -88,7 +97,7 @@ void generatePath(unordered_map<string, vector<string> > &prevWord, vector<strin
             vector<string> pathTmp(path); // important step, if not, would mess the order, because there are pop_back after the recursive call!!!
             reverse(pathTmp.begin(), pathTmp.end());
             result.push_back(pathTmp);
-            path.pop_back();
+            path.pop_back(); // import step, to maintain the recursive growth of path
             return;
         }
         
