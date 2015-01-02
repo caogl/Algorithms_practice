@@ -7,8 +7,8 @@ From bottom up:
     1		         4   1                   4
    / \		        / \ / \                 / \
   2   3      --->      5   2   3     --->      5   2
- / \                      / \                     / \
-4   5                    4   5 (circular nodes)  3   1
+ / \                                              / \
+4   5                    		         3   1
 
 The recursive relationship:
 	(1) current->left=parent->right
