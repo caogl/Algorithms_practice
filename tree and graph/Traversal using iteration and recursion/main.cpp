@@ -95,6 +95,10 @@ void inOrderTraversal(Node* root)
 }
 
 /*
+   idea: (1) if current node is not nullptr, go to the left(smaller) node and put the current node into stack
+   	 (2) if current node is null, means currently no smaller node to explore, print current node
+   	     and assign the current node to be the right node (possible next greater node) to explore
+   	     
    Demo:
            100
            /  \
@@ -136,9 +140,8 @@ void inStack(Node* root)
 		{
 			// if current is nullptr, means the top element is the leftmost, print, explore the right of the top as current
 			cout<<stack1.top()->data<<" ";
-			current=stack1.top();
+			current=stack1.top()->right;
 			stack1.pop();
-			current=current->right;
 		}
 	}
 }
