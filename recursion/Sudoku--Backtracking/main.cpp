@@ -72,9 +72,6 @@ bool solveSudoku(vector<vector<char> > &board, vector<vector<char> >& result)
 			{
 				for(char k='1'; k<='9'; k++)
 				{
-					// too slow operation below, cannot pass test cases
-					//vector<vector<char> > board1(board);
-					//board1[i][j]=k;
 					board[i][j]=k;
 					if(isValid(board, i, j) && solveSudoku(board, result))
 					{
@@ -86,6 +83,8 @@ bool solveSudoku(vector<vector<char> > &board, vector<vector<char> >& result)
 			}
 		}
 	}
+	
+	// if all the cells are filled, would skip the two for loops and reach here
 	result=board;
 	return true;	
 }
