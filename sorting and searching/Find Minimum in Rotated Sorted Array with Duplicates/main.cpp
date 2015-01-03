@@ -29,14 +29,20 @@ void findMin(vector<int> &num, int left, int right, int& result)
 	if(right<left)
 		return;
 
-	/* key point here */
-	int mid=(left+right)/2;
-	if(num[mid]==num[right])
+	/* key point here, to make sure that after the loop, num[left]!=num[mid] and num[right]!=num[mid] */
+	int mid;
+	while(true)
 	{
-		result=min(result, num[right]);
-		findMin(num, left, right-1, result);
+	    mid=(left+right)/2;
+	    while(mid!=right && num[mid]==num[right])
+	        right--;
+	    while(mid!=left && num[mid]==num[left])
+	        left++;
+	    if((left+right)/2==mid)
+	        break;
 	}
-	else if(num[mid]<=num[right]) // the right part must be sorted
+	
+	if(num[mid]<=num[right]) // the right part must be sorted
 	{
 		result=min(result, num[mid]);
 		findMin(num, left, mid-1, result);
