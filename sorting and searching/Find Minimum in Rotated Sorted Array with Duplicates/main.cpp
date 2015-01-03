@@ -29,7 +29,8 @@ void findMin(vector<int> &num, int left, int right, int& result)
 	if(right<left)
 		return;
 
-	/* key point here, to make sure that after the loop, num[left]!=num[mid] and num[right]!=num[mid] */
+	/* key point here, to make sure that after the loop, num[left]!=num[mid] and num[right]!=num[mid] 
+	   if not in a loop, may be will be ended that right=mid, still cannot find minimum!*/
 	int mid;
 	while(true)
 	{
