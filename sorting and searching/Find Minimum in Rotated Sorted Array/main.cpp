@@ -30,11 +30,11 @@ void findMin(vector<int> &num, int left, int right, int& result)
 	if(num[mid]<num[right]) // the right part must be sorted
 	{
 		result=min(result, num[mid]);
-		findMin(num, left+1, mid-1, result);
+		findMin(num, left, mid-1, result);
 	} 
 	else // the left part must be sorted
 	{
 		result=min(result, num[left]);
-		findMin(num, mid+1, right-1, result);
+		findMin(num, mid+1, right, result);
 	}
 }
