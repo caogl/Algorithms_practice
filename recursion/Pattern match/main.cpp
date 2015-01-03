@@ -37,6 +37,9 @@ bool match(string pattern, string data)
 
 void match(string& pattern, string& data, unordered_map<char, string>& map1, unordered_set<string>& matched, bool &find)
 {
+	if(find) // backtracking
+		return
+	
 	/* base case */
 	if(pattern.size()==0 && data.size()==0)
 	{
