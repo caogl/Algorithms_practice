@@ -84,6 +84,7 @@ bool solveSudoku(vector<vector<char> > &board, vector<vector<char> >& result)
 		}
 	}
 	
+	/* base case !!!*/
 	// if all the cells are filled, would skip the two for loops and reach here
 	result=board;
 	return true;	
