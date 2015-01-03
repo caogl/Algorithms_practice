@@ -56,6 +56,9 @@ bool isMatch(const char *s, const char *p)
 
 void isMatch(const char *s, const char *p, bool& match)
 {
+	if(match) // backtracking, speed up a lot!!!
+		return;
+		
 	/* base */
 	if(*s=='\0' && *p=='\0')
 	{
