@@ -23,7 +23,6 @@ int findMin(vector<int> &num)
 
 void findMin(vector<int> &num, int left, int right, int& result)
 {
-	cout<<"left is "<<left<<" right is: "<<right<<endl;
 	if(right<left)
 		return;
 	
