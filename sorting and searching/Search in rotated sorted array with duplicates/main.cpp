@@ -27,6 +27,8 @@ bool search(int A[], int left, int right, int target)
         int mid=(left+right)/2;
         if(A[mid]==target)
             return true;
+            
+        // the key point is these 4 lines, deal with the case where A[mid]==A[left] or A[mid]==A[right]    
         while(mid!=right && A[mid]==A[right])
             right--;
         while(mid!=left && A[mid]==A[left])
