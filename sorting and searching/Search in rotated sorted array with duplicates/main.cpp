@@ -21,30 +21,29 @@ bool search(int A[], int n, int target)
 }
    
 bool search(int A[], int left, int right, int target)
-{
-        if(right<left)
+{   
+        if(left>right)
             return false;
-        
         int mid=(left+right)/2;
         if(A[mid]==target)
             return true;
-        else 
+        while(mid!=right && A[mid]==A[right])
+            right--;
+        while(mid!=left && A[mid]==A[left])
+            left++;        
+        
+        if(A[mid]>A[right]) //first part sorted
         {
-            if(A[mid]==A[right])
-                return (A[right]==target || search(A, left, right-1, target));
-            else if(A[mid]>A[right]) // left sorted
-            {
-                if(target>=A[left] && target<A[mid])
-                    return search(A, left, mid-1, target);
-                else
-                    return search(A, mid+1, right, target);
-            }
-            else // right sorted 
-            {
-                if(target>A[mid] && target<=A[right])
-                    return search(A, mid+1, right, target);
-                else
-                    return search(A, left, mid-1, target);
-            }
+            if(target<A[mid] && target>=A[left])
+                return search(A, left, mid-1, target);
+            else
+                return search(A, mid+1, right, target);
+        }
+        else
+        {
+            if(target>A[mid] && target<=A[right])
+                return search(A, mid+1, right, target);
+            else
+                return search(A, left, mid-1, target);
         }
 }
