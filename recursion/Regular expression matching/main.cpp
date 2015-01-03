@@ -81,7 +81,7 @@ void isMatch(const char *s, const char *p, bool& match)
 		int lens=strlen(s);
 		if(*p=='.')
 		{
-			for(int i=0; i<lens; i++)
+			for(int i=0; i<lens; i++) // to pass case 6
 				isMatch(s+i+1, p+2, match);
 		}
 		else 
