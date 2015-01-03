@@ -68,12 +68,8 @@ void isMatch(const char *s, const char *p, bool& match)
 	if(*s=='\0')
 	{
 		if(*p=='*' || *(p+1)=='*') // important check to pass test 8
-		{
 			isMatch(s, p+1, match);
-			return;
-		}
-		else
-			return;	
+		return;	
 	}	
 	if(*p=='\0')
 		return;
