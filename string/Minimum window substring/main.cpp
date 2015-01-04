@@ -1,4 +1,7 @@
 // reference: http://fisherlei.blogspot.com/2012/12/leetcode-minimum-window-substring.html
+// 双指针，动态维护一个sliding window。尾指针不断往后扫，当扫到有一个窗口包含了所有T的字符后
+// ，然后再收缩头指针，直到不能再收缩为止。最后记录所有可能的情况中窗口最小的
+
 
 #include<unordered_map>
 #include<string>
@@ -45,6 +48,7 @@ string minWindow(string S, string T)
                     matched[S[fast]]++;
                     if(appeared==n) // sliding window matched T
                     {
+                    	// 收缩头指针，直到不能再收缩为止
                         while(expected.find(S[slow])==expected.end() || matched[S[slow]]>expected[S[slow]])
                         {
                             matched[S[slow]]--;
@@ -55,7 +59,8 @@ string minWindow(string S, string T)
                             minLen=fast-slow+1;
                             result=S.substr(slow, minLen);
                         }
-
+                        
+			// 头指针++
 			matched[S[slow]]--;
                         slow++;
                         appeared--;
