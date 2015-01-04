@@ -43,6 +43,7 @@ ListNode *sortList(ListNode *head)
 	ListNode* b=head->next; // if simply assign ListNode* b=head; ----> will be segmentation fault
 				// because if there are only 2 nodes (1->2->nullptr)in the list,
 				// will always partition to (1->2->nullptr) and (nullptr), deadloop!!! 
+	// when partition the list, iif b can go forward two steps not one or zero, a go one step!!!
 	while(b!=nullptr && b->next!=nullptr)
 	{
 		a=a->next;
