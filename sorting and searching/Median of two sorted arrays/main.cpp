@@ -34,8 +34,8 @@ double findKth(int A[], int m, int B[], int n, int k)
 
 	if(n==0) // base case (1)
 		return A[k-1];
-	if(k==1)
-		return min(A[0], B[0]); // base case (2)
+	if(k==1) // base case (2)
+		return min(A[0], B[0]); 
 	
 	/* divide k into two parts, and throw one part, 
 	   then find the "[k-part(thrown)] th" smallest among the remaining two arrays */
