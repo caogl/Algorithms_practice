@@ -66,7 +66,8 @@ int maxPoints(vector<Point> &points)
 				slope_map[INT_MAX]++;
 				continue;
 			}
-			double slope=double(points[j].y-points[i].y)/(points[j].x-points[i].x);
+				     // only return value is double not enough!!!
+			double slope=(double)(points[j].y-points[i].y)/(points[j].x-points[i].x);
 				slope_map[slope]++;
 		}	
 		maxV=max(maxV, duplicate); // This line is necessary because: if all points are duplicates, not even go into this loop, cannot update maxV!!!
