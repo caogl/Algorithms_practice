@@ -79,10 +79,10 @@ ListNode *mergeKLists(vector<ListNode *> &lists)
 {
 	ListNode* sudoHead=new ListNode(-1);
 	ListNode* head=sudoHead;
-	priority_queue<ListNode*, vector<ListNode*>, cmp> pq;
+	priority_queue<ListNode*, vector<ListNode*>, cmp> pq; // use of data type and functor for priority_queue!
 	for(int i=0; i<lists.size(); i++)
 	{
-		if(lists[i]!=nullptr)
+		if(lists[i]!=nullptr) // important check!!!
 			pq.push(lists[i]);
 	}
 	
