@@ -1,16 +1,19 @@
 /* dropbox interview question: 
 
-You have a number of meetings (with their start and end times). You need to schedule them using the minimum number of rooms. 
-Return the minimum room number.
+You have a number of meetings (with their start and end times). You need to schedule them using the minimum number
+of rooms. Return the minimum room number.
 
-First we need to realize that randomly schedule meetings to available rooms won¿t give you an optimal solution. 
+First we need to realize that randomly schedule meetings to available rooms wonÂ¿t give you an optimal solution. 
 For example, suppose there are 4 meetings, the (start, end) time are (1, 3), (1, 5), (6, 7), (4, 7). 
-When (1, 3) comes, assign to room A, then (1, 5) comes, assign to room B, then (6, 7) comes, assign to room A as it is available, then (4, 7) comes, both room A and B are not available so we have to assign a new room C for it. 
+When (1, 3) comes, assign to room A, then (1, 5) comes, assign to room B, then (6, 7) comes, assign to room A
+as it is available, then (4, 7) comes, both room A and B are not available so we have to assign a new room C for it. 
 However, a better solution is two rooms, room A for meeting (1, 3) (4, 7) and room B for meeting (1, 5) (6, 7).
 
-However, the optimal solution solution is not far from it. If we first sort all the meeting by the start time, then we could just assign them one by one and to the first available room.
+However, the optimal solution solution is not far from it. If we first sort all the meeting by the start time, 
+then we could just assign them one by one and to the first available room.
 
-The reason is simple, when considering a meeting from s[i] to e[i], as there is no unschedule meeting before s[i], by putting the (s[i], e[i]) meeting in any available room (if there is one) would leads to the same results.
+The reason is simple, when considering a meeting from s[i] to e[i], as there is no unschedule meeting before s[i], 
+by putting the (s[i], e[i]) meeting in any available room (if there is one) would leads to the same results.
 
 */
 
