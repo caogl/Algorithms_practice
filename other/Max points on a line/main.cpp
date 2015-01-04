@@ -1,12 +1,12 @@
 // reference: http://fisherlei.blogspot.com/2013/12/leetcode-max-points-on-line-solution.html
 /*
-任意一条直线都可以表述为
-y = ax + b
-假设，有两个点(x1,y1), (x2,y2)，如果他们都在这条直线上则有
-y1 = kx1 +b
-y2 = kx2 +b
-由此可以得到关系，k = (y2-y1)/(x2-x1)。即如果点c和点a的斜率为k, 而点b和点a的斜率也为k，那么由传递性，可以知道点c和点b也在一条线上。解法就从这里来
-取定一个点(xk,yk), 遍历所有节点(xi, yi), 然后统计斜率相同的点数，并求取最大值即可
+   任意一条直线都可以表述为
+   y = ax + b
+   假设，有两个点(x1,y1), (x2,y2)，如果他们都在这条直线上则有
+   y1 = kx1 +b
+   y2 = kx2 +b
+   由此可以得到关系，k = (y2-y1)/(x2-x1)。即如果点c和点a的斜率为k, 而点b和点a的斜率也为k，那么由传递性，可以知道点c和点b也在一条线上。解法就从这里来
+   取定一个点(xk,yk), 遍历所有节点(xi, yi), 然后统计斜率相同的点数，并求取最大值即可
 */
 #include<iostream>
 #include<vector>
