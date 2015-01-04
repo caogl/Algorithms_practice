@@ -37,12 +37,18 @@ double findKth(int A[], int m, int B[], int n, int k)
 	if(k==1)
 		return min(A[0], B[0]); // base case (2)
 	
-	/* divide k into two parts, and throw one part, then find the "[k-part(thrown)] th" smallest among the remaining two arrays */
+	/* divide k into two parts, and throw one part, 
+	   then find the "[k-part(thrown)] th" smallest among the remaining two arrays */
 	int p_n=min(k/2, n); // since n is smaller than m
 	int p_m=k-p_n;
-	if(A[p_m-1]<B[p_n-1]) /* throw the first p_m element in A, because they are among the k smallest and then find the k-p_m th smallest element */
+	
+	/* throw the first p_m element in A, because they are among the k smallest 
+	   and then find the k-p_m th smallest element */
+	if(A[p_m-1]<B[p_n-1]) 
 		return findKth(A+p_m, m-p_m, B, n, k-p_m);
-	else if(A[p_m-1]>B[p_n-1]) /* throw the first p_n element in B, because they are among the k smallest and then find the k-p_n th smallest element */
+	/* throw the first p_n element in B, because they are among the k smallest and 
+	   then find the k-p_n th smallest element */
+	else if(A[p_m-1]>B[p_n-1]) 
 		return findKth(A, m, B+p_n, n-p_n, k-p_n);
 	else
 		return A[p_m-1]; // base case (3), here the kth smallest is found because A and B are sorted
