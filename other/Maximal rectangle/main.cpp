@@ -71,7 +71,7 @@ int maximalRectangle(vector<vector<char> > &matrix)
 		for(int j=0; j<colNum; j++)
 		{	
 			int width=dp[i][j];
-			for(int k=i; k<rowNum && width>0; k++)
+			for(int k=i; k<rowNum && width>0; k++) // the condition: width>0 ---> branch and bound
 			{
 				width=min(width, dp[k][j]);
 				if(width*(rowNum-i)<=maxV)	break;  // branch and bound
