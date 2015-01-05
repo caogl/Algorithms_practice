@@ -25,35 +25,22 @@ int main()
 	return 0;
 }
 
-vector<int> twoSum(vector<int> &numbers, int target)
+vector<int> twoSum(vector<int> &numbers, int target) 
 {
-	vector<int> result;
-        multimap<int, int> map1;
+        multimap<int, int> map1; // deal with duplicate!!!
         for(int i=0; i<numbers.size(); i++)
-        {
             map1.insert(make_pair(numbers[i], i));
-        }
-        multimap<int, int>::iterator itr1=map1.begin(), itr2=--map1.end();
-        while(itr1!=itr2)
+            
+        auto itr1=map1.begin(); 
+        auto itr2=--map1.end();
+        int sum=itr1->first+itr2->first;
+        while(sum!=target)
         {
-            if(itr1->first+itr2->first==target)
-            {
-                if(itr1->second<=itr2->second)
-                {
-                    result.push_back(itr1->second+1);
-                    result.push_back(itr2->second+1);
-                    return result;
-                }
-                else
-                {
-                    result.push_back(itr2->second+1);
-                    result.push_back(itr1->second+1);
-                    return result;                   
-                }
-            }
-            else if(itr1->first+itr2->first>target)
-                itr2--;
-            else
-                itr1++;
+            if(sum>target)  itr2--;
+            else if(sum<target) itr1++;
+            sum=itr1->first+itr2->first;
         }
+        // giving index an ordering !!!
+        vector<int> result={min(itr1->second+1, itr2->second+1), max(itr1->second+1, itr2->second+1)};
+        return result;
 }
