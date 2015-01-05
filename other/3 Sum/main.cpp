@@ -58,7 +58,7 @@ vector<vector<int> > threeSum(vector<int> &num)
                     else
                         itr2++;
                 }
-                while(*itr1==*(itr1+1))	itr1++; // to avoid the output (2)
+                while(*itr1==*(itr1+1))	itr1++; // to avoid duplicate in output (2)
             }
         }
         return resultVec;
