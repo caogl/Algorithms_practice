@@ -1,5 +1,6 @@
 #include<iostream>
 #include<map>
+#include<unordered_map>
 #include<vector>
 using namespace std;
 
@@ -25,6 +26,26 @@ int main()
 	return 0;
 }
 
+/* solution(1): time--O(n), space--O(n) */
+vector<int> twoSum(vector<int> &numbers, int target)
+{
+	unordered_map<int, int> hashMap;
+	for(int i=0; i<numbers.size()-1; i++)
+		hashMap[numbers[i]]=i;
+	
+	for(int i=0; i<numbers.size(); i++)
+	{
+		int tmp=target-numbers[i];
+		// second check condition make sure that duplicate elements would return same indexes
+		if(hashMap.find(tmp)!=hashMap.end() && hashMap[tmp]!=i)
+		{
+			vector<int> result={min(i, hashMap[tmp])+1, max(i, hashMap[tmp])+1};
+			return result;
+		}
+	}
+}
+
+/* solution(2): time--O(nlog(n)), space--O(n) *
 vector<int> twoSum(vector<int> &numbers, int target) 
 {
         multimap<int, int> map1; // deal with duplicate!!!
@@ -44,3 +65,4 @@ vector<int> twoSum(vector<int> &numbers, int target)
         vector<int> result={min(itr1->second+1, itr2->second+1), max(itr1->second+1, itr2->second+1)};
         return result;
 }
+*/
