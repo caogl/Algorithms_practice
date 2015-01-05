@@ -36,7 +36,9 @@ vector<int> twoSum(vector<int> &numbers, int target)
 	for(int i=0; i<numbers.size(); i++)
 	{
 		int tmp=target-numbers[i];
-		// second check condition make sure that duplicate elements would return same indexes
+		// second check condition make sure that (1) no self duplicates is counted and 
+		// (2) duplicate elements won't return same indexes (should think of this point, but not necessary,
+		// since the insert into the hash set only keeps the latter index of the duplicate elements)
 		if(hashMap.find(tmp)!=hashMap.end() && hashMap[tmp]!=i)
 		{
 			vector<int> result={min(i, hashMap[tmp])+1, max(i, hashMap[tmp])+1};
