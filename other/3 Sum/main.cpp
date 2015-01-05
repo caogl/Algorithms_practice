@@ -33,7 +33,10 @@ vector<vector<int> > threeSum(vector<int> &num)
         vector<int>::iterator itr1, itr2, itr3;
         if(num.size()>=3)
         {
-            for(itr1=num.begin(); itr1<(num.end()-2); itr1++)
+            /* must be itr1<(num.end()-2), (1) can't be itr!=num()-3, becasue while(*itr1==*(itr1+1))	itr1++;
+            				       at the end of the for loop
+            				   (2) can't be <num.end(), because num2=itr+1 */
+            for(itr1=num.begin(); itr1<(num.end()-2); itr1++) 
             {
                 itr2=itr1+1;
                 itr3=num.end()-1;
@@ -47,7 +50,7 @@ vector<vector<int> > threeSum(vector<int> &num)
                         tmp[2]=*itr3;
                         resultVec.push_back(tmp);
                         itr2++;
-                        while(*itr2==*(itr2-1) && itr2!=itr3)
+                        while(*itr2==*(itr2-1) && itr2!=itr3) // to avoid duplicate in output (1)
                             itr2++;
                     }
                     else if(result>0)
@@ -55,8 +58,7 @@ vector<vector<int> > threeSum(vector<int> &num)
                     else
                         itr2++;
                 }
-                while(*itr1==*(itr1+1))
-		    itr1++;
+                while(*itr1==*(itr1+1))	itr1++; // to avoid duplicate in output (2)
             }
         }
         return resultVec;
