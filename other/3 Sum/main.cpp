@@ -25,6 +25,8 @@ int main()
 	}
 	return 0;
 }
+
+// runtime--O(N^2), space--O(1)
 vector<vector<int> > threeSum(vector<int> &num)
 {
         vector<int> tmp(3);
