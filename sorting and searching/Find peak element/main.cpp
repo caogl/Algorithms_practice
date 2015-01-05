@@ -1,3 +1,6 @@
+// 只要mid比其左邻居小，那说明左半段必然存在peak，只访问左半段即可；否则，右半段必然存在peak。
+// 需要注意的是，两端也可以是peak。
+
 #include<iostream>
 #include<vector>
 using namespace std;
