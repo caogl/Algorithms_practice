@@ -24,11 +24,15 @@ vector<vector<int> > generateMatrix(int n)
 		return matrix;
 	int i=0;
 	int j=0;
-	matrix[i][j]=1;
+	matrix[i][j]=1; // important initialization, without it, would fall into dead loop!
+	                //  |--| since the [0][0] is not initialized and has a value 0 in first outer while, when
+	                //  |  | return, cannot go right, deadloop!  
+	                //  |  |
+	                //  |--|
 	num++;
 	while(num<n*n)
 	{
-		while(j+1<n && matrix[i][j+1]==0)
+		while(j+1<n && matrix[i][j+1]==0) // prone to error, be careful, first check then use ++/--
 			matrix[i][++j]=++num;
 		while(i+1<n && matrix[i+1][j]==0)
 			matrix[++i][j]=++num;
