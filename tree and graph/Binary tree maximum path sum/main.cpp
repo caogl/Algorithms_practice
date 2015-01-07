@@ -70,7 +70,7 @@ int maxPathSum(TreeNode *root, int& maxV)
 	int leftV=maxPathSum(root->left, maxV);
 	int rightV=maxPathSum(root->right, maxV);
 	
-	maxV=max(maxV, root->val+leftV+rightV); //(i) &* (ii)
-	int retV=max(root->val+leftV, root->val+rightV); // (iii)
-	return max(0, retV); // (iv)
+	maxV=max(maxV, root->val+leftV+rightV); // max sum of two-sided tree
+	int retV=max(root->val+leftV, root->val+rightV); // max sum of one side
+	return max(0, retV); // max sum of one side
 }
