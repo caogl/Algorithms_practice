@@ -74,7 +74,8 @@ TreeNode* upsideDownBinaryTree(TreeNode* current, TreeNode* parent)
 	if(current==nullptr) 
 		return parent;
 
-	TreeNode* root=upsideDownBinaryTree(current->left, current); // just for return the new root purpose
+	// this make sure that we do upside down from down to upper levels
+	TreeNode* root=upsideDownBinaryTree(current->left, current); 
 
         if(parent==nullptr) // deal with the root in original tree
         {
