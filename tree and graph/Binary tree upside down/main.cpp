@@ -10,9 +10,11 @@ From bottom up:
  / \                                              / \
 4   5                    		         3   1
 
-The recursive relationship:
-	(1) current->left=parent->right
-	(2) current->right=parent
+(1) deal with the root, make left and right nullptr and become leaf
+(2) The recursive relationship:
+	(a) current->left=parent->right
+	(b) current->right=parent
+(3) return the new root, the leftmost left in the original tree
 */
 
 #include<iostream>
