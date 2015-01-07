@@ -66,9 +66,11 @@ int maxPathSum(TreeNode *root, int& maxV)
 {
 	if(root==nullptr)
 		return 0;
+		
 	int leftV=maxPathSum(root->left, maxV);
 	int rightV=maxPathSum(root->right, maxV);
-	maxV=max(maxV, root->val+leftV+rightV);
-	int retV=max(root->val+leftV, root->val+rightV);
-	return max(0, retV);
+	
+	maxV=max(maxV, root->val+leftV+rightV); //(i) &* (ii)
+	int retV=max(root->val+leftV, root->val+rightV); // (iii)
+	return max(0, retV); // (iv)
 }
