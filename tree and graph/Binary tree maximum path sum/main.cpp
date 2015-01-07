@@ -1,4 +1,3 @@
-// idea: use bottom-up approach rather than top-down approach
 // reference: leetcode clean code hand book
 /*
 Anytime when you found that doing top down approach uses a lot of repeated calculation, 
