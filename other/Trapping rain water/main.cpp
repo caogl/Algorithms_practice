@@ -1,19 +1,17 @@
+// reference: http://fisherlei.blogspot.com/2013/01/leetcode-trapping-rain-water.html
+/*
+[解题思路]
+对于任何一个坐标，检查其左右的最大坐标，然后相减就是容积。所以，
+1. 从左往右扫描一遍，对于每一个坐标，求取左边最大值。
+2. 从右往左扫描一遍，对于每一个坐标，求最大右值。
+3. 再扫描一遍，求取容积并加和。
+#2和#3可以合并成一个循环，
+*/
+
 #include<iostream>
 #include<climits>
 #include<algorithm>
 using namespace std;
-
-/*
- * For the small test, we can look at the bar graph from level to level. For each level, scan from the 1st to the last,
- * count 0s between two 1's. 
- * Add all the valid 0s for all the levels. However, if the highest and lowest bar is too much different, 
- * say 0, 100000, the loop while 100000*n, which is not efficient.
- *
- * An O(n) solution is to consider each bar at a time, we can see that, for each bar, the water itself can trap depends on 
- * the max height on its left and right
- * e.g.  if current bar is of height 2, the max height on its left is 4, max height on its right is 3,   
- * then water can be trapped in this bar is min(4,3)-2 = 1.
- * */
 
 int trap(int A[], int n);
 
