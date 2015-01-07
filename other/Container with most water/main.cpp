@@ -1,8 +1,14 @@
+// graphical explanation: http://blog.csdn.net/wzy_1988/article/details/17248209 *
+/*
+假定初始的盛水面积为ans=0，lh为左边的高度，rh为右边的高度，如果lh < rh, 则向右运动，寻找第一个比当前lh大的左节点。
+同理，如果lh > rh，则向左运动，寻找第一个比当前rh大的右节点。
+截止条件为坐标L >= R。
+*/
+
 #include<iostream>
 #include<vector>
 using namespace std;
 
-/* graphical explanation: http://blog.csdn.net/wzy_1988/article/details/17248209 */
 int maxArea(vector<int> &height);
 
 int main()
