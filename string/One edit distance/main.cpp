@@ -42,31 +42,43 @@ int main()
 	cout<<isOneEditDistance(s, t)<<endl;
 	s="abcdX";
 	cout<<isOneEditDistance(s, t)<<endl;		
-
+	s="abc"; // error prone case !!!
+	t="ad";
+	cout<<isOneEditDistance(s, t)<<endl; // 0
 	return 0;
 }
 
-bool isOneEditDistance(string s, string t)
-{
-	int lens=s.size();
-	int lent=t.size();
-	if(lent>lens)
-		return isOneEditDistance(t, s);
-	// from now that the length of s is always greater than t
-	
-	int lenDiff=lens-lent;
-	if(lenDiff>1)
-		return false;
-	int i=0;
-	while(s[i]==t[i] && i<lent) 
-		i++;
-
-	if(i==lent) 
-		return lenDiff==1;
-
-	if(lenDiff==0)
-		i++;
-	while(s[i+lenDiff]==t[i] && i<lent)
-		i++;
-	return i==lent;	
-}
+    bool isOneEditDistance(string s, string t) 
+    {
+        int slen=s.size();
+        int tlen=t.size();
+        if(slen<tlen)
+            return isOneEditDistance(t, s);
+        
+        if(slen-tlen>1) return false;
+        
+        //(1) same size
+        if(slen==tlen)
+        {
+            int misNum=0;
+            for(int i=0; i<slen && misNum<=2; i++)
+                misNum+=(s[i]!=t[i]);
+            return misNum==1;
+        }
+       
+        int i;
+        for(i=0; i<tlen; i++)
+            if(s[i]!=t[i])
+                break;
+        if(i==slen) // (2) if insertion once
+            return true;
+        else
+        {
+            int j;
+            for(j=i; j<slen; j++)
+                if(s[j+1]!=t[j])
+                    break;
+            return j==slen; // (3) check if append once
+        }
+        
+    }
