@@ -34,19 +34,13 @@ int trap(int A[], int n)
 	}
 
 	for(int i=1; i<n; i++)
-	{
 		leftMax[i]=max(leftMax[i], leftMax[i-1]);
-	}
 
 	for(int i=n-2; i>=0; i--)
-	{
 		rightMax[i]=max(rightMax[i], rightMax[i+1]);
-	}
 
 	int result=0;
 	for(int i=1; i<n-1; i++)
-	{
 		result+=min(rightMax[i], leftMax[i])-A[i];
-	}
 	return result;
 }
