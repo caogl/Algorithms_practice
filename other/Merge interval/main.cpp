@@ -17,7 +17,7 @@ struct compare
 	{
 		if(i1.start<i2.start)
 			return true;
-		else if(i1.end<i2.end)
+		else if(i1.start==i2.start && i1.end<i2.end)
 			return true;
 		else
 			return false;
@@ -61,7 +61,7 @@ vector<Interval> merge(vector<Interval> &intervals)
 	result.push_back(*intervals.begin());
 	for(vector<Interval>::iterator itr=intervals.begin()+1; itr!=intervals.end(); itr++)
 	{
-		if(result.back().end>itr->start)
+		if(result.back().end>=itr->start) // here >= cannot be replaced by > !
 			result.back().end=max(itr->end, result.back().end);
 		else
 			result.push_back(*itr);
