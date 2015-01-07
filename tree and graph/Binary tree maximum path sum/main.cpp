@@ -32,7 +32,7 @@ struct TreeNode {
 };
 
 int maxPathSum(TreeNode *root);
-int maxPathSum(TreeNode *root, int& maxV);
+int oneSideSum(TreeNode *root, int& maxV);
 
 int main()
 {
@@ -54,23 +54,20 @@ int main()
 	return 0;
 }
 
-// return the "one side" maximum value so that the above node can connect to this one to compute the maximum path
-int maxPathSum(TreeNode *root)
+int maxPathSum(TreeNode *root) 
 {
-	int maxV=INT_MIN;
-	maxPathSum(root, maxV);
-	return maxV;
+        int maxV=INT_MIN;
+        oneSideSum(root, maxV);
+        return maxV;
 }
-
-int maxPathSum(TreeNode *root, int& maxV)
+    
+int oneSideSum(TreeNode* root, int& maxV)
 {
-	if(root==nullptr)
-		return 0;
-		
-	int leftV=maxPathSum(root->left, maxV);
-	int rightV=maxPathSum(root->right, maxV);
-	
-	maxV=max(maxV, root->val+leftV+rightV); // max sum of two-sided tree using current node as root
-	int retV=max(root->val+leftV, root->val+rightV); // max sum of one side tree
-	return max(0, retV); // max sum of one side tree
+        if(!root)   return 0;
+        int leftV=oneSideSum(root->left, maxV);
+        int rightV=oneSideSum(root->right, maxV);
+        
+        maxV=max(maxV, root->val+leftV+rightV); // the max sum of the tree which has a root of this node
+        int maxSideSum=max(leftV+root->val, rightV+root->val); // the max sum of one branch/side
+        return max(maxSideSum, 0);
 }
