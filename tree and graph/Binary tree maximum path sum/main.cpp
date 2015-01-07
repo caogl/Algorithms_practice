@@ -1,5 +1,24 @@
 // idea: use bottom-up approach rather than top-down approach
 // reference: leetcode clean code hand book
+/*
+Anytime when you found that doing top down approach uses a lot of repeated calculation, 
+bottom up approach usually is able to be more efficient.
+
+    _____Node_____
+   /              \
+left subtree  right subtree
+
+Try the bottom up approach. At each node, the potential maximum path could be one of these cases:
+(i). max(left subtree) + node
+(ii). max(right subtree) + node
+(iii). max(left subtree) + max(right subtree) + node
+(iv). the node itself
+
+Then, we need to return the maximum path sum that goes through this node and to either 
+one of its left or right subtree to its parent. There’s a little trick here: If this maximum 
+happens to be negative, we should return 0, which means: “Do not include this subtree as 
+part of the maximum path of the parent node”, which greatly simplifies our code.
+*/
 
 #include<iostream>
 #include<algorithm>
