@@ -32,7 +32,6 @@ struct TreeNode {
 };
 
 int maxPathSum(TreeNode *root);
-// return the "one side" maximum value so that the above node can connect to this one to compute the maximum path
 int maxPathSum(TreeNode *root, int& maxV);
 
 int main()
@@ -55,6 +54,7 @@ int main()
 	return 0;
 }
 
+// return the "one side" maximum value so that the above node can connect to this one to compute the maximum path
 int maxPathSum(TreeNode *root)
 {
 	int maxV=INT_MIN;
