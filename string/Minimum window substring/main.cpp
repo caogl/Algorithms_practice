@@ -60,7 +60,6 @@ string minWindow(string S, string T)
                             result=S.substr(slow, minLen);
                         }
                         
-			// 头指针++
 			matched[S[slow]]--;
                         slow++;
                         appeared--;
