@@ -42,7 +42,7 @@ void sortColors(int A[], int n)
 	}
 }
 
-/* counting sort algorithm for this question:
+/* counting sort algorithm for this question: time--O(N), space--O(n+k)
 void sortColors(int A[], int n)
 {
         int B[3];
