@@ -41,3 +41,23 @@ void sortColors(int A[], int n)
 		A[redStart++]=1;
 	}
 }
+
+/* counting sort algorithm for this question:
+void sortColors(int A[], int n)
+{
+        int B[3];
+        memset(B, 0, sizeof(B));
+        for(int i=0; i<n; i++)
+            B[A[i]]++;
+        for(int i=1; i<3; i++)
+            B[i]+=B[i-1];
+        int C[n];
+        for(int i=n-1; i>=0; i--)
+        {
+            int index=B[A[i]];
+            B[A[i]]--;
+            C[index-1]=A[i];
+        }
+        for(int i=0; i<n; i++)
+            A[i]=C[i];
+}
