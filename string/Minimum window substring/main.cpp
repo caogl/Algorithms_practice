@@ -48,7 +48,7 @@ string minWindow(string S, string T)
                     matched[S[fast]]++;
                     if(appeared==n) // sliding window matched T
                     {
-                    	// 收缩头指针，直到不能再收缩为止
+                    	// 收缩尾指针，直到不能再收缩为止
                         while(expected.find(S[slow])==expected.end() || matched[S[slow]]>expected[S[slow]])
                         {
                             matched[S[slow]]--;
@@ -60,7 +60,6 @@ string minWindow(string S, string T)
                             result=S.substr(slow, minLen);
                         }
                         
-			// 头指针++
 			matched[S[slow]]--;
                         slow++;
                         appeared--;

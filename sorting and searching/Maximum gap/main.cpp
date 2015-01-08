@@ -63,7 +63,7 @@ void countingSort(vector<int>& num, int digitNum)
 	for(int i=num.size()-1; i>=0; i--)
 	{
 		int orderedIndex=digitCount[(num[i]/digitNum)%10];
-		buffer[orderedIndex-1]=num[i];
+		buffer[orderedIndex-1]=num[i]; // notice the -1 here!
 		digitCount[(num[i]/digitNum)%10]--;
 	}
 	num=buffer;
