@@ -1,8 +1,7 @@
 /*
-
+Bottom-up recursion !!!
 key: all the right nodes are either leaf nodes with a sibling (a left node that shares the same parent node) or empty
      original right nodes turned into left leaf nodes
-
 From bottom up:
     1		         4   1                   4
    / \		        / \ / \                 / \
@@ -74,7 +73,7 @@ TreeNode* upsideDownBinaryTree(TreeNode* current, TreeNode* parent)
 	if(current==nullptr) 
 		return parent;
 
-	// this make sure that we do upside down from down to upper levels
+	// this make sure that we do it bottom-up !!!
 	TreeNode* root=upsideDownBinaryTree(current->left, current); 
 
         if(parent==nullptr) // deal with the root in original tree

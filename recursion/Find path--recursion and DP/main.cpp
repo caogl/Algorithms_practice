@@ -3,9 +3,11 @@
 #include<vector>
 using namespace std;
 
-int findPath(int graph[][4], int row, int col); //recursive solution
+int findPath(int graph[][4], int row, int col);
+// recursive solution, time--O((m+n)!/n!), space--O(m+n)
 void findPath(int graph[][4], int rowNum, int colNum, int row, int col, int& count);
-int findPathDP(int graph[][4], int row, int col); // DP solution
+// DP solution: time--O(mn), space--O(mn)
+int findPathDP(int graph[][4], int row, int col); 
 
 int main()
 {
