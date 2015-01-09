@@ -71,6 +71,7 @@ int lengthOfLongestSubstringTwoDistinct(string s)
 		hashMap[s[j]]=j;
             }
         }
-        maxLen=max(maxLen, n-lasPos-1);
+        
+        maxLen=max(maxLen, n-lasPos-1); // remember to check, mistake prone !!!
 	return maxLen;
 }
