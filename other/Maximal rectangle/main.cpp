@@ -61,7 +61,7 @@ int maximalRectangle(vector<vector<char> > &matrix)
 	for(int i=0; i<rowNum; i++)
 		dp[i][colNum-1]=(matrix[i][colNum-1]=='1');
 	for(int i=0; i<rowNum; i++)
-		for(int j=colNum-2; j>=0; j--)
+		for(int j=colNum-2; j>=0; j--) // the ordering!
 			if(matrix[i][j]=='1')
 				dp[i][j]=1+dp[i][j+1];
 	int maxV=0;	
