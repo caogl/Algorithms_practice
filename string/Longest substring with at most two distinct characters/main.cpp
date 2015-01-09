@@ -1,4 +1,4 @@
-// (1) keep a sliding window of 2 different chars sustring
+// (1) keep a sliding window of 2 different chars substring
 // (2) keep the lasPos, the char position before the sliding window
 // (3) keep the most recent appeared position of two chars in the sliding window,
 //     if needs to change these two chars, update the lasPos to the smaller most recent update 
