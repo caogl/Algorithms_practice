@@ -29,7 +29,7 @@ public:
         char remain[4]; // not necessary allocate on heap
         readByte=min(read4(remain), n-readLen); // important, not attaching all the actual read byte
         for(int i=0; i<readByte; i++)
-            buf[readLen+i]=remain[i];
-        return readLen+readByte;
+            buf[readLen++]=remain[i];
+        return readLen;
     }
 };
