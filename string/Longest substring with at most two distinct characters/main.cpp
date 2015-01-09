@@ -1,4 +1,4 @@
-// (1) keep a sliding window of 2 different chars sustring
+// (1) keep a sliding window of 2 different chars substring
 // (2) keep the lasPos, the char position before the sliding window
 // (3) keep the most recent appeared position of two chars in the sliding window,
 //     if needs to change these two chars, update the lasPos to the smaller most recent update 
@@ -23,54 +23,42 @@ int main()
 	return 0;
 }
 
-int lengthOfLongestSubstringTwoDistinct(string s)
+int lengthOfLongestSubstringTwoDistinct(string s) 
 {
-	int n=s.size();
-        if(n==0)
+        int n=s.size();
+        if(s.size()==0)
             return 0;
-        unordered_map<char, int> hashMap;
-        int i=0;
-	int lasPos=-1;
-        for(i=0; i<n; i++)
+        
+        int maxV=0;
+        unordered_map<char, int> hashMap; // the size of the hashMap tracks the appearance
+        int lasPos=0;
+        for(int i=0; i<n; i++)
         {
-            if(hashMap.find(s[i])!=hashMap.end() || hashMap.size()<2)
+            if(hashMap.find(s[i])==hashMap.end())
+            {
+                if(hashMap.size()<2)    hashMap[s[i]]=i;
+                else
+                {
+                    auto itr2=hashMap.begin();
+                    auto itr1=itr2++;
+                    if(itr1->second<itr2->second)
+                    {
+                        maxV=max(maxV, i-lasPos);
+                        lasPos=itr1->second+1; // be careful about lasPos , both initialization and update
+                        hashMap.erase(itr1);
+                    }
+                    else
+                    {
+                        maxV=max(maxV, i-lasPos);
+                        lasPos=itr2->second+1;
+                        hashMap.erase(itr2);
+                    }
+                    hashMap[s[i]]=i;
+                }
+            }
+            else
                 hashMap[s[i]]=i;
-            else
-                break;
         }
-
-	int maxLen=i;        
-        if(i==n)
-            return maxLen;
-
-	auto itr=hashMap.begin();
-	char c1=itr->first;
-	char c2=(++itr)->first;
-
-        for(int j=i; j<n; j++)
-        {
-            if(hashMap.find(s[j])==hashMap.end())
-            {
-		maxLen=max(maxLen, j-lasPos-1);
-		lasPos=min(hashMap[c1], hashMap[c2]);
-                if(hashMap[c1]==lasPos) // to erase c1
-		{
-			hashMap.erase(c1);
-			hashMap[s[j]]=j;
-			c1=s[j];
-		}
-		else
-		{
-			hashMap.erase(c2);
-			hashMap[s[j]]=j;
-			c2=s[j];
-		}
-            }
-            else
-            {
-		hashMap[s[j]]=j;
-            }
-        }
-        maxLen=max(maxLen, n-lasPos-1);
-	return maxLen;
+        
+        return max(maxV, n-lasPos); // important check, error prone!
 }
