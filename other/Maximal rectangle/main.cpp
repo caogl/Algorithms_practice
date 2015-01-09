@@ -57,7 +57,6 @@ int maximalRectangle(vector<vector<char> > &matrix)
 	int rowNum=matrix.size();
 	int colNum=matrix[0].size();
 	int dp[rowNum][colNum];
-	memset(dp, 0, sizeof(dp));
 	for(int i=0; i<rowNum; i++)
 		dp[i][colNum-1]=(matrix[i][colNum-1]=='1');
 	for(int i=0; i<rowNum; i++)
