@@ -24,17 +24,10 @@ int compareVersion(string version1, string version2)
         pos1 =version1.find(delimiter, 0); 
         pos2 =version2.find(delimiter, 0);
         if(pos1>=0) v1 = stoi(version1.substr(0,pos1));
-        else
-	{
-		if(version1.empty())	v1=0;
-		else	v1=stoi(version1);
-	}
+        else	v1=stoi(version1);
         if(pos2>=0) v2 = stoi(version2.substr(0,pos2));
-        else 
-	{
-		if(version2.empty())	v2=0;
-		else	v2=stoi(version2);
-	}
+        else	v2=stoi(version2);
+        
         int diff = v1-v2;
         if(diff==0)
 	{
