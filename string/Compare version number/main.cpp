@@ -28,8 +28,7 @@ int compareVersion(string version1, string version2)
         if(pos2>=0) v2 = stoi(version2.substr(0,pos2));
         else	v2=stoi(version2);
         
-        int diff = v1-v2;
-        if(diff==0)
+        if(v1==v2)
 	{
         	if(pos1<0 && pos2<0) // reached the end of the position 
                 	return 0;
@@ -41,6 +40,6 @@ int compareVersion(string version1, string version2)
 
         	return compareVersion(version1, version2);
         }
-        else if(diff>0)	return 1;
+        else if(v1>v2)	return 1;
 	else	return -1;
 }
