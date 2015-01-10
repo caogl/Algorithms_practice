@@ -1,3 +1,5 @@
+// reference: https://oj.leetcode.com/discuss/18704/a-concise-c-version
+
 #include<iostream>
 #include<string>
 using namespace std;
