@@ -1,3 +1,4 @@
+// reference: http://blog.xiaohuahua.org/2015/01/01/leetcode-simplify-path/
 /* example: /a/./b/../../c/e/../d/
  * output:  /c/d */
 
