@@ -1,4 +1,12 @@
 // Google interview question for Ma Xiao
+/*
+example:
+	input matrix             	2d matrix storing max value of current node
+2	3	4	5			4	3	2	1
+4	5	10	11    -----------	9	8	3	2
+20	6	9	12    -----------	1	7	4	1
+6	7	8	40			7	6	5	1
+*/
 
 #include<iostream>
 #include<vector>
