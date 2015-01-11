@@ -15,7 +15,8 @@ using namespace std;
 int help(vector<vector<int> > &matrix, vector<vector<int> > &info, int i, int j)
 {
 // This recursive solution is in courtesy of Lai Ting. Once return, the max value of the current node is determined
-        if (!info[i][j])
+// Also, each position enters the following if(true) condition exactly once
+        if (!info[i][j]) // if the max value of current node is unknown
 	{
                 info[i][j] = 1;
                 if (i && matrix[i-1][j] == matrix[i][j]+1)
