@@ -1,3 +1,10 @@
+// reference: http://fisherlei.blogspot.com/2013/11/leetcode-wordbreak-ii-solution.html
+/*
+递归，效率太低，因为有大量的重复计算，过不了测试数据, 递归的过程中注意剪枝
+这里加上一个possible数组，用于记录区间拆分的可能性
+Possible[i] = true 意味着 [i,n]这个区间上有解
+*/
+
 #include<iostream>
 #include<vector>
 #include<string>
