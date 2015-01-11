@@ -14,7 +14,6 @@
 
 #include<iostream>
 #include<vector>
-#include<cstring>
 using namespace std;
 
 int calculateMinimumHP(vector<vector<int> > &dungeon);
