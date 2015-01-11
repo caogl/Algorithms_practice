@@ -7,14 +7,14 @@ int atoi1(const char* str);
 
 int main()
 {
-	char a[]="6784";
-	char b[]="   -82613 213";
-	char c[]=" 25436712%$#2131";
-	char d[]="-2147483647";
-	char e[]=" - 123";
-	char f[]="++12";
-	char g[]="2147483649";
-	char h[]="+-213"; // easy to mistake!
+	char a[]="6784"; // 6787
+	char b[]="   -82613 213"; //-82613
+	char c[]=" 25436712%$#2131"; // 25436712
+	char d[]="-2147483647"; // -2147483647
+	char e[]=" - 123"; // 0
+	char f[]="++12"; // 0
+	char g[]="2147483649"; // 2147483647
+	char h[]="+-213"; // 0, easy to mistake!
 	cout<<atoi1(a)<<endl;
 	cout<<atoi1(b)<<endl;
 	cout<<atoi1(c)<<endl;
