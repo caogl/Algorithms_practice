@@ -59,7 +59,7 @@ int atoi1(const char* str)
 	}
 	while(i<len)
 	{
-		if(str[i]==' ' || str[i]<'0' || str[i]>'9')
+		if(str[i]<'0' || str[i]>'9')
 			break;
 		if(INT_MAX/10<num || (INT_MAX/10==num && INT_MAX%10<(str[i]-'0')))
 		{
