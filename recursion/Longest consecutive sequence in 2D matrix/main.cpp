@@ -1,3 +1,5 @@
+// Google interview question for Ma Xiao
+
 #include<iostream>
 #include<vector>
 using namespace std;
@@ -8,10 +10,14 @@ int help(vector<vector<int> > &matrix, vector<vector<int> > &info, int i, int j)
         if (!info[i][j])
 	{
                 info[i][j] = 1;
-                if (i && matrix[i-1][j] == matrix[i][j]+1) info[i][j] = max(info[i][j], help(matrix, info, i-1, j) + 1);
-                if (i != matrix.size()-1 && matrix[i+1][j] == matrix[i][j]+1) info[i][j] = max(info[i][j], help(matrix, info, i+1, j) + 1);
-                if (j && matrix[i][j-1] == matrix[i][j]+1) info[i][j] = max(info[i][j], help(matrix, info, i, j-1) + 1);
-                if (j != matrix[0].size()-1 && matrix[i][j+1] == matrix[i][j]+1) info[i][j] = max(info[i][j], help(matrix, info, i, j+1) + 1);
+                if (i && matrix[i-1][j] == matrix[i][j]+1)
+                	info[i][j] = max(info[i][j], help(matrix, info, i-1, j) + 1);
+                if (i != matrix.size()-1 && matrix[i+1][j] == matrix[i][j]+1) 
+                	info[i][j] = max(info[i][j], help(matrix, info, i+1, j) + 1);
+                if (j && matrix[i][j-1] == matrix[i][j]+1)
+                	info[i][j] = max(info[i][j], help(matrix, info, i, j-1) + 1);
+                if (j != matrix[0].size()-1 && matrix[i][j+1] == matrix[i][j]+1)
+                	info[i][j] = max(info[i][j], help(matrix, info, i, j+1) + 1);
         }
         return info[i][j];
 }
