@@ -108,3 +108,4 @@ bool isNumber(const char* s)
 		return false;
 	return isValid(s1);
 }
+
