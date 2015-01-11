@@ -62,7 +62,7 @@ string fractionToDecimal(int numerator, int denominator)
 		return result;
 	// (5): deal with decimal part
 	result+=".";
-	unordered_map<int, int> lastPos;
+	unordered_map<long, int> lastPos;
 	while(reminder)
 	{
 		//如果这个余数出现过，说明分数除法开始循环 停止计算,在第一次出现的位置插入‘（’，在最后插入‘）’  
