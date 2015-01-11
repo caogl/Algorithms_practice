@@ -40,7 +40,7 @@ int main()
 
 int atoi1(const char* str)
 {
-	int num=0; 
+	long num=0; 
 	int sign=1;
 	int len=strlen(str);
 	int i=0;
@@ -61,14 +61,14 @@ int atoi1(const char* str)
 	{
 		if(str[i]<'0' || str[i]>'9')
 			break;
-		if(INT_MAX/10<num || (INT_MAX/10==num && INT_MAX%10<(str[i]-'0')))
+		num=num*10+str[i]-'0';
+		if(num>INT_MAX)
 		{
 			if(sign==1)
 				return INT_MAX;
 			else
 				return INT_MIN;
 		}
-		num=num*10+str[i]-'0';
 		i++;
 	}
 	return num*sign;
