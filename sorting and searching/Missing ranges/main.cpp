@@ -38,55 +38,37 @@ int main()
 
 /* solution(1): loop throught the array, time O(n) */
 /* (a): special treatment of the first and last range
- * (b): not to include in the range A[i], previous need to +1
- * (c): n==0 or A is out of range by lower and upper, return the whole range, also take int consideration lower==upper
+ * (b): n==0 , return the range from lower to upper
  */
-vector<string> findMissingRanges(int A[], int n, int lower, int upper)
+vector<string> findMissingRanges(int A[], int n, int lower, int upper) 
 {
-	vector<string> result;
-	if(lower>upper)
-		return result;
-
-	if(n==0 || lower>A[n-1] || upper<A[0]) // notice the case that lower==upper!
-	{
-		if(upper!=lower)
-		{
-			string tmp=to_string(lower)+"->"+to_string(upper);
-			result.push_back(tmp);
-			return result;
-		}
-		else
-		{
-			result.push_back(to_string(lower));
-			return result;
-		}
-	}
-	
-	// deal with head
-	if(lower!=A[0])
-		addRange(result, lower-1, A[0]);
-	for(int i=1; i<n; i++)
-		if(A[i]-A[i-1]>1)
-			addRange(result, A[i-1], A[i]);
-	// deal with tail
-	if(upper>A[n-1])
-		addRange(result, A[n-1], upper+1);
-	
-	return result;
+        vector<string> result;
+        if(n==0)
+        {
+            add(result, lower-1, upper+1);
+            return result;
+        }
+            
+        if(A[0]-lower>=1) // differnt condition at the head&tail verses array elements
+            add(result, lower-1, A[0]);
+        for(int i=1; i<n; i++)
+            if(A[i]-A[i-1]>=2)
+                add(result, A[i-1], A[i]);
+        if(upper-A[n-1]>=1)
+            add(result, A[n-1], upper+1);
+        return result;
 }
-
-void addRange(vector<string>& result, int prev, int next)
+    
+void add(vector<string>& result, int start, int end)
 {
-	if(next-prev==2)
-		result.push_back(to_string(prev+1));
-	else
-	{
-		string tmp=to_string(prev+1)+"->"+to_string(next-1);
-		result.push_back(tmp);
-	}
+        if(end-start<2)
+            return;
+        if(end-start==2)
+            result.push_back(to_string(start+1));
+        else
+            result.push_back(to_string(start+1)+"->"+to_string(end-1));
+        return;
 }
-
-
 
 /* solution (2): loop through the range, time O(upper-lower) */
 /*
