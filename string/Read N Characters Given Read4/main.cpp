@@ -17,13 +17,12 @@ public:
         int readByte=0;
         while(readLen+4<=n)
         {
-            readByte=read4(buf+readLen);
+            readByte=read4(buf+readLen); // to update the array starting position!!
             readLen+=readByte;
             if(readByte<4) // which means that all available bytes being read
                 return readLen;
         }
-        if(readLen==n)
-            return readLen;
+
             
         // deal with the case that after reading 4 byte, the remaining byte for the length less than 4
         char remain[4]; // not necessary allocate on heap
