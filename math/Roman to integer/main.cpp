@@ -7,6 +7,21 @@ L 50
 C 100
 D 500
 M 1000
+Let’s work through some examples. Assume the input is “VII”, using the [additive
+notation], we could simply add up each roman literal, ‘V’ + ‘I’ + ‘I’ = 5 + 1 + 1 = 7.
+Now let’s look at another example input “IV”. Now we need to use the [subtractive 
+notation]. We first look at ‘I’, and we add 1 to it. Then we look at ‘V’ and since a 
+smaller roman literal ‘I’ appears before it, we need to subtract ‘I’ from ‘V’. Remember 
+that we already added another ‘I’ before it, so we need to subtract a total of two one’s 
+from it.
+Below is a more complex example that involves both additive and subtractive notation: 
+“MXCVI”. 
+Roman literals from left to right Accumulated total
+M 1000
+MX 1000 + 10 = 1010
+MXC 1010 + (100 – 2 * 10) = 1010 + 80 = 1090 
+MXCV 1090 + 5 = 1095
+MXCVI 1095 + 1 = 1096
  */
 
 #include<string>
