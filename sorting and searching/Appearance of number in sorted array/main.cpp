@@ -39,7 +39,7 @@ void count(vector<int>& num, int start, int end, map<int, int>& countMap)
 {
 	if(end<start)	return;
 	
-	if(start==end)	countMap[num[start]]+=(end-begin+1);
+	if(start==end)	countMap[num[start]]+=(end-start+1);
 	else
 	{
 		count(num, start, (start+end)/2, countMap);
