@@ -17,20 +17,32 @@
 #include<map>
 using namespace std;
 
+map<int, int> count(vector<int>& num);
+void count(vector<int>& num, int start, int end, map<int, int>& countMap);
+
+int main()
+{
+	vector<int> num={8,8,8,9,11,15,16,16,16};
+	map<int, int> countMap=count(num);
+	for(auto itr=countMap.begin(); itr!=countMap.end(); itr++)
+		cout<<itr->first<<" "<<itr->second<<endl;
+	return 0;
+}
+
 map<int, int> count(vector<int>& num)
 {
 	map<int, int> countMap;
 	count(num, 0, num.size()-1, countMap);
 	return countMap;
 }
-
-
-
-int main()
+void count(vector<int>& num, int start, int end, map<int, int>& countMap)
 {
-	vector<int> num={8,8,8,9,11,15,16,16,16};
-	map<int, int> countMap=count(num);
-	return 0;
+	if(end<start)	return;
+	
+	if(start==end)	countMap[num[start]]+=(end-begin+1);
+	else
+	{
+		count(num, start, (start+end)/2, countMap);
+		count(num, (start+end)/2+1, end, countMap);
+	}
 }
-
-
