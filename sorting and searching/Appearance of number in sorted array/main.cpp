@@ -22,7 +22,7 @@ void count(vector<int>& num, int start, int end, map<int, int>& countMap);
 
 int main()
 {
-	vector<int> num={8,8,8,9,11,15,16,16,16};
+	vector<int> num={8,8,8,9,9,11,15,16,16,16};
 	map<int, int> countMap=count(num);
 	for(auto itr=countMap.begin(); itr!=countMap.end(); itr++)
 		cout<<itr->first<<" "<<itr->second<<endl;
