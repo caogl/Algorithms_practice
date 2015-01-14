@@ -25,6 +25,7 @@ MXCVI 1095 + 1 = 1096
  */
 
 #include<string>
+#include<unordered_map>
 #include<iostream>
 using namespace std;
 
@@ -32,33 +33,31 @@ int romanToInt(string s);
 
 int main()
 {
-	string s="MMCMXXXVIII";
+	string s="MXCVI";
+	cout<<romanToInt(s)<<endl;
+	s="DCXXI";
 	cout<<romanToInt(s)<<endl;
 	return 0;
 }
 
 int romanToInt(string s)
 {
+	unordered_map<char, int> RomInt;
+	RomInt['I']=1;
+	RomInt['V']=5;
+	RomInt['X']=10;
+	RomInt['L']=50;
+	RomInt['C']=100;
+	RomInt['D']=500;
+	RomInt['M']=1000;
 	int result=0;
-	char pre=' '; // good trick
+	int prev=0;
 	for(int i=0; i<s.size(); i++)
 	{
-		if(s[i]=='M' && pre!='C') result+=1000;
-		if(s[i]=='M' && pre=='C') result+=800;
-		if(s[i]=='C' && pre!='X') result+=100;
-		if(s[i]=='C' && pre=='X') result+=80;
-		if(s[i]=='X' && pre!='I') result+=10;
-		if(s[i]=='X' && pre=='I') result+=8;
-		
-		if(s[i]=='I')	result+=1;
-	
-		if(s[i]=='D' && pre!='C') result+=500;
-		if(s[i]=='D' && pre=='C') result+=300;
-		if(s[i]=='L' && pre!='X') result+=50;
-		if(s[i]=='L' && pre=='X') result+=30;
-		if(s[i]=='V' && pre!='I') result+=5;
-		if(s[i]=='V' && pre=='I') result+=3;
-		pre=s[i];
-	}	
+		int cur=RomInt[s[i]];
+		if(cur<=prev)	result+=cur;
+		else	result+=(cur-2*prev);
+		prev=cur;
+	}
 	return result;
 }
