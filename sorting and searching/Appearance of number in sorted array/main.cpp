@@ -29,6 +29,8 @@ int main()
 	return 0;
 }
 
+// time complexicty: O(mlogn), where m is number of unique ages and n is number of elements. 
+// Since m is practically a constant (unfortunately our age is bound), the time complexity is logn.
 map<int, int> count(vector<int>& num)
 {
 	map<int, int> countMap;
