@@ -80,3 +80,51 @@ string createLine(vector<string> &words, int L, int start, int end, int totalLen
 	}
 	return result;
 }
+
+
+// redo 01/14/2015
+vector<string> fullJustify(vector<string> &words, int L) 
+{
+        vector<string> result;
+	if(words.size()==0)
+		return result;
+        int start=0; 
+        int totalLen=words[0].size(); //initialized to 0, then error and easy to make!
+        			      //if like this, words[0] goes to else and add one addition " "
+        int n=words.size();
+        for(int i=1; i<n; i++)
+        {
+            if(totalLen+words[i].size()>=L)
+            {
+                add(words, result, start, i-1, totalLen, false, L);
+                totalLen=words[i].size();
+                start=i;
+            }
+            else    totalLen+=words[i].size()+1;
+        }
+        add(words, result, start, n-1, totalLen, true, L);
+        return result;
+}
+    
+void add(vector<string>& words, vector<string>& result, int start, int end, int totalLen, bool lastLine, int L)
+{
+        if(start>end)   return;
+        string s=words[start];
+        if(start==end || lastLine)
+        {
+            for(int i=start+1; i<=end; i++)
+                s+=(" "+words[i]);
+            s.append(L-totalLen, ' ');
+        }
+        else
+        {
+            int n=(L-totalLen)/(end-start);
+            int m=(L-totalLen)%(end-start);
+            for(int i=start+1; i<=end; i++)
+            {                
+		s.append(1+n+(i-start<=m), ' ');
+                s+=words[i];
+            }
+        }
+        result.push_back(s);
+}
