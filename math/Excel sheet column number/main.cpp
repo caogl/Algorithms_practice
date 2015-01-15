@@ -16,9 +16,8 @@ int main()
 
 int titleToNumber(string s)
 {
-	int result=0;
-        reverse(s.begin(), s.end());
+        int result=0;
         for(int i=0; i<s.size(); i++)
-            result+=(s[i]-'A'+1)*pow(26, i);
+        	result=result*26+s[i]-'A'+1;
         return result;
 }
