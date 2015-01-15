@@ -24,22 +24,19 @@ int main()
 	return 0;
 }
 
-int firstMissingPositive(int A[], int n)
+int firstMissingPositive(int A[], int n) 
 {
-    int i=0;
-    while(i<n)
-    {
-        if(A[i]<=0 || A[i]>n || A[i]==i+1)
-            i++;
-        else if(A[i]!=A[A[i]-1]) // important check, or there will be a dead loop!!!
-            swap(A[i], A[A[i]-1]);
-        else
-            i++;
-    }
-    for(int j=0; j<n; j++)
-    {
-        if(A[j]!=j+1)
-            return j+1;
-    }
-    return n+1;
-}  
+        for(int i=0; i<n; i++)
+        {
+        	if(A[i]!=i+1 && A[i]>=1 && A[i]<=n && A[i]!=A[A[i]-1]) 
+        	// (1) the final check condition avoids dead loop!
+            	{
+                	swap(A[i], A[A[i]-1]);
+                	i--; // (2) without this, test (A) would become: -1 1 3 4, position 1 needs to go on swap!!!
+            	}
+        }
+        for(int i=0; i<n; i++)
+            if(A[i]!=i+1)
+                return i+1;
+        return n+1;
+}
