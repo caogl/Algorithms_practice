@@ -30,7 +30,8 @@ bool isScramble(string s1, string s2)
 	for(int i=0; i<26; i++)
 		if(check[i]!=0)
 			return false;
-	if(s1.size()==1 && s2.size()==1)
+	if(s1.size()<=1) // as long as there are only 3 chars, they can be scrambled to convert
+			 //if there are 4, not: abcd VS bdac
 		return true;
 
 	for(int i=1; i<s1.size(); i++)
