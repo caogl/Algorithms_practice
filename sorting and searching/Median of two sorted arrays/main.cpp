@@ -41,6 +41,13 @@ double findKth(int A[], int m, int B[], int n, int k)
 	   then find the "[k-part(thrown)] th" smallest among the remaining two arrays */
 	int p_n=min(k/2, n); // since n is smaller than m, n may be smaller than k/2
 	int p_m=k-p_n;
+	/* error-prone: if
+	int p_m=min(k/2, n); // since n is smaller than m, n may be smaller than k/2
+	int p_n=k-p_n;
+	then: Input: 	[1], [2,3,4]
+			Output: 	2.00000
+			Expected: 	2.50000
+	*/
 	
 	/* throw the first p_m element in A, because they are among the k smallest 
 	   and then find the k-p_m th smallest element */
