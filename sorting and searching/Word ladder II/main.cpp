@@ -61,6 +61,8 @@ vector<vector<string> > findLadders(string start, string end, unordered_set<stri
             level[current].clear();
             for(auto itr=level[previous].begin(); itr!=level[previous].end(); itr++)
                 dict.erase(*itr);
+            // if delete the current level after the for loop below, would need to delete start from dict 
+            // before entering while(true), error prone !!!
             
             for(auto itr=level[previous].begin(); itr!=level[previous].end(); itr++)
             {
