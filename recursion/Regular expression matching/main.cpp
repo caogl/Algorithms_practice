@@ -38,7 +38,7 @@ int main()
 bool isMatch(const char *s, const char *p)
 {
 	bool match=false;
-	isMatch(s, p1, match);
+	isMatch(s, p, match);
 	return match;
 }
 
