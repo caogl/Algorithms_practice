@@ -56,7 +56,8 @@ vector<vector<string> > findLadders(string start, string end, unordered_set<stri
 	       if not delete by level but delete after find one by one, the following test case:
 	       Input: 		"hot", "dog", ["hot","cog","dog","tot","hog","hop","pot","dot"]
 	       Output: 		[["hot","hog","dog"]]
-	       Expected: 	[["hot","dot","dog"],["hot","hog","dog"]]*/
+	       Expected: 	[["hot","dot","dog"],["hot","hog","dog"]]
+	       ---> This is because we need to print "ALL" paths rather than one !!!*/
             level[current].clear();
             for(auto itr=level[previous].begin(); itr!=level[previous].end(); itr++)
                 dict.erase(*itr);
