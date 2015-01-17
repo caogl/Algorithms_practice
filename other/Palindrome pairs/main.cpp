@@ -1,6 +1,7 @@
 // facebook interview question
 // reference: http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=106193&extra=&highlight=facebook&page=3
 // Given a dictory of words, find all pair<word1, word2> such that word1+word2 is a palindrome
+// time: O(L^2*n), n is the number of words, L is the length of the longest word
 
 #include<iostream>
 #include<vector>
