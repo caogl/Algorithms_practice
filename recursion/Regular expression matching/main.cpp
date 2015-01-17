@@ -38,18 +38,6 @@ int main()
 bool isMatch(const char *s, const char *p)
 {
 	bool match=false;
-	int n=strlen(p);
-	// for successive '*'s, only keep one
-	char p1[n+1];
-	int j=1;
-	p1[0]=p[0];
-	for(int i=1; i<n; i++)
-	{
-	    if(p[i]=='*' && p[i]==p[i-1])
-	        continue;
-	    p1[j++]=p[i];
-	}
-	p1[j]='\0';
 	isMatch(s, p1, match);
 	return match;
 }
