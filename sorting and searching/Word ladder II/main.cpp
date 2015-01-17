@@ -52,7 +52,11 @@ vector<vector<string> > findLadders(string start, string end, unordered_set<stri
         {
 	    /* here change two two level data structure indexes to avoid the copy overhead !!!*/
             swap(current, previous);
-	    /* clean all the current levels, this is why queue is hard to be used */
+	    /* clean all the current levels, this is why queue is hard to be used 
+	       if not delete by level but delete after find one by one, the following test case:
+	       Input: 		"hot", "dog", ["hot","cog","dog","tot","hog","hop","pot","dot"]
+	       Output: 		[["hot","hog","dog"]]
+	       Expected: 	[["hot","dot","dog"],["hot","hog","dog"]]*/
             level[current].clear();
             for(auto itr=level[previous].begin(); itr!=level[previous].end(); itr++)
                 dict.erase(*itr);
