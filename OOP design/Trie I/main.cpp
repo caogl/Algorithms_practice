@@ -26,14 +26,13 @@ public:
 	}
 	void insertSuffix(string s, int index)
 	{
-		if(s.size()>0)
-		{
-			char cIndex=s[0];
-			if(!children[cIndex])
-				children[cIndex]=new SuffixTrieNode();
-			children[cIndex]->indexes.push_back(index);
-			children[cIndex]->insertSuffix(s.substr(1), index);
-		}
+		if(s.size()==0)	return;
+		
+		char cIndex=s[0];
+		if(!children[cIndex])
+			children[cIndex]=new SuffixTrieNode();
+		children[cIndex]->indexes.push_back(index);
+		children[cIndex]->insertSuffix(s.substr(1), index);
 	}
 	vector<int> search(string s)
 	{
