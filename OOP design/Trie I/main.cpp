@@ -8,6 +8,7 @@
 
 #include<iostream>
 #include<list>
+#include<vector>
 #define MAX_CHAR 256
 using namespace std;
  
@@ -15,34 +16,32 @@ using namespace std;
 class SuffixTrieNode
 {
 private:
-	SuffixTrieNode *children[MAX_CHAR];
-	list<int> *indexes;
+	SuffixTrieNode *children[MAX_CHAR]; // Trie node, root node with no starting char, others have a starting char(suffix)
+	vector<int> indexes; // the starting indexes of the word that ends with this char
 public:
     	SuffixTrieNode() // Constructor
     	{
-        	indexes = new list<int>; 
-        	for (int i = 0; i < MAX_CHAR; i++)
-			children[i] = NULL;
+		for(int i=0; i<MAX_CHAR; i++)
+			children[i]=nullptr;
+		indexes=vector<int> ();
 	}
 	void insertSuffix(string s, int index)
 	{
-		indexes->push_front(index);
-		if (s.length() > 0)
-    		{
-        		char cIndex = s.at(0);
-        		if (children[cIndex] == NULL)
-         			children[cIndex] = new SuffixTrieNode();
-			children[cIndex]->insertSuffix(s.substr(1), index+1);
-		}	
+		if(s.size()>0)
+		{
+			char cIndex=s[0];
+			if(!children[cIndex])
+				children[cIndex]=new SuffixTrieNode();
+			children[cIndex]->indexes.push_back(index);
+			children[cIndex]->insertSuffix(s.substr(1), index);
+		}
 	}
-	list<int>* search(string s)
+	vector<int> search(string s)
 	{
-    		// If all characters of pattern have been processed,
-		if (s.length() == 0)
-        		return indexes;
-		if (children[s.at(0)] != NULL)
-			return (children[s.at(0)])->search(s.substr(1));
-		else return NULL;
+		if(s.size()==0)	return indexes;
+
+		if(children[s[0]])	return children[s[0]]->search(s.substr(1));
+		else	return vector<int>();
 	}
 };
  
@@ -59,15 +58,13 @@ public:
 	}
 	void search(string pat)
 	{
-    		list<int> *result = root.search(pat); 
-    		if (result == NULL)
+    		vector<int> result = root.search(pat); 
+    		if (result.size()==0)
 			cout << "Pattern not found" << endl;
 		else
 		{
-			list<int>::iterator i;
-			int patLen = pat.length();
-			for (i = result->begin(); i != result->end(); ++i)
-			cout << "Pattern found at position " << *i - patLen<< endl;
+			for(int i=0; i<result.size(); i++)
+				cout<<"Pattern found at position "<<result[i]<<endl;
 		}
 	}
 };
@@ -100,6 +97,9 @@ int main()
 	S1.search("quiz");
 	cout << "Search for 'forgeeks'" << endl;
 	S1.search("forgeeks");
+	cout << "Search for ''" << endl;
+	S1.search("");
+
 	return 0;
 }
 
