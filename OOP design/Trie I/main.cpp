@@ -7,7 +7,6 @@
  */
 
 #include<iostream>
-#include<list>
 #include<vector>
 #define MAX_CHAR 256
 using namespace std;
