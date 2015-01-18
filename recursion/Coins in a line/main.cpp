@@ -7,7 +7,8 @@
  * The winner is the player which has a higher number of coins at the end. 
  * The objective is to "maximize" the number of coins collected by A, assuming B also plays optimally. A starts the game.
 
- * The idea is to find an optimal strategy that makes A win knowing that B is playing optimally as well. How would you do that? */
+ * The idea is to find an optimal strategy that makes A win knowing that B is playing optimally as well. 
+ * How would you do that? */
 
 // Question to ask: can we assume that the coin number is even?
 // For this question, we assume that the coin number is even.
@@ -24,8 +25,10 @@ int Greedy(vector<int>& coins, int start, int end);
 /* solution (1): Recursive solution, Time complexity: O(4^n), since each recursive call branches into a total of
 		 four separate recursive calls, and it could be n levels deep from the very first call.
 		 Space: O(n)
- * idea: For player A : he can pick up coin in first place or last place, for each of these case player B can further pick from * first or last place from remaining coins. Since B has complete information, he will adopt the strategy that after he picks
- * his coin, when A picks from remaining, A will get smallest value of coins.
+ * idea: For player A : he can pick up coin in first place or last place, for each of these case player B 
+ * can further pick from * first or last place from remaining coins. Since B has complete information, 
+ * he will adopt the strategy that after he picks his coin, when A picks from remaining, A will get smallest 
+ * value of coins.
  * This is because amount(A)+Amount(B)=total, B will try to make A get less and in this way he will get more.
  */
 int maxCoin(vector<int>& coins);
