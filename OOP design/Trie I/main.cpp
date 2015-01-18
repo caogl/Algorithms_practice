@@ -3,7 +3,7 @@
  * that prints all occurrences of pat[] in txt[]. You may assume that n > m.
  * (1) strstr solution for leetcode problem, time complexity: O(m*n), space: O(1)
  * (2) KMP algorithm: time complexity: O(n)
- * (3) build suffix trie, time complexity of building trie: O(n^2), space: O(n^2), for search: O(m)
+ * (3) build suffix trie, time complexity of building trie: O(n^2), space: O(n^2), each search time complexity: O(m)
  */
 
 #include<iostream>
