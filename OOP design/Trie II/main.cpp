@@ -6,7 +6,6 @@
  * where N is number of keys in trie. */
 
 #include<iostream>
-#include<list>
 #include<vector>
 #define MAX_CHAR 256
 using namespace std;
@@ -16,33 +15,29 @@ class SuffixTrieNode
 {
 private:
 	SuffixTrieNode *children[MAX_CHAR];
-	list<int> *indexes;
+	vector<int> indexes;
 public:
     	SuffixTrieNode() // Constructor
     	{
-        	indexes = new list<int>; 
         	for (int i = 0; i < MAX_CHAR; i++)
-			children[i] = NULL;
+			children[i] = nullptr;
 	}
 	void insertSuffix(string s, int index)
 	{
-		indexes->push_front(index);
-		if (s.length() > 0)
-    		{
-        		char cIndex = s[0];
-        		if (children[cIndex] == NULL)
-         			children[cIndex] = new SuffixTrieNode();
-			children[cIndex]->insertSuffix(s.substr(1), index);
-		}	
+		if(s.size()==0)	return;
+		
+		char cIndex=s[0];
+		if(children[cIndex]==nullptr)
+			children[cIndex]=new SuffixTrieNode();
+		children[cIndex]->insertSuffix(s.substr(1), index);
+		children[cIndex]->indexes.push_back(index);
 	}
-	list<int>* search(string s)
+	vector<int> search(string s)
 	{
-    		// If all characters of pattern have been processed,
-		if (s.length() == 0)
-        		return indexes;
-		if (children[s[0]] != NULL)
-			return (children[s[0]])->search(s.substr(1));
-		else return NULL;
+		if(s.size()==0)	return indexes;
+
+		if(children[s[0]])	return children[s[0]]->search(s.substr(1));
+		else	return vector<int>();
 	}
 };
  
@@ -63,13 +58,13 @@ public:
 	}
 	void search(string pat)
 	{
-    		list<int> *result = root.search(pat); 
-    		if (result == NULL)
+    		vector<int> result = root.search(pat); 
+    		if(result.size()==0)
 			cout << "Word not found" << endl;
 		else
 		{
-			for (auto i = result->begin(); i != result->end(); ++i)
-			cout << "Word found at position " << *i<< endl;
+			for(int i=0; i<result.size(); i++)
+				cout << "Word found at position " << result[i] << endl;
 		}
 	}
 };
