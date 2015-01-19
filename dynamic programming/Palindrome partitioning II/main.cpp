@@ -41,23 +41,19 @@ int minCut(string s)
 	}
 
 	for(int i=0; i<s.size(); i++)
-	{
 		dp[i]=i;
-	}
-
 	for(int i=1; i<s.size(); i++)
 	{
+		if(isPalindrome[0][i])
+            	{
+                	dp[i]=0;
+                	continue;
+            	}
 		for(int j=0; j<=i; j++)
 		{
 			if(isPalindrome[j][i])
-			{
-				if(j==0) // from start to the current position is a palindrome, no partition needed
-					dp[i]=0;
-				else
-					dp[i]=min(dp[i], dp[j-1]+1); // notice the index: j-1 rathen than j
-			}
+				dp[i]=min(dp[i], dp[j-1]+1); // notice the index: j-1 rathen than j
 		}
 	}
-
 	return dp[s.size()-1];
 }
