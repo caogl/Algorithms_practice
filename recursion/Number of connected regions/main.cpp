@@ -13,9 +13,14 @@ int main()
 	{0,0,1,0,1,1,1,0}, {0,0,0,1,0,0,0,0},
 	{1,1,0,0,0,0,0,1}};
 	vector<vector<bool> > testCase=makeTestCase(test1, 8);
+	for(int i=0; i<8; i++)
+	{
+		for(int j=0; j<8; j++)
+			cout<<testCase[i][j]<<" ";
+		cout<<endl;
+	}
 	int regionNum=find_black_regions(testCase);
 	cout<<"The number of connected black region is: "<<regionNum<<endl;
-	system("PAUSE");
 	return 0;
 }
 
