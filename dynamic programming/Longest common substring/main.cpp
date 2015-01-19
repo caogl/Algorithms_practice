@@ -9,8 +9,8 @@ int LongestCommonSubstring(string &s1, string &s2);
 
 int main()
 {
-	string s1="OldSite:GeeksforGeeks.org";
-	string s2="NewSite:GeeksQuiz.com";
+	string s1="Site:GeeksforGeekshahahahaa.org";
+	string s2="NewSite:GeeksQuizhahahahab.com";
 	cout<<LongestCommonSubstring(s1, s2)<<endl;
 	return 0;
 }
