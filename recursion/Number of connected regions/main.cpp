@@ -1,3 +1,14 @@
+/*
+0 0 1 1 1 1 0 0 
+0 0 0 0 1 0 0 0 
+0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 1 1   ---> number of connected "ones": 5
+0 0 0 0 0 0 0 0 
+0 0 1 0 1 1 1 0 
+0 0 0 1 0 0 0 0 
+1 1 0 0 0 0 0 1
+*/
+
 #include<iostream>
 #include<vector>
 using namespace std;
