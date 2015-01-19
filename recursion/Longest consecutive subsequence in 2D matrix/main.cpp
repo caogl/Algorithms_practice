@@ -6,6 +6,8 @@ example:
 4	5	10	11    -----------	9	8	3	2
 20	6	9	12    -----------	1	7	4	1
 6	7	8	40			7	6	5	1
+
+Answer: 4-5-6-7-8-9-10-11-12 : 9
 */
 
 #include<iostream>
@@ -47,13 +49,13 @@ int longestPath(vector<vector<int> > &matrix)
         return res;
 }
 
-int main(){
-
+int main()
+{
         vector<vector<int> > matrix;
         matrix.push_back(vector<int>({2,3,4,5}));
         matrix.push_back(vector<int>({4,5,10,11}));
-        matrix.push_back(vector<int>({20,6,9,12}));   // modify the test case
-	matrix.push_back(vector<int>({6,7,8,40}));
+        matrix.push_back(vector<int>({20,6,9,12}));   
+	matrix.push_back(vector<int>({6,7,8,40})); // answer: 9
         cout << longestPath(matrix) << endl;
 
         return 0;
