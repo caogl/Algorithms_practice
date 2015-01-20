@@ -32,7 +32,6 @@ cout<<a<<endl;    //输出1
 
 
 bool isOdd(int a); // if an integer is odd number
-void swap(int& a, int& b); // swap two integers without buffer
 int changeSign(int a); //change the sign of a number
 int absValue(int a); // get the absolute value
 
@@ -45,8 +44,6 @@ int main()
 		cout<<"a is odd"<<endl;
 	if(isOdd(b))
 		cout<<"b is odd"<<endl;
-	swap(a, b);
-	cout<<"a is: "<<a<<" b is: "<<b<<endl; 
 	cout<<"-a is: "<<changeSign(a)<<" -b is: "<<changeSign(b)<<endl;
 	cout<<"|a| is: "<<absValue(a)<<" |b| is: "<<absValue(b)<<endl;
 	return 0;
@@ -55,13 +52,6 @@ int main()
 bool isOdd(int a)
 {
 	return (a & 1);
-}
-
-void swap(int& a, int& b)
-{
-	a=a^b;
-	b=b^a; // which is in fact b=b^a=b^a^b=a^b^b=a
-	a=a^b; // which is in fact a=a^b=a^b^a=a^a^b=b
 }
 
 int changeSign(int a)
