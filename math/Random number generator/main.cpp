@@ -1,4 +1,5 @@
-// Write a method to generate a random number between 1 and 7, given a method that generates a random number between 1 and 5 (i.e., implement rand7() using rand5()).
+// Write a method to generate a random number between 1 and 7, 
+// given a method that generates a random number between 1 and 5 (i.e., implement rand7() using rand5()).
 // reference: http://hawstein.com/posts/19.10.html
 
 #include<iostream>
