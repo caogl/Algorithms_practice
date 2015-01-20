@@ -1,3 +1,5 @@
+// reference: http://www.hawstein.com/posts/20.2.html
+
 #include<iostream>
 #include<cstdlib>
 #include<vector>
