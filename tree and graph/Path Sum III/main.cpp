@@ -37,6 +37,12 @@ int main()
 	root1->right->left->right=new node(11);
 	root1->right->right->left=new node(13);
 	root1->right->right->right=new node(15);
+	/* answer:
+		8 4 2 
+		4 6 4 
+		5 9 
+		14 
+	*/
 	vector<vector<int> > result=findPathSum(root1, 14);
 	for(unsigned int i=0; i<result.size(); i++)
 	{
@@ -44,7 +50,6 @@ int main()
 			cout<<result[i][j]<<" ";
 		cout<<endl;
 	}
-	system("pause");
 	return 0;
 }
 
@@ -75,7 +80,8 @@ void findPathSum(node* root, int target, vector<int>& tmp, vector<vector<int> >&
 			result.push_back(resultElem);
 		}
 	}
-	vector<int> tmp1(tmp), tmp2(tmp);
-	findPathSum(root->left, target, tmp1, result);
-	findPathSum(root->right, target, tmp2, result);
+
+	findPathSum(root->left, target, tmp, result);
+	findPathSum(root->right, target, tmp, result);
+	tmp.pop_back();
 }
