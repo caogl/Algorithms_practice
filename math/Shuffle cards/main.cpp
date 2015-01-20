@@ -11,6 +11,7 @@ void shuffle(vector<int>& cards)
 	int n=cards.size();
 	for(int i=0; i<n; i++)
 	{
+		/* swap the indexes, not actual card */
 		int j=rand()%(n-i)+i;
 		swap(cards[i], cards[j]);
 	}
