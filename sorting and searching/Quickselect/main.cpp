@@ -1,4 +1,5 @@
-// reference: http://www.geeksforgeeks.org/kth-smallestlargest-element-unsorted-array-set-2-expected-linear-time/
+// reference: (1) http://www.geeksforgeeks.org/kth-smallestlargest-element-unsorted-array-set-2-expected-linear-time/
+//	      (2) Cracking the coding interview 5th edition, 18.5
 // indeed interview question---> high frequency!!!
 
 #include<iostream>
