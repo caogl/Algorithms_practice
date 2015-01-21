@@ -5,6 +5,8 @@
  * Insert and search costs O(key_length), however the memory requirements of trie is O(ALPHABET_SIZE * key_length * N),
  * where N is number of keys in trie. */
 
+//
+
 #include<iostream>
 #include<vector>
 #define MAX_CHAR 256
@@ -54,7 +56,8 @@ public:
 	}
 	void insert(string& txt, int i)
 	{
-		root.insertSuffix(txt, i);
+		for(int index=0; index<txt.size(); index++)
+			root.insertSuffix(txt.substr(index), i);
 	}
 	void search(string pat)
 	{
@@ -72,10 +75,10 @@ public:
 // driver program to test above functions
 int main()
 {
-	vector<string> vec={"there","is","an","answer","to","their","question","in","their","quiz","the","third","question"};
+	vector<string> vec={"there","is","an","answer","to","their","question","in","their","quiz","the","third","largest","question"};
 	SuffixTrie trie(vec);
-	cout<<"search for word \"there\":"<<endl;
-	trie.search("there");
+	cout<<"search for word \"es\":"<<endl;
+	trie.search("es");
 	cout<<"search for word \"the\":"<<endl;
 	trie.search("the");
 	cout<<"search for word \"their\":"<<endl;
