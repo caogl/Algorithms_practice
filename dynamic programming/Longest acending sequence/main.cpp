@@ -1,4 +1,6 @@
 #include<iostream>
+// Cracking the coding interview 11.7
+
 #include<algorithm>
 #include<vector>
 using namespace std;
@@ -8,7 +10,6 @@ int main()
 {
 	int l[]={5,9,3,4,8,6,7,10,1,2,9,11,12,14,13,-10,-9,-8,-7,-6,15,-5,-4,-3,-1,0,-11};
 	cout<<"The longest sub-acending sequnence is: "<<LAS(l, 27)<<endl;
-	system("PAUSE");
 	return 0;
 }
 
