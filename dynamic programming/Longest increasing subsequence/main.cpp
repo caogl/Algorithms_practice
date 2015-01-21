@@ -1,6 +1,6 @@
-#include<iostream>
 // Cracking the coding interview 11.7
 
+#include<iostream>
 #include<algorithm>
 #include<vector>
 using namespace std;
