@@ -47,7 +47,6 @@ void radixSort(vector<int>& num)
 	int maxV=*max_element(num.begin(), num.end());
 	for(int digitNum=1; maxV/digitNum>0; digitNum*=10)
 		countingSort(num, digitNum);
-	cout<<endl;
 }
 
 void countingSort(vector<int>& num, int digitNum)
