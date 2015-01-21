@@ -1,4 +1,6 @@
-// cracking the coding interview/google interview
+// cracking the coding interview 18.9
+// Google interview
+
 // keep two priority_queues and ensure that the difference in size is smaller than 2
 
 #include<iostream>
