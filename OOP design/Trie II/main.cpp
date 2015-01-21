@@ -17,8 +17,8 @@
 		如果dictionary裡有上百萬個字，該如何加速
 		如果dictionary有上百萬個字，然後給你上千個車牌號碼，要你回傳相對應的最短字串，該如何optimize?
     Solution:	Generate all the permutations of the query word, then perform search for each permutation, 
-    		time complexity: O(m!), where m is the length of the query word
-*/
+    		time complexity: O(m!), where m is the length of the query word */
+
 #include<iostream>
 #include<vector>
 #define MAX_CHAR 256
