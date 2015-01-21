@@ -5,8 +5,20 @@
  * Insert and search costs O(key_length), however the memory requirements of trie is O(ALPHABET_SIZE * key_length * N),
  * where N is number of keys in trie. */
 
-//
+/* Question (1): word search engine in the web or pdf: find all the words in the dictionary that there is part in query
+                 --> the code here is a solution! */
 
+/* Question (2): Google Interview Question: http://www.1point3acres.com/bbs/thread-114594-1-1.html
+		給一個車牌號碼(美國的)，以及一個dictionary，請找出dictionary裡含有所有該車牌號碼裡的所有英文字母
+		(case insensitive)的最短字串
+		ex:
+		車牌 RO 1287 ["rolling", "real", "WhaT", "rOad"] => "rOad"
+		follow up:
+		如果dictionary裡有上百萬個字，該如何加速
+		如果dictionary有上百萬個字，然後給你上千個車牌號碼，要你回傳相對應的最短字串，該如何optimize?
+    Solution:	Generate all the permutations of the query word, then perform search for each permutation, 
+    		time complexity: O(m!), where m is the length of the query word
+*/
 #include<iostream>
 #include<vector>
 #define MAX_CHAR 256
@@ -87,28 +99,32 @@ int main()
 	trie.search("theer");
 	cout<<"search for word \"th\":"<<endl;
 	trie.search("th");
-
-	/*
-	search for word "there":
-	Word found at position 0
+/*
+	search for word "es":
+	Word found at position 6
+	Word found at position 12
+	Word found at position 13
+	
+	"Their is an answer to their question in their quiz the third largest question"
+		                       __                                 __     __
+	
 	search for word "the":
-	Word found at position 10
-	Word found at position 8
-	Word found at position 5
 	Word found at position 0
-	search for word "their":
-	Word found at position 8
 	Word found at position 5
+	Word found at position 8
+	Word found at position 10
+	search for word "their":
+	Word found at position 5
+	Word found at position 8
 	search for word "theer":
 	Word not found
 	search for word "th":
-	Word found at position 11
-	Word found at position 10
-	Word found at position 8
-	Word found at position 5
 	Word found at position 0
-	*/
-
+	Word found at position 5
+	Word found at position 8
+	Word found at position 10
+	Word found at position 11
+*/
 	return 0;
 }
 
