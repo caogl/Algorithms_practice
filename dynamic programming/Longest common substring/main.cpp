@@ -28,7 +28,7 @@ int LCSGoogle(string s1, string s2)
 	memset(dp, 0, sizeof(dp));
 	for(i=1; i<=s1.size(); i++)
 	{
-		// Important to follow this order, or  it will produce a "gradually replace" problem!!!
+		// Important to follow this order, or it will produce a "gradually replace" problem!!!
 		/*	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 			0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 			0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
