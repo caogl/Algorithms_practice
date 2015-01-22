@@ -29,12 +29,14 @@ int LCSGoogle(string s1, string s2)
 	for(i=1; i<=s1.size(); i++)
 	{
 		// Important to follow this order, or it will produce a "gradually replace" problem!!!
+		// or we can use two vectors, O(2*m) and update interchangably
+		// if not, the change of the vector would be: 
 		/*	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 			0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 			0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 			0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 			0 1 0 0 0 0 1 0 0 1 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
- 		*/
+ 			--> gradually changing problem */
 		for(int j=s2.size(); j>=1; j--)
 		{	
 			if(s1[i-1]==s2[j-1])
