@@ -36,7 +36,7 @@ int LCSGoogle(string s1, string s2)
 			0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 			0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 			0 1 0 0 0 0 1 0 0 1 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
- 			--> gradually changing problem */
+ 			--> gradually changing problem!!! */
 		for(int j=s2.size(); j>=1; j--)
 		{	
 			if(s1[i-1]==s2[j-1])
