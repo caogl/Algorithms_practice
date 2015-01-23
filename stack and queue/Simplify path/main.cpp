@@ -11,9 +11,18 @@ string simplifyPath(string path);
 
 int main()
 {
-	string path1="/a/./b/../../c/e/../d";
-	string result1=simplifyPath(path1);
-	cout<<result1<<endl;
+	string path="/a/./b/../../c/e/../d";
+	string result=simplifyPath(path);	
+	cout<<result<<endl;
+
+	path="/.."; // test case (1)
+	result=simplifyPath(path);	
+	cout<<result<<endl;
+
+	path="/..."; // test case (2)
+	result=simplifyPath(path);	
+	cout<<result<<endl;
+
 	return 0;
 }
 
@@ -27,7 +36,7 @@ string simplifyPath(string path)
 		if(path[i]=='/')
 		{
 			string tmp=path.substr(start, i-start);
-			if(tmp=="..")
+			if(tmp=="..") // cannot put these two if conditions together by "&&"!, easy error!!
 			{
 				if(!s.empty())	s.pop();
 			}
@@ -41,7 +50,7 @@ string simplifyPath(string path)
 	string tmp=path.substr(start, n-start);
 	if(tmp=="..")
 	{
-		if(!s.empty())	s.pop();
+		if(!s.empty())	s.pop(); // check for test case (1), if .. from "/",, still keep in the root position 
 	}
 	else if(tmp.size()>0 && tmp!=".") /* (1) first condition deals with "//" */
 		s.push(tmp);
