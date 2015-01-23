@@ -55,13 +55,14 @@ string simplifyPath(string path)
 	else if(tmp.size()>0 && tmp!=".") /* (1) first condition deals with "//" */
 		s.push(tmp);
 
+	/*(3) deal with corner case that the final result is only the root "/" */
+	if(s.empty())	return "/";
+
 	string result;
 	while(!s.empty())
 	{
 		result="/"+s.top()+result;
 		s.pop();
 	}
-	/*(3) deal with corner case that the final result is only the root "/" */
-	if(result=="")	result="/";
 	return result;
 }
