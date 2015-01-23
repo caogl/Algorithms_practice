@@ -1,5 +1,7 @@
+// Cracking the coding interview 9.10
+// 2-d case of the sub-problem: longest increasing sequence
+
 #include<iostream>
-#include<set>
 #include<algorithm>
 #include<functional>
 #include<vector>
