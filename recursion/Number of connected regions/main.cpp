@@ -20,7 +20,7 @@ void make_white(vector<vector<bool> >& region, int i, int j, int rowNum, int col
 vector<vector<bool> > makeTestCase(bool test[][8], int size1);
 
 int countries(vector<vector<bool> >& region);
-void help(vector<vector<bool> & region, vector<vector<bool> >& visited, int i, int j, int rowNum, int colNum, bool sign);
+void help(vector<vector<bool> > & region, vector<vector<bool> >& visited, int i, int j, int rowNum, int colNum, bool sign);
 
 int main()
 {
@@ -40,7 +40,7 @@ int main()
 	cout<<"The number of connected black region is: "<<regionNum<<endl;
 	
 	testCase=makeTestCase(test1, 8);
-	cout<<"The number of countries is: "<<
+	cout<<"The number of countries is: "<<countries(testCase)<<endl;
 	return 0;
 }
 
@@ -108,14 +108,17 @@ int countries(vector<vector<bool> >& region)
 	{
 		for(int j=0; j<colNum; j++)
 		{
-			if(!visited[i][j])	help(region, visited, i, j, rowNum, colNum, region[i][j]);
-			result++;
+			if(!visited[i][j])
+			{	
+				help(region, visited, i, j, rowNum, colNum, region[i][j]);
+				result++;
+			}
 		}
 	}
 	return result;
 }
 
-void help(vector<vector<bool> & region, vector<vector<bool> >& visited, int i, int j, int rowNum, int colNum, bool sign)
+void help(vector<vector<bool> > & region, vector<vector<bool> >& visited, int i, int j, int rowNum, int colNum, bool sign)
 {
 	if(!visited[i][j])	visited[i][j]=true;
 	else	return;
