@@ -63,8 +63,8 @@ string getPermutation(int n, int k)
 	vector<int> digits(n);
 	int fac=1;
 	
-	/* logic: starting with any digit, there are (n-1)! combinations, then can calculate the first digit...follow this logic 
-         * so for the 1st position, should store (n-1)!......n-1 th and nth store 1 
+	/* logic: starting with any digit, there are (n-1)! combinations, then can calculate the first digit...
+	 *   follow this logic so for the 1st position, should store (n-1)!......n-1 th and nth store 1 
          */
 	for(int i=1; i<=n; i++)
 	{
