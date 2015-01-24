@@ -1,8 +1,10 @@
 // reference: http://fisherlei.blogspot.com/2012/12/leetcode-next-permutation.html
-/* case(1): 1-2-4-5-3   step1: index1=2, since from right to left, 4-5 is not ascending sequence, num[2]=4
- * 		        step2: index2=3, since from right to index1, 5 (num[3]=5) is the first elem greater than 4
- *	    1-2-5-4-3   step3: swap num[index1] and num[index2]
- *	    1-2-5-3-4   step4: reverse the elems after index1
+/* case(1): 1-2-4-6-5-3   step1: index1=2, since from right to left, 4-6 is not ascending sequence, num[2]=4
+ * 		          step2: index2=4, since from right to index1, 5 (num[3]=5) is the first elem greater than 4
+ *	    1-2-5-6-4-3   step3: swap num[index1] and num[index2]
+ *	    1-2-5-3-4-6   step4: reverse the elems after index1
+ *
+ *
  * case(2): 5-4-3-2-1   step1: from right to left, no elem pairs violate ascending sequence, reverse the whole vector
  *          1-2-3-4-5
  * case(3): 2-3-5-6-6-4   here we assume that there will be NO duplicate sequence
