@@ -35,8 +35,6 @@ int main()
 
 void nextPermutation(vector<int> &num)
 {
-        if(num.size()<=1)
-            return;
 	/* step1 */
         int index1=-1;
         for(int i=num.size()-2; i>=0; i--)
@@ -54,18 +52,15 @@ void nextPermutation(vector<int> &num)
         }
         
 	/* step2 */
-        int index2=-1;
         for(int i=num.size()-1; i>=0; i--)
         {
-            if(num[i]>num[index1])
+            if(num[i]>num[index1]) // find the swap point
             {
-                index2=i;
 		/* step3 */
-                swap(num[index1], num[index2]);
+                swap(num[index1], num[i]);
 		/* step4 */
                 reverse(num.begin()+index1+1, num.end()); // here it is index1 rather than index2 !!
-                break;
+                return;
             }
         }
 }
-
