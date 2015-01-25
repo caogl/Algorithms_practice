@@ -2,6 +2,49 @@
 // 双指针，动态维护一个sliding window。尾指针不断往后扫，当扫到有一个窗口包含了所有T的字符后,
 // 然后再收缩头指针，直到不能再收缩为止。最后记录所有可能的情况中窗口最小的
 
+/* redo: 01/25/2015: use an array as hashMap because the keys are chars, runtime: 13ms
+string minWindow(string S, string T) 
+{
+        if(S.size()==0 || T.size()==0)    return "";
+        
+        int expected[256];
+        memset(expected, 0, sizeof(expected));
+        for(int i=0; i<T.size(); i++)
+            expected[T[i]]++;
+        int minLen=INT_MAX;
+        int matched[256];
+        memset(matched, 0, sizeof(matched));
+        int slow=0;
+        int appeared=0;
+        string result;
+        
+        for(int fast=0; fast<S.size(); fast++)
+        {
+            matched[S[fast]]++;
+            if(matched[S[fast]]<=expected[S[fast]]) // contribute to match
+            {
+                appeared++;
+                if(appeared==T.size())
+                {
+                    while(matched[S[slow]]>expected[S[slow]]) 
+                    {
+                        matched[S[slow]]--;
+                        slow++;
+                    }
+                    appeared--;
+                    
+                    if(fast-slow+1<minLen)
+                    {
+                        minLen=fast-slow+1;
+                        result=S.substr(slow, minLen);
+                    }
+                    matched[S[slow]]--;
+                    slow++;
+                }
+            }
+        }
+        return result;
+}*/
 
 #include<unordered_map>
 #include<string>
@@ -9,6 +52,7 @@
 #include<iostream>
 using namespace std;
 
+// runtime 137ms
 string minWindow(string S, string T);
 
 int main()
