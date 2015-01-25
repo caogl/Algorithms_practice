@@ -1,10 +1,15 @@
 // reference: http://www.hawstein.com/posts/19.3.html
+/*
+5!, 包含1*5, 1个5
+10!, 包含1*5,2*5, 2个5
+15!, 包含1*5,2*5,3*5, 3个5
+20!, 包含1*5,2*5,3*5,4*5, 4个5
+25!, 包含1*5,2*5,3*5,4*5,5*5, 6个5
+...
+*/
 
 #include<iostream>
 using namespace std;
-
-// consider when 4*25, create 2 0s
-// also consider 2*50, create 2 0s
 
 int trailingZero(int n);
 
