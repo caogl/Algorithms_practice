@@ -17,23 +17,25 @@ int main()
 	return 0;
 }
 
-int lengthOfLongestSubstring(string s)
+int lengthOfLongestSubstring(string s) 
 {
-    	vector<int> vec(256, -1);
-    	int maxLength=0;
-    	int startPos=-1; // the startPos of non-repeated char
-    	for(int i=0; i<s.size(); i++)
-    	{
-        	if(vec[s[i]]>startPos)
-        	{
-            		startPos=vec[s[i]];
-            		vec[s[i]]=i;
-        	}
-        	else
-        	{
-            		vec[s[i]]=i;
-            		maxLength=max(maxLength, i-startPos);
-        	}
-    	}
-    	return maxLength;
+         int dp[256];
+         memset(dp, -1, sizeof(dp));
+         int startPos=0;
+         int result=0;
+         for(int i=0; i<s.size(); i++)
+         {
+             	if(dp[s[i]]>=startPos)
+             	{
+             		// ordering of there two lines important!!!
+                	startPos=dp[s[i]]+1;
+                 	dp[s[i]]=i;
+             	}
+             	else
+             	{
+                	dp[s[i]]=i;
+                	result=max(result, i-startPos+1);
+             	}
+         }
+         return result;
 }
