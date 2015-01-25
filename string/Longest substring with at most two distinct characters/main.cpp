@@ -25,40 +25,35 @@ int main()
 
 int lengthOfLongestSubstringTwoDistinct(string s) 
 {
-        int n=s.size();
-        if(s.size()==0)
-            return 0;
+        if(s.size()==0)	return 0;
         
-        int maxV=0;
-        unordered_map<char, int> hashMap; // the size of the hashMap tracks the appearance
-        int lasPos=0;
-        for(int i=0; i<n; i++)
+        unordered_map<char, int> hashMap; // the size tracks the number of unique chars in sliding window
+        int slow=0;
+        int result=0;
+        for(int fast=0; fast<s.size(); fast++)
         {
-            if(hashMap.find(s[i])==hashMap.end())
-            {
-                if(hashMap.size()<2)    hashMap[s[i]]=i;
-                else
-                {
-                    auto itr2=hashMap.begin();
-                    auto itr1=itr2++;
-                    if(itr1->second<itr2->second)
-                    {
-                        maxV=max(maxV, i-lasPos);
-                        lasPos=itr1->second+1; // be careful about lasPos , both initialization and update
-                        hashMap.erase(itr1);
-                    }
-                    else
-                    {
-                        maxV=max(maxV, i-lasPos);
-                        lasPos=itr2->second+1;
-                        hashMap.erase(itr2);
-                    }
-                    hashMap[s[i]]=i;
-                }
-            }
-            else
-                hashMap[s[i]]=i;
+            	if(hashMap.find(s[fast])!=hashMap.end() || hashMap.size()<2)
+            	{
+                	hashMap[s[fast]]=fast;
+                	result=max(result, fast-slow+1);
+            	}
+            	else
+            	{
+                	auto itr1=hashMap.begin();
+                	auto itr2=hashMap.begin();
+                	itr2++;
+                	hashMap[s[fast]]=fast;
+                	if(itr1->second<itr2->second)
+                	{
+                    		slow=itr1->second+1;
+                    		hashMap.erase(itr1);
+                	}
+                	else
+                	{
+                    		slow=itr2->second+1;
+                    		hashMap.erase(itr2);
+                	}
+            	}
         }
-        
-        return max(maxV, n-lasPos); // important check, error prone!
+        return result;
 }
