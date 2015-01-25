@@ -19,22 +19,21 @@ int main()
 
 int lengthOfLongestSubstring(string s)
 {
-	vector<int> lasPos(26, -1);
-	int start=-1; // the start place of the non-repeated sequence
-	int maxLength=0;
-	int n=s.size();
-	for(int i=0; i<n; i++)
-	{
-		if(lasPos[s[i]-'a']>start) // repeated found
-		{
-			start=lasPos[s[i]-'a'];
-			lasPos[s[i]-'a']=i;
-		}
-		else
-		{
-			lasPos[s[i]-'a']=i;
-			maxLength=max(maxLength, i-start);
-		}
-	}
-	return maxLength;
+    	vector<int> vec(256, -1);
+    	int maxLength=0;
+    	int startPos=-1; // the startPos of non-repeated char
+    	for(int i=0; i<s.size(); i++)
+    	{
+        	if(vec[s[i]]>startPos)
+        	{
+            		startPos=vec[s[i]];
+            		vec[s[i]]=i;
+        	}
+        	else
+        	{
+            		vec[s[i]]=i;
+            		maxLength=max(maxLength, i-startPos);
+        	}
+    	}
+    	return maxLength;
 }
