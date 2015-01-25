@@ -52,7 +52,7 @@ void generateTrees(int start, int end, vector<TreeNode*>& result)
 		{
 			for(int k=0; k<rightSubTree.size(); k++)
 			{
-				TreeNode* root=new TreeNode(i);
+				TreeNode* root=new TreeNode(i); // must generate the new root inside this loop !!!
 				root->left=leftSubTree[j];
 				root->right=rightSubTree[k];
 				result.push_back(root);
