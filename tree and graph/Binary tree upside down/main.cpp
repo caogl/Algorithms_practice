@@ -16,6 +16,39 @@ From bottom up:
 (3) return the new root, the leftmost left in the original tree
 */
 
+// another version, easier to implement and understand, 01/24/2015
+/*
+class Solution {
+public:
+    TreeNode *upsideDownBinaryTree(TreeNode *root) 
+    {
+        TreeNode* root1=root;
+        while(root1 && root1->left)   root1=root1->left;
+        help(root, nullptr);
+        return root1;
+    }
+    
+    void help(TreeNode* current, TreeNode* prev)
+    {
+        if(current)
+            help(current->left, current);
+        else
+            return;
+        
+        if(!prev)
+        {
+            current->left=nullptr;
+            current->right=nullptr;
+        }
+        else
+        {
+            current->left=prev->right;
+            current->right=prev;
+        }
+    }
+};
+*/
+
 #include<iostream>
 #include<vector>
 #include<queue>
