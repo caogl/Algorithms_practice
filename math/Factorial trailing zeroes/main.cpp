@@ -18,10 +18,12 @@ int main()
 
 int trailingZero(int n)
 {
+	if(n<=0)	return 0;
 	int result=0;
-	for(int i=5; n/i>=1; i*=5)
+	while(n/5>0)
 	{
-		result+=n/i;
+		result+=n/5;
+		n/=5;
 	}
 	return result;
 }
