@@ -53,7 +53,7 @@ int main()
 int maximalRectangle(vector<vector<char> > &matrix)
 {
 	if(matrix.size()==0 || matrix[0].size()==0)
-		return 0
+		return 0;
 	int rowNum=matrix.size();
 	int colNum=matrix[0].size();
 	int dp[rowNum][colNum];
