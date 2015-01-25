@@ -21,7 +21,7 @@ string minWindow(string S, string T)
         for(int fast=0; fast<S.size(); fast++)
         {
             matched[S[fast]]++;
-            if(matched[S[fast]]<=expected[S[fast]]) // contribute to match
+            if(matched[S[fast]]<=expected[S[fast]]) // contribute to match, notice the "<=" !!!
             {
                 appeared++;
                 if(appeared==T.size())
