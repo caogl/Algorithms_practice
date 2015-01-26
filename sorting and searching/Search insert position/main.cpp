@@ -1,3 +1,12 @@
+/*
+Corner case: target cannot be found
+==>          left==mid==right
+             (1) if target<A[left], then search in left, mid-1, since A[left-1]=A[mid-1] must be less than A[left],
+	         we need to put target in the left position
+	     (2) if target>A[right] then search in mid+1, right ... we need to put target in the mid+1 position
+	     (1)+(2): we put target in left if the corner case happens
+*/
+
 #include<iostream>
 using namespace std;
 
@@ -8,10 +17,6 @@ int searchInsert(int A[], int start, int end, int target);
 int main()
 {
 	int A[]={1,3,5,7};
-/*
- * if the insert position is not on two sides, either on left or right, start+1 or end-1, which matches the position the new element SHOULD insert!!
- * if the insert position is on two sides, can analyse to see that the postion must be start for the last ending recursion...... 
- */
 	cout<<searchInsert(A, 4, 0)<<endl;
 	cout<<searchInsert(A, 4, 2)<<endl;
 	cout<<searchInsert(A, 4, 4)<<endl;
