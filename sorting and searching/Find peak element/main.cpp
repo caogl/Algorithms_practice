@@ -32,6 +32,7 @@ int findPeakElement(const vector<int> &num, int left, int right)
             return mid;
         else if(mid>0 && mid<num.size()-1 && num[mid]>num[mid-1] && num[mid]>num[mid+1])
             return mid;
+                         // cannot change this "<" to ">" and explore the other side, out of range!
         else if(mid>0 && num[mid]<num[mid-1]) // must check that mid>0, or if mid==0, seg fault !!!
             return findPeakElement(num, left, mid-1);
         else // the check of the boundary optional here because it is guaranteed that there is a peak
