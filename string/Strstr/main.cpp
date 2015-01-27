@@ -65,10 +65,9 @@ int strStr(char *haystack, char *needle)
 		{
 			i++;
 			j++;
+			if(j==m)	return i-m;
 		}
-		if(j==m)
-			return i-m;
-		else if(i<n && needle[j]!=haystack[i])
+		else
 		{
 			if(j!=0)	j=lps[j-1];
 			else	i++;
@@ -93,10 +92,9 @@ vector<int> LPS(char* pattern)
 		}
 		else
 		{
-			if(len!=0) // This is tricky. Consider the example AAACAAAA and i = 7, len=3.
-			           // Now pattern[7]!=pattern[3], so len=lps[len-1]=lps[2]=2;
-			           // i remains same, pattern[7]=pattern[2], then len=3, lps[7]=3
-				len=lps[len-1]; // Also, note that we do not increment i here
+			// This is tricky. Consider the example AAACAAAA and i = 7, len=3. Now pattern[7]!=pattern[3],
+			// so len=lps[len-1]=lps[2]=2;i remains same, pattern[7]=pattern[2], then len=3, lps[7]=3
+			if(len!=0)	len=lps[len-1]; // Also, note that we do not increment i here
 			else
 			{
 				lps[i]=0;
