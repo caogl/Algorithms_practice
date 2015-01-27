@@ -24,10 +24,10 @@ bool compare(char* str1, char* str2, int len2); */
    For the pattern "AAABAAA", lps[] is [0, 1, 2, 0, 1, 2, 3]
    For the pattern "AAACAAAAAC", lps[] is [0, 1, 2, 0, 1, 2, 3, 3, 3, 4] 
    
-   step[2] --> search based on lps
- 
- 
- 
+   step[2] --> search based on lps:
+   if current index of pattern and target mismatch, target index shrink back to suffix position correspond
+   to target[index-1]
+              
  */ 
  
  
