@@ -20,7 +20,7 @@ void sortColors(int A[], int n)
 	int redStart=0;
 	int blueEnd=n-1;
 	int i=0;
-	while(i<=blueEnd)
+	while(i<=blueEnd) // notice the "<=" condition !!!, if replace by "<", else if will not be implemented ...
 	{
 		if(A[i]==0)
 		{

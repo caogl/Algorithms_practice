@@ -4,7 +4,7 @@
 /* idea: using radix sort in O(N) time, which requires the use of counting sorting for each digit from the least significant digit to most
  *       since counting sort is stable, radix sort succeed
  * {demo}:
- * input:	 [2,113,504,55,39,98,8,79]
+ * input:	 [36, 504, 79, 98, 8, 55, 2, 113]
  * counting sort: 
  *		 Sort 1st digit: A = [2, 113, 504, 55, 36, 98, 8, 79]
  *		 Sort 2nd digit: A = [2, 504, 8, 113, 36, 55, 79, 98]
@@ -12,7 +12,7 @@
  *
  * {demo for counting sorting on least significant digit}:
  * 		digitCount: [0,0,1,1,1,1,0,0,2,2]-->[0,0,1,2,3,4,4,4,6,8], then:
- *			[2,113,504,55,39,98,8,79]-->[2,113,504,55,36,98,8,79]
+ *			[36,504,79,98,8,55,2,113]-->[2,113,504,55,36,98,8,79]
 */
 
 #include<iostream>
@@ -58,7 +58,7 @@ void countingSort(vector<int>& num, int digitNum)
 	for(int i=1; i<digitCount.size(); i++)
 		digitCount[i]+=digitCount[i-1];
 
-	/* must follow this order !!!*/
+	/* must follow this order --> keep stable !!!*/
 	for(int i=num.size()-1; i>=0; i--)
 	{
 		int orderedIndex=digitCount[(num[i]/digitNum)%10];
