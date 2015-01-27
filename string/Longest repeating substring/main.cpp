@@ -2,7 +2,7 @@
 // reference: http://www.geeksforgeeks.org/searching-for-patterns-set-2-kmp-algorithm/
 
 /* Using the preprocessing from the KMP algorithm to solve the problem: 
-   lps indicates longest proper prefix which is also suffix.. For each sub-pattern pat[0¿i] where i = 0 to m-1,  
+   lps indicates longest proper prefix which is also suffix.. For each sub-pattern pat[0Â¿i] where i = 0 to m-1,  
    lps[i] stores length of the maximum matching proper prefix which is also a suffix of the sub-pattern pat[0..i]
    lps[i] = the longest proper prefix of pat[0..i] 
               which is also a suffix of pat[0..i]. 
@@ -65,7 +65,9 @@ string LPS(string pattern)
 		}
 		else
 		{
-			if(len!=0) // This is tricky. Consider the example AAACAAAA and i = 7.
+			if(len!=0) // This is tricky. Consider the example AAACAAAA and i = 7, len=3.
+			           // Now pattern[7]!=pattern[3], so len=lps[len-1]=lps[2]=2;
+			           // i remains same, pattern[7]=pattern[2], then len=3, lps[7]=3
 				len=lps[len-1]; // Also, note that we do not increment i here
 			else
 			{
