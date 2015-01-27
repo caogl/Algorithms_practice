@@ -32,6 +32,7 @@ int strStr(char *haystack, char *needle);
 vector<int> LPS(char* pattern);
 
 /* solution (3): Building trie: O(n^2) time, O(n^2) space, each query O(m) time, see the OOP design dir for the code*/
+
 int main()
 {
 	char b[]="AAAAAAAAAAAAAAAAAB";
