@@ -26,11 +26,8 @@ bool compare(char* str1, char* str2, int len2); */
    
    step[2] --> search based on lps:
    if current index of pattern and target mismatch, target index shrink back to suffix position correspond
-   to target[index-1]
-              
- */ 
- 
- 
+   to target[index-1] */
+
 int strStr(char *haystack, char *needle);
 vector<int> LPS(char* pattern);
 
