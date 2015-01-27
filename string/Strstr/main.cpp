@@ -11,7 +11,26 @@ int strStr(char *haystack, char *needle);
 bool compare(char* str1, char* str2, int len2); */
 
 /* solution (2): KMP algorithm: O(n) runtime, O(m) space
- *               reference: http://www.geeksforgeeks.org/searching-for-patterns-set-2-kmp-algorithm */
+ *               reference: http://www.geeksforgeeks.org/searching-for-patterns-set-2-kmp-algorithm 
+ * step[1] --> preprocessing:
+   lps indicates longest proper prefix which is also suffix.. For each sub-pattern pat[0¿i] where i = 0 to m-1,  
+   lps[i] stores length of the maximum matching proper prefix which is also a suffix of the sub-pattern pat[0..i]
+   lps[i] = the longest proper prefix of pat[0..i] 
+              which is also a suffix of pat[0..i]. 
+   Examples:
+   For the pattern "AABAACAABAA", lps[] is [0, 1, 0, 1, 2, 0, 1, 2, 3, 4, 5]
+   For the pattern "ABCDE", lps[] is [0, 0, 0, 0, 0]
+   For the pattern "AAAAA", lps[] is [0, 1, 2, 3, 4]
+   For the pattern "AAABAAA", lps[] is [0, 1, 2, 0, 1, 2, 3]
+   For the pattern "AAACAAAAAC", lps[] is [0, 1, 2, 0, 1, 2, 3, 3, 3, 4] 
+   
+   step[2] --> search based on lps
+ 
+ 
+ 
+ */ 
+ 
+ 
 int strStr(char *haystack, char *needle);
 vector<int> LPS(char* pattern);
 
