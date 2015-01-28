@@ -41,26 +41,24 @@ int main()
 	return 0;
 }
 
-UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node)
+UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node) 
 {
-	unordered_map<int, UndirectedGraphNode*> visited; // must use int as the key to track!!!
-	return cloneGraph(node, visited);
+        if(node==nullptr)   return nullptr; // must check the trival case !!!
+        unordered_map<int, UndirectedGraphNode*> visited; // cannot use unordered_set<UndirectedGraphNode*> to check
+        return cloneGraph(node, visited);                 // since the address of the copied will be diff from original  
 }
-
-UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node, unordered_map<int, UndirectedGraphNode*>& visited)
+    
+UndirectedGraphNode *cloneGraph(UndirectedGraphNode* node, unordered_map<int, UndirectedGraphNode*>& visited)
 {
-	if(node==nullptr)
-		return node;
-	UndirectedGraphNode* head=new UndirectedGraphNode(node->label);
-	visited[node->label]=head;
-	for(int i=0; i<node->neighbors.size(); i++)
-	{
-		if(visited.find(node->neighbors[i]->label)==visited.end())
-			head->neighbors.push_back(cloneGraph(node->neighbors[i], visited));
-		else
-			head->neighbors.push_back(visited[node->neighbors[i]->label]);
-	}
-	return head;
+        if(visited.find(node->label)!=visited.end())   return visited[node->label];
+        else
+        {
+            UndirectedGraphNode* tmp=new UndirectedGraphNode(node->label);
+            visited[node->label]=tmp;
+            for(int i=0; i<node->neighbors.size(); i++)
+                tmp->neighbors.push_back(cloneGraph(node->neighbors[i], visited));
+            return tmp;
+        }
 }
 
 void printGraph(UndirectedGraphNode* node)
