@@ -22,6 +22,14 @@ s1. Leading and trailing whitespaces (optional).
 s2. Plus (+) or minus (–) sign (optional).
 s3. Number.
 We ignore s1, s2 and evaluate whether s3 is a valid number.
+On the other hand, a decimal number could be further divided into three parts:
+a. Integer part
+b. Decimal point
+c. Fractional part
+The integer and fractional parts contain only digits. For example, the number “3.64” has integer part (3)
+and fractional part (64). Both of them are optional, but at least one of them must present. For example, 
+a single dot ‘.’ is not a valid number, but “1.”, “.1”, and “1.0” are all valid. Please note that “1.” is valid 
+because it implies “1.0”.
 */
 
 #include<string>
