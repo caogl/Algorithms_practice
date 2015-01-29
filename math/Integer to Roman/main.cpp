@@ -1,4 +1,15 @@
 /* reference: leetcode cleancode official handbook
+
+The chart for reference in Interview:
+Roman Literal	Decimal
+I		1
+V		5
+X		10
+L		50
+C		100
+D		500
+M		1000
+
 The subtractive notation:
 Four characters are avoided being repeated in succession (such as IIII). Instead, the 
 symbol I could appear before V and X to signify 4 (IV) and 9 (IX) respectively. Using the 
