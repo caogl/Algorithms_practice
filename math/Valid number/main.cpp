@@ -85,7 +85,7 @@ bool isNumber(const char *s)
         }
         
         // deal with the optional exponential part
-        if(isNumeric && i<n && ss[i]=='e')
+        if(isNumeric && i<n && ss[i]=='e') // must check the first condition because "e9" is not a valid number !!!
         {
             i++;
             isNumeric=false;
