@@ -35,6 +35,6 @@ string largestNumber(vector<int>& num)
 	sort(num1.begin(), num1.end(), cmp1);
 	for(int i=0; i<num1.size(); i++)
 		result+=num1[i];
-	if(result[0]=='0')	return "0";
+	if(result[0]=='0')	return "0"; // deal with [0, 0], remove leading zeros
 	return result;
 }

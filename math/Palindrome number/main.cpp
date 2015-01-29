@@ -7,7 +7,7 @@ using namespace std;
 bool isPalindrome(int x);
 
 int main()
-{	cout<<isPalindrome(-121)<<endl; // handle negative number
+{	cout<<isPalindrome(-121)<<endl; // handle negative number --> not palindrome
 	cout<<isPalindrome(1671761)<<endl;
 	cout<<isPalindrome(1234567899)<<endl; // handle overflow case
 	return 0;
