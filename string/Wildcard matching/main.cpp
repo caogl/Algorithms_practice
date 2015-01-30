@@ -44,7 +44,8 @@ int main()
 	return 0;
 }
 
-/* solution (2): dynamic programming: runtime: O(m+n), space: O(1)*/
+/* solution (2): dynamic programming: runtime: O(m*n), space: O(1)
+ *                                    */
 bool isMatch(const char* s, const char* p)
 {
 	const char* pStar=nullptr; // the most recent '*' position of p
@@ -60,7 +61,7 @@ bool isMatch(const char* s, const char* p)
 		else if(*p=='*')
 		{
 			pStar=p;
-			p++;
+			p++; // then try to treat p as match no chars in s
 			sMis=s; // the mismatch position for s
 		}
 		else if(pStar!='\0')
@@ -78,7 +79,7 @@ bool isMatch(const char* s, const char* p)
 }
 
 /* solution (1): recursive --> time limit exceed for large cases even after backtracking
- *                             because of the recursive call in last "while" condition, runtime: O(m*n)     
+ *                             because of the recursive call in last "while" condition, runtime: O(m*n), space: O(m)    
 bool isMatch(const char* s, const char* p)
 {
 	bool match=false;
