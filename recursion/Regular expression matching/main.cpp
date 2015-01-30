@@ -87,8 +87,8 @@ void isMatch(const char *s, const char *p, bool& match)
 		{
 			for(int i=0; i<lens; i++)
 			{
-				if(*p!=*(s+i))
-					break;
+				if(*p!=*(s+i)) // error prone: (1) should break
+					break; //              (2) compare current and precede one pos --> +1 !!
 				isMatch(s+i+1, p+2, match);
 			}
 		}
