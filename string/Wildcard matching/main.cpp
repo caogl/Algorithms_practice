@@ -1,68 +1,75 @@
-/* reference: http://yucoding.blogspot.com/2013/02/leetcode-question-123-wildcard-matching.html 
- * This problem is far too hard to solve
- * intuitive solution is recursive, but it will timeout and tend to ignore a lot of corner cases like when d is '?' while s is '\0'
- * optimal and acceptable solution is very hard!!!!
- */ 
+// reference: http://yucoding.blogspot.com/2013/02/leetcode-question-123-wildcard-matching.html
+/* For each element in s
+ * If *s==*p or *p == ? which means this is a match, then goes to next element s++ p++.
+ * If p=='*', this is also a match, but one or many chars may be available, so let us save this *'s position and the matched s position.
+ * If not match, then we check if there is a * previously showed up,
+ *      if there is no *,  return false;
+ *      if there is an *,  we set current p to the next element of *, and set current s to the next saved s position.
+ * e.g: 
 
+ * abed
+ * ?b*d**
 
+ * a=?, go on, b=b, go on,
+ * e=*, save * position star=3, save s position ss = 3, p++
+ * e!=d,  check if there was a *, yes, ss++, s=ss; p=star+1
+ * d=d, go on, meet the end.
+ * check the rest element in p, if all are *, true, else false;
+ */
 #include<iostream>
 using namespace std;
 
 bool isMatch(const char* s, const char* p);
-void isMatch(const char* s, const char* p, bool& match);
+//void isMatch(const char* s, const char* p, bool& match);
 
 int main()
 {
-	//cout<<isMatch("aa", "a")<<endl;
-	//cout<<isMatch("ab", "ab")<<endl;
-	//cout<<isMatch("aaa", "a")<<endl;
-	//cout<<isMatch("aa", "*")<<endl;
-	//cout<<isMatch("aa", "a*")<<endl;
-	//cout<<isMatch("aa", "?*")<<endl;
-	//cout<<isMatch("cab", "c*a*b")<<endl;
-	//cout<<isMatch("cab", "c?a*b")<<endl;
-	//cout<<isMatch("b", "??")<<endl;
-	//cout<<isMatch("c", "*?*")<<endl;
-	//cout<<isMatch("a", "aa")<<endl;
-	//cout<<isMatch("", "?")<<endl;
+	cout<<isMatch("aabbc", "*")<<endl;
+	cout<<isMatch("ab", "ab")<<endl;
+	cout<<isMatch("aaa", "a")<<endl;
+	cout<<isMatch("aa", "*")<<endl;
+	cout<<isMatch("aa", "a*")<<endl;
+	cout<<isMatch("aa", "?*")<<endl;
+	cout<<isMatch("cab", "c*a*b")<<endl;
+	cout<<isMatch("cab", "c?a*b")<<endl;
+	cout<<isMatch("b", "??")<<endl;
+	cout<<isMatch("c", "*?*")<<endl;
+	cout<<isMatch("a", "aa")<<endl;
+	cout<<isMatch("", "?")<<endl;
 	cout<<isMatch("hi", "*?")<<endl;
-	// time limit exceeded
-	//cout<<isMatch("abbaaaabbbbbababbbbbbbbaaabaabbabaabbaaabbbbabbbbab", "a*aaba***b**a*a********b")<<endl;
-	//cout<<isMatch("aaabbbaabaaaaababaabaaabbabbbbbbbbaabababbabbbaaaaba", "a*******b")<<endl;
-	//cout<<isMatch("abbabaaabbabbaababbabbbbbabbbabbbabaaaaababababbbabababaabbababaabbbbbbaaaabababbbaabbbbaabbbbababababbaabbaababaabbbababababbbbaaabbbbbabaaaabbababbbbaababaabbababbbbbababbbabaaaaaaaabbbbbaabaaababaaaabb", "**aa*****ba*a*bb**aa*ab****a*aaaaaa***a*aaaa**bbabb*b*b**aaaaaaaaa*a********ba*bbb***a*ba*bb*bb**a*b*bb")<<endl;
+	// time limit exceeded for solution (1)
+	cout<<isMatch("abbaaaabbbbbababbbbbbbbaaabaabbabaabbaaabbbbabbbbab", "a*aaba***b**a*a********b")<<endl;
+	cout<<isMatch("aaabbbaabaaaaababaabaaabbabbbbbbbbaabababbabbbaaaaba", "a*******b")<<endl;
+	cout<<isMatch("abbabaaabbabbaababbabbbbbabbbabbbabaaaaababababbbabababaabbababaabbbbbbaaaabababbbaabbbbaabbbbababababbaabbaababaabbbababababbbbaaabbbbbabaaaabbababbbbaababaabbababbbbbababbbabaaaaaaaabbbbbaabaaababaaaabb", "**aa*****ba*a*bb**aa*ab****a*aaaaaa***a*aaaa**bbabb*b*b**aaaaaaaaa*a********ba*bbb***a*ba*bb*bb**a*b*bb")<<endl;
 	return 0;
 }
 
-
+/* solution (2): dynamic programming: runtime: O(m+n), space: O(1)*/
 bool isMatch(const char* s, const char* p)
 {
-	const char* pStart=nullptr;
-	const char* sNextPos=s;
+	const char* pStar=nullptr; // the most recent '*' position of p
+	const char* sMis=s; // the most recent mismatch position of s
 
 	while(*s!='\0')
 	{
-		/* must be if all here because you need to always check whether s is '\0' 
-		   in all of the three if statement, if *s=='\0', the if condition no longer true!*/
 		if((*s==*p) || (*p=='?'))	
 		{
 			s++;
 			p++;
-			continue;
 		}
-		if(*p=='*')
+		else if(*p=='*')
 		{
-			pStart=p;
+			pStar=p;
 			p++;
-			sNextPos=s;
-			continue;
+			sMis=s; // the mismatch position for s
 		}
-		if(pStart!='\0')
+		else if(pStar!='\0')
 		{
-			p=pStart+1;
-			s=++sNextPos; //----when p is found , s should not ++, then after first not match, s++ 
-			continue;
+			p=pStar+1;
+			s=++sMis; // mismatch position matched by *p='*', most recent mismatch position go by 1
 		}
-		return false;
+		else
+			return false;
 	}
 
 	while(*p=='*')
@@ -70,9 +77,8 @@ bool isMatch(const char* s, const char* p)
 	return (*p=='\0');
 }
 
-
-/* time limit exceed for recursive solution , this one although tried to optimize, also cannot pass ("b", "??")
-   but should pay attention to (1)(2) optimization
+/* solution (1): recursive --> time limit exceed for large cases even after backtracking
+ *                             because of the recursive call in last "while" condition, runtime: O(m*n)     
 bool isMatch(const char* s, const char* p)
 {
 	bool match=false;
@@ -82,53 +88,7 @@ bool isMatch(const char* s, const char* p)
 
 void isMatch(const char* s, const char* p, bool& match)
 {
-	if(match==true) // optimize(1): add this step as branching can speed up, as long as can match, step all the recursive calls
-		return;
-
-	while(*s==*p || *p=='?')
-	{
-		if(*s=='\0' && *p=='\0')
-		{
-			match=true;
-			return;
-		}
-		s++;
-		p++;
-	}
-	if(*p=='*')
-	{
-		// cannot assign const char* to char* !
-		p++;
-		while(*p=='*') //optimize(2): add this step because more than one '*' is same as one '*'
-			p++;
-		if(*p=='\0')
-		{
-			match=true;
-			return;
-		}
-		isMatch(s, p, match);
-		while(*s!='\0')
-		{
-			s++;
-			isMatch(s, p, match);
-		}
-	}
-}
-
-*********initial solution, pass the test cases listed, but time limit exceeded for very large case,
-         should not exist error  ************
-class Solution {
-public:
-bool isMatch(const char* s, const char* p)
-{
-	bool match=false;
-	isMatch(s, p, match);
-	return match;
-}
-
-void isMatch(const char* s, const char* p, bool& match)
-{
-	if(match==true) // add this step as branching can speed up, but still cannot pass all test cases
+	if(match==true) 
 		return;
 	if(*s=='\0' && *p=='\0')
 	{
@@ -164,7 +124,4 @@ void isMatch(const char* s, const char* p, bool& match)
 		}
 	}
 }
-
-};
-
 */
