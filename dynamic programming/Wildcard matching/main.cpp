@@ -46,7 +46,13 @@ int main()
 
 /* solution (2): dynamic programming: runtime: O(m*n), space: O(1)
  * 时间复杂度不一样，每一个‘*’会产生一些分支，用没有优化过的递归是所有‘*’产生的分支都会被回溯直到发现match为止；
- * 而用这个方法只会回溯最后一个‘*’的分支，不会继续往上。把这个结构看成一棵树，这个方法只回溯最后一层。                                   */
+ * 而用这个方法只会回溯最后一个‘*’的分支，不会继续往上。把这个结构看成一棵树，这个方法只回溯最后一层。
+ * demo: abctabcdabcde 	
+ *       ab?*  cd*   f      -->false
+ * if using solution (1): 
+ *          first * tries to match all subsequent s
+ * using    solution (2):
+ *          after * matches tab, if no match further, second * tries to match */
 bool isMatch(const char* s, const char* p)
 {
 	const char* pStar=nullptr; // the most recent '*' position of p
