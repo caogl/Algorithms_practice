@@ -51,7 +51,7 @@ int main()
  *       ab?*  cd*   f      -->false
  * if using solution (1): 
  *          first * tries to match all subsequent s
- * using    solution (2):
+ *    using solution (2):
  *          after * matches tab, if no match further, second * tries to match */
 bool isMatch(const char* s, const char* p)
 {
