@@ -48,7 +48,7 @@ int main()
 bool isMatch(const char* s, const char* p)
 {
 	const char* pStar=nullptr; // the most recent '*' position of p
-	const char* sMis=s; // the most recent mismatch position of s
+	const char* sMis=nullptr; // the most recent mismatch position of s
 
 	while(*s!='\0')
 	{
