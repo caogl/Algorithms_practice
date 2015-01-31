@@ -1,0 +1,19 @@
+(1) http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=115321&extra=page%3D1%26filter%3Dsortid%26sortid%3D311%26searchoption[3046][value][2]%3D2%26searchoption[3046][type]%3Dcheckbox%26sortid%3D311
+
+Celebrity problem:
+You have a room with n people. A celebrity walks in. Everyone knows the celebrity, the celebrity knows no one. Non-celebrities may/may not know anyone in the room. Give an algorithm to find the celebrity. Discuss the complexity.
+
+The solution is O(n) in time complexity.
+
+Make all of them stand in a row.
+Lets say the people are a,b,c,d,e,f,g,h,i,j,.......n
+
+Compare a and b.
+if a knows b => a is certainly not the celebrity. Probable celebrity = b
+if a doesnt know b => b is certainly not the celebrity. Probable celebrity = a
+
+In either case compare the probable celebrity to the next person in line ie 'c' and repeat the process. Each comparison should eliminate 1 person and have another as the probable celebrity. At the end, the probable celebrity who survives is the certain celebrity.
+
+If a and b dont know each other, they both will eventually get eliminated
+
+Complexity = O(n)
