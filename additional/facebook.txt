@@ -1,6 +1,6 @@
 (1) http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=115321&extra=page%3D1%26filter%3Dsortid%26sortid%3D311%26searchoption[3046][value][2]%3D2%26searchoption[3046][type]%3Dcheckbox%26sortid%3D311
 
-Celebrity problem:
+(I) Celebrity problem:
 You have a room with n people. A celebrity walks in. Everyone knows the celebrity, the celebrity knows no one. 
 Non-celebrities may/may not know anyone in the room. Give an algorithm to find the celebrity. Discuss the complexity.
 
@@ -20,3 +20,6 @@ At the end, the probable celebrity who survives is the certain celebrity.
 If a and b dont know each other, they both will eventually get eliminated
 
 Complexity = O(n)
+
+(||)给一个double array, 返回一个新的array, 每个元素是原来的array除它之外所有元素的乘积。
+先写了用除法的，然后问不用除法怎么做
