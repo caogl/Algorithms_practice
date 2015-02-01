@@ -15,32 +15,21 @@ int divide(int dividend, int divisor)
 {
         //long long dividend1=abs(dividend); // wrong abs(INT_MIN)>INT_MAX! 
         //long long divisor1=abs(divisor);
-
+        if(dividend==INT_MIN && divisor==-1) return INT_MAX;
         long long dividend1=dividend;
         long long divisor1=divisor;
 	dividend1=abs(dividend1);
 	divisor1=abs(divisor1);
 
-	if(dividend1<divisor1)
-            return 0;
-
         int sign=1;
-        if(dividend<0)
-            sign*=-1;
-        if(divisor<0)
-            sign*=-1;
-        int shift=1;
-        while(dividend1>=(divisor1<<shift))
-	{
-            shift++;
-	}
-        shift--;
+        if((dividend>0)^(divisor>0))    sign=-1;
+
         int result=0;
-        for(int i=shift; i>=0; i--)
+        for(int i=31; i>=0; i--)
         {
             if(dividend1>=(divisor1<<i))
             {
-                result+=pow(2, i);
+                result+=(1<<i);
                 dividend1-=(divisor1<<i);
             }
         }
