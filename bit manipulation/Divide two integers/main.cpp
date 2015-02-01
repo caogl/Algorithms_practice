@@ -13,11 +13,11 @@ int main()
 
 int divide(int dividend, int divisor) 
 {
-        //long long dividend1=abs(dividend); // wrong abs(INT_MIN)>INT_MAX! 
-        //long long divisor1=abs(divisor);
+        //long dividend1=abs(dividend); // wrong abs(INT_MIN)>INT_MAX! 
+        //long divisor1=abs(divisor);
         if(dividend==INT_MIN && divisor==-1) return INT_MAX;
-        long long dividend1=dividend;
-        long long divisor1=divisor;
+        long dividend1=dividend;
+        long divisor1=divisor;
 	dividend1=abs(dividend1);
 	divisor1=abs(divisor1);
 
