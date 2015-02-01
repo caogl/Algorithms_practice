@@ -1,3 +1,5 @@
+// If it is overflow, return MAX_INT. 
+
 #include<iostream>
 #include<cmath>
 #include<climits>
@@ -15,7 +17,7 @@ int divide(int dividend, int divisor)
 {
         //long dividend1=abs(dividend); // wrong abs(INT_MIN)>INT_MAX! 
         //long divisor1=abs(divisor);
-        if(dividend==INT_MIN && divisor==-1) return INT_MAX;
+        if(dividend==INT_MIN && divisor==-1) return INT_MAX; // overflow single case!!!
         long dividend1=dividend;
         long divisor1=divisor;
 	dividend1=abs(dividend1);
