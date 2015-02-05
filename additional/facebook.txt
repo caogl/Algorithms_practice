@@ -1,5 +1,4 @@
 (1) http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=115321&extra=page%3D1%26filter%3Dsortid%26sortid%3D311%26searchoption[3046][value][2]%3D2%26searchoption[3046][type]%3Dcheckbox%26sortid%3D311
-
 (I) Celebrity problem:
 You have a room with n people. A celebrity walks in. Everyone knows the celebrity, the celebrity knows no one. 
 Non-celebrities may/may not know anyone in the room. Give an algorithm to find the celebrity. Discuss the complexity.
@@ -26,7 +25,6 @@ Complexity = O(n)
 --> 先写了用除法的，然后问不用除法怎么做
 
 (2) http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=97532&extra=page%3D1%26filter%3Dsortid%26sortid%3D311%26searchoption[3046][value][2]%3D2%26searchoption[3046][type]%3Dcheckbox%26sortid%3D311
-
 find the interection of two BST.
 Print the number that appear in both BST
 No extra space, must be linear time
@@ -34,7 +32,6 @@ No extra space, must be linear time
 --> 先flatten BST to linkedlist(这个也不用额外开辟新的list内存)，然后你比较两个list的相交部分
 
 (3) http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=111427&extra=page%3D1%26filter%3Dsortid%26sortid%3D311%26searchoption[3046][value][2]%3D2%26searchoption[3046][type]%3Dcheckbox%26sortid%3D311
-
 题真是简单的没话说，给了两个sorted array，让你求这两个array的intersection。题目的难点在三哥的口音上，其他没啥。
 然后问了问时间空间复杂度。我说时间复杂度O(n),n是长的那个数组的长度。他非要说是O(m+n)，我说这不没啥区别么，
 但他说我想要的是这个答案。
@@ -56,3 +53,37 @@ follow up说是一个数组比较短，另一个很长，问你怎么改进。�
 如果x很大的话， 我们是否可以用2^k来估计一下sqrt的范围。即先找到最大的k 使得 2^{2k} < x <= 2^{2(k + 1)}
 然后在【2^k ,2^{k +1}】内做2分？
 如果是float number的话，我们是否可以做两个hashing： hashing 整数部分 和hashing小数部分？求牛人指点一下。
+
+(5) http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=108406&extra=page%3D2%26filter%3Dsortid%26sortid%3D311%26searchoption[3046][value][2]%3D2%26searchoption[3046][type]%3Dcheckbox%26sortid%3D311
+题目只有一道，但是一直在follow up，一开始让我写出打印一棵树的根节点到叶节点的所有路径，为方便后面follow up的叙述，
+我举个例子：
+    A
+  B   C
+D    E  F
+
+打印ABD, ACE, ACF就OK了，仔细点写没问题。
+然后分析下空间复杂度时间复杂度，开始follow up。
+
+现在不仅要打印路径，还要把树的形状打印出来，例如
+ABD要打印成
+(空格)(空格)A
+(空格)B
+D
+ACE要打印成
+A
+(空格)C
+E
+
+如此类推。稍微想了想我说在DFS的时候多加一个vector，记录当前缩进深度，以根节点A为0作参考，左节点减1右结点加1，于是
+ABD 有深度vector [0, -1, -2]
+ACE 有深度vector [0, 1, 0]
+然后打印的时候找出当前vector最小值，如果小于0，所有值都加上这个偏移量来打印就可以了。
+
+(6) http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=105125&extra=page%3D2%26filter%3Dsortid%26sortid%3D311%26searchoption[3046][value][2]%3D2%26searchoption[3046][type]%3Dcheckbox%26sortid%3D311
+给出一个无重复数字的array,输出其subset。 例如[1, 2]，输出[] [1] [2] [1, 2]
+我一开始用了dfs，面试官check过无误后让我写成iterative. 稍微想了一下，就用位运算做了，每个独立subset都可以用长度为
+array大小的二进制串表示，0代表不存在，1代表存在，只要从0 枚举到2^n-1就 ok了。
+需要注意的是，如果用int来代表状态的话最多只要31位，也就是array超过31个元素就不行了，
+这时要用01 vector去高精度模拟二进制串。
+--> like the google second phone interview, the total number of all combinations is 2^n !
+
