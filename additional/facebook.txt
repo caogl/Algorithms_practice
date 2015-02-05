@@ -1,5 +1,4 @@
 (1) http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=115321&extra=page%3D1%26filter%3Dsortid%26sortid%3D311%26searchoption[3046][value][2]%3D2%26searchoption[3046][type]%3Dcheckbox%26sortid%3D311
-
 (I) Celebrity problem:
 You have a room with n people. A celebrity walks in. Everyone knows the celebrity, the celebrity knows no one. 
 Non-celebrities may/may not know anyone in the room. Give an algorithm to find the celebrity. Discuss the complexity.
@@ -26,7 +25,6 @@ Complexity = O(n)
 --> 先写了用除法的，然后问不用除法怎么做
 
 (2) http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=97532&extra=page%3D1%26filter%3Dsortid%26sortid%3D311%26searchoption[3046][value][2]%3D2%26searchoption[3046][type]%3Dcheckbox%26sortid%3D311
-
 find the interection of two BST.
 Print the number that appear in both BST
 No extra space, must be linear time
@@ -34,7 +32,6 @@ No extra space, must be linear time
 --> 先flatten BST to linkedlist(这个也不用额外开辟新的list内存)，然后你比较两个list的相交部分
 
 (3) http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=111427&extra=page%3D1%26filter%3Dsortid%26sortid%3D311%26searchoption[3046][value][2]%3D2%26searchoption[3046][type]%3Dcheckbox%26sortid%3D311
-
 题真是简单的没话说，给了两个sorted array，让你求这两个array的intersection。题目的难点在三哥的口音上，其他没啥。
 然后问了问时间空间复杂度。我说时间复杂度O(n),n是长的那个数组的长度。他非要说是O(m+n)，我说这不没啥区别么，
 但他说我想要的是这个答案。
