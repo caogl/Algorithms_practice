@@ -44,3 +44,15 @@ follow up说是一个数组比较短，另一个很长，问你怎么改进。�
 提示不。他说你不要管第一个数组是sorted这个条件，就当他是乱序的。我说那就把短数组每个元素都在长数组里binary search
 一次好了，复杂度O(mlogn)。他说对我就是要这个答案。。。然后把二分搜索的代码写了一下，
 然后又用一个实例比较了一下这两种方法的复杂度。
+
+(4) http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=110360&extra=page%3D2%26filter%3Dsortid%26sortid%3D311%26searchoption[3046][value][2]%3D2%26searchoption[3046][type]%3Dcheckbox%26sortid%3D311
+
+题目很简单，double sqrt(double x)，连这个二分都写了一个bug，真想抽死自己。。二分写完后，面试官问能不能更快，
+我说那每次分成三个区间，缩小成原来的1/3，他说这个解法很interesting，但不是他想要的，如果一开始x是一个特别大的数，
+比如几个billion，应该如何一开始比较快地缩小范围，完全不知道怎么做= =
+还有经典的2sum。。follow up问如果是浮点数，hash的时候会有什么问题，我说精度可能有问题（其实不是很懂。。），
+他说了一堆没他听清。。问怎么hash浮点数，我说乘以一个很大的整数，比如1 million之类的，转化为整数再去hash，他说可以。
+
+如果x很大的话， 我们是否可以用2^k来估计一下sqrt的范围。即先找到最大的k 使得 2^{2k} < x <= 2^{2(k + 1)}
+然后在【2^k ,2^{k +1}】内做2分？
+如果是float number的话，我们是否可以做两个hashing： hashing 整数部分 和hashing小数部分？求牛人指点一下。
