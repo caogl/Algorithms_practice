@@ -1,8 +1,10 @@
 (1) http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=115321&extra=page%3D1%26filter%3Dsortid%26sortid%3D311%26searchoption[3046][value][2]%3D2%26searchoption[3046][type]%3Dcheckbox%26sortid%3D311
 
-Celebrity problem:
-You have a room with n people. A celebrity walks in. Everyone knows the celebrity, the celebrity knows no one. Non-celebrities may/may not know anyone in the room. Give an algorithm to find the celebrity. Discuss the complexity.
+(I) Celebrity problem:
+You have a room with n people. A celebrity walks in. Everyone knows the celebrity, the celebrity knows no one. 
+Non-celebrities may/may not know anyone in the room. Give an algorithm to find the celebrity. Discuss the complexity.
 
+-->
 The solution is O(n) in time complexity.
 
 Make all of them stand in a row.
@@ -12,8 +14,33 @@ Compare a and b.
 if a knows b => a is certainly not the celebrity. Probable celebrity = b
 if a doesnt know b => b is certainly not the celebrity. Probable celebrity = a
 
-In either case compare the probable celebrity to the next person in line ie 'c' and repeat the process. Each comparison should eliminate 1 person and have another as the probable celebrity. At the end, the probable celebrity who survives is the certain celebrity.
+In either case compare the probable celebrity to the next person in line ie 'c' and repeat the process. 
+Each comparison should eliminate 1 person and have another as the probable celebrity. 
+At the end, the probable celebrity who survives is the certain celebrity.
 
 If a and b dont know each other, they both will eventually get eliminated
 
 Complexity = O(n)
+
+(||)给一个double array, 返回一个新的array, 每个元素是原来的array除它之外所有元素的乘积。
+--> 先写了用除法的，然后问不用除法怎么做
+
+(2) http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=97532&extra=page%3D1%26filter%3Dsortid%26sortid%3D311%26searchoption[3046][value][2]%3D2%26searchoption[3046][type]%3Dcheckbox%26sortid%3D311
+
+find the interection of two BST.
+Print the number that appear in both BST
+No extra space, must be linear time
+
+--> 先flatten BST to linkedlist(这个也不用额外开辟新的list内存)，然后你比较两个list的相交部分
+
+(3) http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=111427&extra=page%3D1%26filter%3Dsortid%26sortid%3D311%26searchoption[3046][value][2]%3D2%26searchoption[3046][type]%3Dcheckbox%26sortid%3D311
+
+题真是简单的没话说，给了两个sorted array，让你求这两个array的intersection。题目的难点在三哥的口音上，其他没啥。
+然后问了问时间空间复杂度。我说时间复杂度O(n),n是长的那个数组的长度。他非要说是O(m+n)，我说这不没啥区别么，
+但他说我想要的是这个答案。
+
+follow up说是一个数组比较短，另一个很长，问你怎么改进。我说用二分法先查到短的数组的min和max都是在长数组的什么位置，
+这样先把搜索区间减少一点；他说那玩意这个区间就正好还是长数组的长度，这不就没有改进了么。我纠结了一两分钟说能给点
+提示不。他说你不要管第一个数组是sorted这个条件，就当他是乱序的。我说那就把短数组每个元素都在长数组里binary search
+一次好了，复杂度O(mlogn)。他说对我就是要这个答案。。。然后把二分搜索的代码写了一下，
+然后又用一个实例比较了一下这两种方法的复杂度。
