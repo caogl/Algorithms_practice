@@ -1,3 +1,6 @@
+// facebook interview question: http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=114813&extra=page%3D1%26filter%3Dsortid%26sortid%3D311%26searchoption[3046][value][2]%3D2%26searchoption[3046][type]%3Dcheckbox%26sortid%3D311
+// reference: http://www.fgdsb.com/2015/01/15/random-maximum/
+
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 #include <vector>
