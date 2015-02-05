@@ -1,13 +1,15 @@
 // facebook interview question
 // reference: (1) http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=86176&extra=page%3D2%26filter%3Dsortid%26sortid%3D311%26searchoption%255B3046%255D%255Bvalue%255D%255B2%255D%3D2%26searchoption%255B3046%255D%255Btype%255D%3Dcheckbox&page=2
 //            (2) http://www.fgdsb.com/2015/01/25/pretty-print-bst/
-
 /*
             4                     
       1           5         
          2           6   
            3   
-*/
+FB的题，本质上就是level order遍历。这里不需要画斜线，只用空格表示还是比较简单的。
+因为是二叉树，每一层最大节点数都是可以计算的，也就是每一个节点离previous节点的距离（空格数）也可以计算到。
+那么每层遍历的时候针对每个节点（包括空节点）输空格即可。
+下面的代码适用于任意二叉树。*/
 
 #include <iostream>
 #include <iomanip>
