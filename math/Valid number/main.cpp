@@ -17,7 +17,7 @@ Q: Should I consider exponent such as “1e10” as numeric?
 A: No. But feel free to work on the challenge that takes exponent into consideration. (The Online
 Judge problem does take exponent into account.)
 
-A string could be divided into these four substrings in the order from left to right:
+A string could be divided into these 3 substrings in the order from left to right:
 s1. Leading and trailing whitespaces (optional).
 s2. Plus (+) or minus (–) sign (optional).
 s3. Number.
