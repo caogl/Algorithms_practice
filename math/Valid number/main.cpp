@@ -38,8 +38,6 @@ A number could contain an optional exponent part, which is marked by a character
 #include<iostream>
 using namespace std;
 
-//reference : http://yucoding.blogspot.com/2013/05/leetcode-question-118-valid-number.html
-
 bool isNumber(const char *s);
 
 int main()
