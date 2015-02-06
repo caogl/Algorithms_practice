@@ -6,6 +6,22 @@
       1           5         
          2           6   
            3   
+           
+—> needs to calculate:
+(1) the left node to the border
+(2) the distance between each node
+From the figure, we see that the tree can be constructed like:
+oooooooxooooooo        
+oooxoooooooxooo
+oxoooxoooxoooxo
+xoxoxoxoxoxoxox
+
+level	(1)	(2)
+1	7		->2^3-1
+2	3	7	—>2^2-1
+3	1	3	->2^1-1
+4	0	1	->2^0-1
+
 FB的题，本质上就是level order遍历。这里不需要画斜线，只用空格表示还是比较简单的。
 因为是二叉树，每一层最大节点数都是可以计算的，也就是每一个节点离previous节点的距离（空格数）也可以计算到。
 那么每层遍历的时候针对每个节点（包括空节点）输空格即可。
