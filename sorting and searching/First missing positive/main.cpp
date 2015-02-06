@@ -29,7 +29,7 @@ int firstMissingPositive(int A[], int n)
         for(int i=0; i<n; i++)
         {
         	if(A[i]!=i+1 && A[i]>=1 && A[i]<=n && A[i]!=A[A[i]-1]) 
-        	// (1) the final check condition avoids dead loop!
+        	// (1) the final check condition avoids dead loop! without this, [1, 1] would fall into deadloop!
             	{
                 	swap(A[i], A[A[i]-1]);
                 	i--; // (2) without this, test (A) would become: -1 1 3 4, position 1 needs to go on swap!!!
