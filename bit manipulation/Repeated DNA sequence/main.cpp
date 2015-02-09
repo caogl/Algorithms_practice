@@ -1,3 +1,13 @@
+// reference: https://changhaz.wordpress.com/2015/02/05/leetcode-repeated-dna-sequences/
+/* Since there are only four possibilities for each char, we could use 2 bits to represent one, 
+ * char and assign them value like: 00 for ‘A’, 01 for ‘C’, 10 for ‘G’ and 11 for ‘T’.
+ * Thus each 10-char substring could be transformed into 20 bits. We use a 32-bit int to 
+ * represent the 10-char sequence. After we have the first 10 chars and move forward, each 
+ * step we add a new char and remove the left-most char in the window. We could use some 
+ * bit operations to represent this update.
+ * Finally we find out all the int value that appears more than once and transform them back to 10-char string.
+ */
+
 #include<iostream>
 #include<vector>
 #include<string>
@@ -22,7 +32,7 @@ int main()
 	return 0;
 }
 
-
+/* solution(2) */
 vector<string> findRepeatedDnaSequences(string s)
 {
 	vector<string> result;
