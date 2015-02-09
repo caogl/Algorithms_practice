@@ -49,7 +49,8 @@ int main()
 	char e[]="1.";
 	char f[]="1.e2";
 	char g[]="-1.e+5";
-	cout<<isNumber(a)<<isNumber(b)<<isNumber(c)<<isNumber(d)<<isNumber(e)<<isNumber(f)<<isNumber(g)<<endl;
+	char h[]="32.e-80123";
+	cout<<isNumber(a)<<isNumber(b)<<isNumber(c)<<isNumber(d)<<isNumber(e)<<isNumber(f)<<isNumber(g)<<isNumber(h)<<endl;
 	return 0;
 }
 
