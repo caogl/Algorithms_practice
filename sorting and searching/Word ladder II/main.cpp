@@ -13,7 +13,7 @@
 using namespace std;
 
 vector<vector<string> > findLadders(string start, string end, unordered_set<string> &dict);
-void generatePath(unordered_map<string, vector<string> > &prevWord, vector<string>& path, string& word, vector<vector<string> >& result);
+void buildPath(unordered_map<string, vector<string> >& path, vector<string>& tmp, vector<vector<string> >& result, string word);
 
 int main()
 {
@@ -40,9 +40,9 @@ vector<vector<string> > findLadders(string start, string end, unordered_set<stri
 {
         vector<vector<string> > result;
         int len=start.size();
-        unordered_map<string, vector<string> > prevWord; // key is a word, value is all its precessors
+        unordered_map<string, vector<string> > path; // key is a word, value is all its precessors
         vector<string> tmp;
-        prevWord[start]=tmp;
+        path[start]=tmp;
         vector<unordered_set<string> > level(2);
         int current=0;
         int previous=1;
@@ -76,9 +76,9 @@ vector<vector<string> > findLadders(string start, string end, unordered_set<stri
                         word[i]=j;
                         if(dict.find(word)!=dict.end())
                         {
-                            if(prevWord.find(word)==prevWord.end())
-                                prevWord[word]=tmp;
-                            prevWord[word].push_back(*itr);
+                            if(path.find(word)==path.end())
+                                path[word]=tmp;
+                            path[word].push_back(*itr);
                             level[current].insert(word);
                         }
                     }
@@ -91,25 +91,24 @@ vector<vector<string> > findLadders(string start, string end, unordered_set<stri
                 break;
         }
         
-        vector<string> path;
-        generatePath(prevWord, path, end, result);
+        vector<string> tmp1={end};
+        buildPath(path, tmp1, result, end);
         return result;
 }
     
-void generatePath(unordered_map<string, vector<string> > &prevWord, vector<string>& path, string& word, vector<vector<string> >& result)
+void buildPath(unordered_map<string, vector<string> >& path, vector<string>& tmp, vector<vector<string> >& result, string word)
 {
-        if(prevWord[word].empty()) // finally find the start word, which has no previous word changed to it ---> base case
+        if(path[word].empty()) 
         {
-            path.push_back(word);
-            vector<string> pathTmp(path); // important step, if not, would mess the order, because there are pop_back after the recursive call!!!
-            reverse(pathTmp.begin(), pathTmp.end());
-            result.push_back(pathTmp);
-            path.pop_back(); // import step, to maintain the recursive growth of path
-            return;
+                reverse(tmp.begin(), tmp.end());
+                result.push_back(tmp);
+                reverse(tmp.begin(), tmp.end());
+                return;
         }
-        
-        path.push_back(word);
-        for(auto itr=prevWord[word].begin(); itr!=prevWord[word].end(); itr++)
-            generatePath(prevWord, path, *itr, result);
-        path.pop_back();
+        for(int i=0; i<path[word].size(); i++)
+        {
+                tmp.push_back(path[word][i]);
+                buildPath(path, tmp, result, path[word][i]);
+                tmp.pop_back();
+        }
 }
