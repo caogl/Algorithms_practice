@@ -44,31 +44,27 @@ int main()
 
 ListNode *swapPairs(ListNode *head) 
 {
-        if(head==nullptr)
-            return head;
-            
+        if(!head || !head->next)    return head;
+
         ListNode* sudoHead=new ListNode(-1);
         sudoHead->next=head;
-        
-        ListNode* prevCon=sudoHead;
+        ListNode* prev1=sudoHead;
         ListNode* prev=head;
         ListNode* cur=head->next;
-        ListNode* post;
-        while(cur!=nullptr)
+        ListNode* post=nullptr;
+        while(true)
         {
             post=cur->next;
             cur->next=prev;
             prev->next=post;
-            prevCon->next=cur;
-            
-            prevCon=prev;
+            prev1->next=cur;
+            prev1=prev; // important step, since now cur->prev->post. assign prev1 to prev rather than cur !!!
             prev=post;
-            if(prev!=nullptr)
-                cur=prev->next;
-            else
-                break;
+
+            if(!prev || !prev->next)   break;
+            cur=prev->next;
         }
-        
+
         head=sudoHead->next;
         delete sudoHead;
         return head;
