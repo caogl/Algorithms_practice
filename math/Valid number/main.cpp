@@ -42,14 +42,14 @@ bool isNumber(const char *s);
 
 int main()
 {
-	char a[]=" 0.1";
-	char b[]="abc";
-	char c[]="2e10";
-	char d[]=".";
-	char e[]="1.";
-	char f[]="1.e2";
-	char g[]="-1.e+5";
-	char h[]="32.e-80123";
+	char a[]=" 0.1"; //true
+	char b[]="abc"; //false
+	char c[]="2e10"; //true
+	char d[]="."; //false
+	char e[]="1."; //true
+	char f[]="1.e2"; //true
+	char g[]="-1.e+5"; //true
+	char h[]="32.e-80123"; //true
 	cout<<isNumber(a)<<isNumber(b)<<isNumber(c)<<isNumber(d)<<isNumber(e)<<isNumber(f)<<isNumber(g)<<isNumber(h)<<endl;
 	return 0;
 }
