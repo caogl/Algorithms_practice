@@ -49,7 +49,7 @@ void help(string& s, string& tmp, vector<string>& result, int kth)
 	}
 	for(int i=1; i<=3; i++)
 	{
-		if(s.size()>=i && valid(s.substr(0, i)))
+		if(s.size()>=i && valid(s.substr(0, i))) // don't forget the first check !!!
 		{
 			if(kth>0)
 			{
