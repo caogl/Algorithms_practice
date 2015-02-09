@@ -69,7 +69,7 @@ vector<vector<string> > findLadders(string start, string end, unordered_set<stri
                 for(int i=0; i<len; i++)
                 {
                     string word=*itr;
-                    for(int j='a'; j<='z'; j++)
+                    for(char j='a'; j<='z'; j++)
                     {
                         if((*itr)[i]==j)
                             continue;
