@@ -50,7 +50,9 @@ int main()
 	char f[]="1.e2"; //true
 	char g[]="-1.e+5"; //true
 	char h[]="32.e-80123"; //true
-	cout<<isNumber(a)<<isNumber(b)<<isNumber(c)<<isNumber(d)<<isNumber(e)<<isNumber(f)<<isNumber(g)<<isNumber(h)<<endl;
+	char i[]="e9"; //false
+	cout<<isNumber(a)<<isNumber(b)<<isNumber(c)<<isNumber(d)<<isNumber(e)<<isNumber(f)
+	<<isNumber(g)<<isNumber(h)<<isNumber(i)<<endl;
 	return 0;
 }
 
