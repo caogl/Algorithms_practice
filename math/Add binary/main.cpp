@@ -20,11 +20,10 @@ string addBinary(string a, string b)
             int tmp1=i<a.size()?    a[i]-'0':0;
             int tmp2=i<b.size()?    b[i]-'0':0;
             int val=(tmp1+tmp2+carry)%2;
-            int carry=(tmp1+tmp2+carry)/2;
+            carry=(tmp1+tmp2+carry)/2;	    
             result+=(val+'0');
-        }
-        cout<<"carry is: "<<carry<<endl;
-        //if(carry)   result+="1";
+        } 
+        if(carry)   result+="1";
         reverse(result.begin(), result.end());
         return result;
 }
