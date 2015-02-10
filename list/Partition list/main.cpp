@@ -5,6 +5,17 @@ using namespace std;
  * find the first element in the list greater than x, then insert every element on the right that is bigger than x 
  * to the left of x, thus keep stable
  * Also use the prev->next and cur->next to keep track of the node
+ * demo: 1 4 3 2 5 0 
+ *	 prev:1		cur:1
+ *	 1 4 3 2 5 0 
+ *	 prev:4		cur:1
+ *	 1 4 3 2 5 0 
+ *	 prev:3		cur:1
+ *	 1 2 4 3 5 0 
+ *	 prev:3		cur:2
+ *	 1 2 4 3 5 0 
+ *	 prev:5		cur:2
+ *	 1 2 0 4 3 5 
 */
 
 struct ListNode
