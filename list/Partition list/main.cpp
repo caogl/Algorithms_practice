@@ -2,7 +2,8 @@
 using namespace std;
 
 /*
- * find the first element in the list greater than x, then insert every element on the right that is bigger than x to the left of x, such keep stable
+ * find the first element in the list greater than x, then insert every element on the right that is bigger than x 
+ * to the left of x, thus keep stable
  * Also use the prev->next and cur->next to keep track of the node
 */
 
