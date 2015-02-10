@@ -74,32 +74,24 @@ int main()
 	
 }
 
-ListNode *detectCycle(ListNode *head)
+ListNode *detectCycle(ListNode *head) 
 {
-	if(head==nullptr)
-        	return nullptr;
-        ListNode * first = head;
-        ListNode * second = head;
-        while(first != NULL && second != NULL)
+        if(!head)   return head;
+        
+        ListNode* fast=head;
+        ListNode* slow=head;
+        while(fast && fast->next)
         {
-        	first = first->next;
-        	second = second->next;
-        	if(second != NULL)
-         		second = second->next;
-        	else
-                	return nullptr;
-        	if(first == second)
-                	break;
+            fast=fast->next->next;
+            slow=slow->next;
+            if(fast==slow)  break;
         }
-         
-        if(second == NULL)
-		return NULL;
-
-        first = head;
-        while(first!=second)
+        if(!fast || !fast->next)    return nullptr;
+        slow=head;
+        while(fast!=slow)
         {
-        	first = first->next;
-        	second = second->next;
+            fast=fast->next;
+            slow=slow->next;
         }
-        return second;
+        return fast;
 }
