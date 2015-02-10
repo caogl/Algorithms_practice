@@ -5,58 +5,30 @@
 #include<sstream>
 using namespace std;
 
-string addBinary(string a, string b)
+string addBinary(string a, string b) 
 {
-	if(a=="")
-		return b;
-	if(b=="")
-		return a;
-	string result="";
-	reverse(a.begin(), a.end());
-	reverse(b.begin(), b.end());
-	int carry=0;
-	int digit;
-	int i=0;
-	int min_size=min(a.size(), b.size());
-	while(i<min_size)
-	{
-		carry=(a[i]-'0')+(b[i]-'0')+carry;
-		digit=carry%2;
-		ostringstream ss;
-		ss<<digit;
-		result=ss.str()+result;
-		carry=carry/2;
-		i++;
-	}
-	while(i<a.size())
-	{
-		carry=a[i]-'0'+carry;
-		digit=carry%2;
-		ostringstream ss;
-		ss<<digit;
-		result=ss.str()+result;
-		carry=carry/2;	
-		i++;	
-	}
-	while(i<b.size())
-	{
-		carry=b[i]-'0'+carry;
-		digit=carry%2;
-		ostringstream ss;
-		ss<<digit;
-		result=ss.str()+result;
-		carry=carry/2;	
-		i++;	
-	}
-	if(carry>0)
-	{
-		ostringstream ss;
-		ss<<carry;
-		result=ss.str()+result;		
-	}
-	return result;
+        if(a=="0")  return b;
+        if(b=="0")  return a;
+        
+        string result;
+        reverse(a.begin(), a.end());
+        reverse(b.begin(), b.end());
+        int n=max(a.size(), b.size());
+        int carry=0;
+        for(int i=0; i<n; i++)
+        {
+            int tmp1=i<a.size()?    a[i]-'0':0;
+            int tmp2=i<b.size()?    b[i]-'0':0;
+            int val=(tmp1+tmp2+carry)%2;
+            int carry=(tmp1+tmp2+carry)/2;
+            result+=(val+'0');
+        }
+        cout<<"carry is: "<<carry<<endl;
+        //if(carry)   result+="1";
+        reverse(result.begin(), result.end());
+        return result;
 }
-
+    
 int main()
 {
 	string a="11";
