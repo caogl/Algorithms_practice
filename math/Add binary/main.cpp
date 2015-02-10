@@ -1,4 +1,5 @@
 // reference: http://fisherlei.blogspot.com/2013/01/leetcode-add-binary.html
+
 #include<iostream>
 #include<string>
 #include<algorithm> // for std::reverse && std::min
@@ -27,7 +28,8 @@ string addBinary(string a, string b)
         reverse(result.begin(), result.end());
         return result;
 }
-    
+/* 一个扩展题就是，如果不是二进制而是16进制，如何扩展。在上面的code中很容易更改，将Line23, Line24 中的2改成16就可以了。*/
+
 int main()
 {
 	string a="1";
