@@ -41,7 +41,7 @@ vector<string> wordBreak(string s, unordered_set<string> &dict)
 {
         string tmp;
         vector<string> result;
-	vector<bool> promise(s.size()+1, true);
+	vector<bool> promise(s.size(), true);
         wordBreak(s, dict, 0, tmp, promise, result);
         return result;
 }
@@ -57,13 +57,13 @@ void wordBreak(string& s, unordered_set<string> &dict, int start, string& tmp, v
         for(int i=start; i<s.size(); i++)
         {
             string str=s.substr(start, i-start+1);
-            if(dict.find(str)!=dict.end() && promise[i+1])
+            if(dict.find(str)!=dict.end() && promise[i])
             {
 		int n=tmp.size();
                 tmp=tmp+str+" ";
 		int before=result.size();
                 wordBreak(s, dict, i+1, tmp, promise, result);
-		promise[i+1]=(before!=result.size());
+		promise[i]=(before!=result.size());
                 tmp=tmp.substr(0, n);
             }
         }
