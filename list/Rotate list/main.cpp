@@ -1,10 +1,11 @@
-#include<iostream>
-using namespace std;
-
-/* logic:
- * http://fisherlei.blogspot.com/search?q=rotate+list
+// reference: http://fisherlei.blogspot.com/search?q=rotate+list
+/* 首先从head开始跑，直到最后一个节点，这时可以得出链表长度len。然后将尾指针指向头指针，将整个圈连起来
+ * 接着往前跑len – k%len，从这里断开，就是要求的结果了。
  * !! notice the corner case when k>=length of list
 */
+
+#include<iostream>
+using namespace std;
 
 struct ListNode
 {
