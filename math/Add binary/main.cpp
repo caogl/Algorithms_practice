@@ -1,4 +1,4 @@
-// refer to the "add list" problem in Cracking book
+// reference: http://fisherlei.blogspot.com/2013/01/leetcode-add-binary.html
 #include<iostream>
 #include<string>
 #include<algorithm> // for std::reverse && std::min
@@ -35,7 +35,7 @@ int main()
 	cout<<addBinary(a, b)<<endl;
 
 	string c="10001011";
-	  string d="101110";
+	string d="101110";
 	cout<<addBinary(c, d)<<endl;
 
 	return 0;
