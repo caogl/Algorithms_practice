@@ -57,7 +57,7 @@ ListNode *reverseKGroup(ListNode *head, int k)
 	if(head==nullptr || k==1)
 		return head;
 	ListNode* sudoHead=new ListNode(-1);
-	ListNode* head0=sudoHead;
+	ListNode* head0=sudoHead; // (1) use to connect different segments !!!
 	ListNode* cur=head;
 	ListNode* prev=head;
 	ListNode* post;
@@ -82,7 +82,7 @@ ListNode *reverseKGroup(ListNode *head, int k)
 			cur=cur->next;
 		}
 	}
-	head0->next=prev;
+	head0->next=prev; // (2) the last segment part !!!
 
 	ListNode* result=sudoHead->next; 
 	delete sudoHead;
