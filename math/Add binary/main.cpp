@@ -31,7 +31,7 @@ string addBinary(string a, string b)
     
 int main()
 {
-	string a="11";
+	string a="1";
 	string b="1";
 	cout<<addBinary(a, b)<<endl;
 
