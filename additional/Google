@@ -19,4 +19,30 @@ balanced binary search tree. Your merge function should take O(M+N) time and O(1
 G家onsite题，算是很多小问题的综合题。因为不允许用extra space，可以先把两个输入BST给转换成链表，然后merge两个链表，
 再把merge完的链表重新转化成BST。
 
-(4)
+(4) http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=116823&extra=page%3D1%26filter%3Dsortid%26sortid%3D311&page=1
+给你一堆input，每一个input是一条边，表示谁和谁是朋友，例如
+    1 - 2
+    3 - 4
+    4 - 5
+要求找出所有的groups，每个group里面的人认识，group和group间的人不认识。如上面的例子，返回 {1, 2}, {3, 4, 5}
+
+建一个n*n的boolean matrix, 对于每个pair把相应的两个位置置1，然后用一个visited[] 和BFS的方法，遍历即可，不走对角线
+
+(5) http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=116823&extra=page%3D1%26filter%3Dsortid%26sortid%3D311&page=1
+给你一个target number，和一个list，list里面装的都是整数。问是否能用list里面的所有数字，只用四则运算和括号之类的，
+问能不能得到target number。很像24点，不过是它的扩展。四个数必须按顺序.
+
+用分治法来做。for循环从0开始，每次分成左右两边，左边的结果是一个list，右边的结果也是个list。
+然后每次从左边的list和右边的list中各取出一个数字，进行加减乘除，看看能不能得到target。
+for循环里面求左右两个list也是同样的函数，这样的话就是递归。
+
+如果只用一个单纯的dfs，类似于permutation那样子的是会出现问题。其实我刚开始写了一个类似与permutation的解法，
+后来发现(1 + 2) * (3 + 4)这种情况处理不了。
+
+不过分治法需要你对每个过程保存一个结果集，然后这些对结果集进行Cross式的合并，
+这种方式程序比较清晰但空间复杂度容易很高。我想了个纯粹的DFS方法，就是直接往原序列里插入运算符，
+N个数需要插满N-1个操作符（中止条件），最后计算形成的逆波兰式，如果等于目标数就直接返回
+
+比如 1234，你DFS的过程往第二个数之后的序列插入运算符（N-1个）， 比如12+34*-，该逆波兰式等于（1+2）-（3*4）； 
+如果是1234+-/, 那就等于1/(2-（3+4）)。这样深搜就不用保存中间运算结果集合了！
+
