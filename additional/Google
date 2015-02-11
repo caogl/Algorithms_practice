@@ -56,3 +56,12 @@ private:
     vector<int> _peeks;
     Iterator _it;
 };
+
+(3) http://www.fgdsb.com/2015/01/18/merge-BST/
+You are given two balanced binary search trees. Write a function that merges the two given balanced BSTs into a 
+balanced binary search tree. Your merge function should take O(M+N) time and O(1) space.
+
+G家onsite题，算是很多小问题的综合题。因为不允许用extra space，可以先把两个输入BST给转换成链表，然后merge两个链表，
+再把merge完的链表重新转化成BST。
+
+(4)
