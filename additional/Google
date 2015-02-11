@@ -46,3 +46,13 @@ N个数需要插满N-1个操作符（中止条件），最后计算形成的逆�
 比如 1234，你DFS的过程往第二个数之后的序列插入运算符（N-1个）， 比如12+34*-，该逆波兰式等于（1+2）-（3*4）； 
 如果是1234+-/, 那就等于1/(2-（3+4）)。这样深搜就不用保存中间运算结果集合了！
 
+(6) http://www.fgdsb.com/2015/01/13/design-special-container/
+设计一个数据结构，要求支持插入，删除和random返回一个元素这三种操作，每种操作的复杂度都要是O(1)。
+
+Google, Yelp, Twitter都考过这题。
+我们需要一个vector和一个hash table。vector存实际的数据，hash table存每个value对应在数组里面的index。
+add操作要把新插进去的value的id保存到hash table里。
+remove操作首先根据给的value在hash中查出所在id，然后把数组最后一个元素move到要删除的这个元素所在的位置。
+，然后更新index和并且pop_back()即可。
+random返回只需要一个简单的rand() % size就好。
+注意这个solution是无法处理重复元素的。
