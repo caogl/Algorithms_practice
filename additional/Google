@@ -6,4 +6,51 @@ We can use something like a min-heap. Where the node value is the number of conn
 Each server can maintain a list of clients it is serving. 
 In addition to this we can have a HashMap to store the <client,server> pair to retrieve the server.
 
-(2)
+(2) http://www.fgdsb.com/2015/01/25/peek-iterator/
+写一个PeekIterator，包装一个普通的Iterator，要实现peek()方法，返回当前iterator指向的元素，但是不能移动它。除此之外也要实现has_next()和next()方法。
+G家的onsite题，还是非常简单的（不知道是不是我理解错题意了）。
+PeekIterator可以用普通iterator的get_next()来获得，但是要记录下来，下一次调用get_next的时候直接返回上一次peek的即可。
+参考的普通Iterator如下（简易版）:
+class Iterator {
+public:
+    Iterator(vector<int>&& data) : _data(move(data)) {}
+    int get_next() { return _data[_pointer++]; }    
+    bool has_next() { return _pointer < _data.size(); }
+    
+private:
+    vector<int> _data;
+    size_t _pointer{ 0 };
+};
+
+PeekIterator构造如下：
+class PeekIterator {
+public:
+    PeekIterator(Iterator& it) : _it(it) {}
+    
+    int peek() {
+        if(_peeks.empty()) {
+            int cur = _it.get_next();
+            _peeks.push_back(cur);
+            return cur;
+        } else {
+            return _peeks.back();
+        }
+    }
+    
+    bool has_next() {
+        return _it.has_next() || !_peeks.empty();
+    }
+    
+    int get_next() {
+        if(_peeks.empty()) {
+            return _it.get_next();
+        } else {
+            int ret = _peeks.back();
+            _peeks.pop_back();
+            return ret;
+        }
+    }
+private:
+    vector<int> _peeks;
+    Iterator _it;
+};
