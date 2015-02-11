@@ -66,7 +66,7 @@ int intersections(QuadNode* tree0, QuadNode* tree1, int sum)
 		result+=(tree0->ones && tree1->ones);
 	else
 		for(int i=0; i<4; i++)
-			result+=intersections(tree0->child[i], tree1->child[1], sum);
+			result+=intersections(tree0->child[i], tree1->child[i], sum);
 	return result;
 }
 
