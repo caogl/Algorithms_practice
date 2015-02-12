@@ -12,14 +12,7 @@ In addition to this we can have a HashMap to store the <client,server> pair to r
 --> This is in fact a Java question, because has_next() and next() are Java-specific iterator operation.
 --> 策略：告诉面试官做过了， 要换！
 
-(3) http://www.fgdsb.com/2015/01/18/merge-BST/
-You are given two balanced binary search trees. Write a function that merges the two given balanced BSTs into a 
-balanced binary search tree. Your merge function should take O(M+N) time and O(1) space.
-
-G家onsite题，算是很多小问题的综合题。因为不允许用extra space，可以先把两个输入BST给转换成链表，然后merge两个链表，
-再把merge完的链表重新转化成BST。
-
-(4) http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=116823&extra=page%3D1%26filter%3Dsortid%26sortid%3D311&page=1
+(3) http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=116823&extra=page%3D1%26filter%3Dsortid%26sortid%3D311&page=1
 给你一堆input，每一个input是一条边，表示谁和谁是朋友，例如
     1 - 2
     3 - 4
@@ -28,7 +21,7 @@ G家onsite题，算是很多小问题的综合题。因为不允许用extra spac
 
 建一个n*n的boolean matrix, 对于每个pair把相应的两个位置置1，然后用一个visited[] 和BFS的方法，遍历即可，不走对角线
 
-(5) http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=116823&extra=page%3D1%26filter%3Dsortid%26sortid%3D311&page=1
+(4) http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=116823&extra=page%3D1%26filter%3Dsortid%26sortid%3D311&page=1
 给你一个target number，和一个list，list里面装的都是整数。问是否能用list里面的所有数字，只用四则运算和括号之类的，
 问能不能得到target number。很像24点，不过是它的扩展。四个数必须按顺序.
 
@@ -46,7 +39,7 @@ N个数需要插满N-1个操作符（中止条件），最后计算形成的逆�
 比如 1234，你DFS的过程往第二个数之后的序列插入运算符（N-1个）， 比如12+34*-，该逆波兰式等于（1+2）-（3*4）； 
 如果是1234+-/, 那就等于1/(2-（3+4）)。这样深搜就不用保存中间运算结果集合了！
 
-(6) http://www.fgdsb.com/2015/01/13/design-special-container/
+(5) http://www.fgdsb.com/2015/01/13/design-special-container/
 设计一个数据结构，要求支持插入，删除和random返回一个元素这三种操作，每种操作的复杂度都要是O(1)。
 
 Google, Yelp, Twitter都考过这题。
@@ -56,3 +49,60 @@ remove操作首先根据给的value在hash中查出所在id，然后把数组最
 ，然后更新index和并且pop_back()即可。
 random返回只需要一个简单的rand() % size就好。
 注意这个solution是无法处理重复元素的。
+
+(6) http://www.fgdsb.com/2015/01/19/max-length-of-the-loop/
+Given an array
+Indexes 0 1 2 3 4
+Values  3 2 1 4 0
+Values are the next index of the jump 0 -> 3 -> 4 -> 0... 1 -> 2 -> 1...
+Write a function to detect if there are loops. If yes, get the max length of the loop possible, 
+otherwise just return zero.
+
+G家题，实际上就是有向图找最大环。POJ有类似题。用一个DFS走一遍就好，用两个数组，一个记录visited，一个记录走过的长度。
+
+(7) http://www.fgdsb.com/2015/01/17/segregate-even-and-odd/
+Given an array A[], write a function that segregates even and odd numbers. The functions should put all
+even numbers first, and then odd numbers.
+Example
+Input = {12, 34, 45, 9, 8, 90, 3}
+Output = {12, 34, 8, 90, 45, 9, 3}
+
+G家题。就是2-way partitioning，sort colors的变种题。
+
+(8) http://www.fgdsb.com/2015/01/16/find-all-sources/
+一个数组 A: 1 3 0 2 4 7
+input: dest-node: A0
+output: all the source nodes: (A1, A3, A4)
+数组中每个元素表示他能走的步数，既能向左走 又能向右走，能到A[0]的点有A[1]和A[4]，A[1]可以走3步到A[4] A[4]能走4步道A[0]。
+
+G家电面题。反向建图，然后从终点做BFS，路过的点就push到结果里。见图片示例: http://www.fgdsb.com/2015/01/16/find-all-sources/
+
+(9) http://www.fgdsb.com/2015/01/14/randomly-return-0-or-1/
+Write a function to get a positive integer n as input and return 0 or 1. 
+The probability of returning 1 should be 1/(2^n)
+
+G家的题。因为是1/2^n，那么执行最多n次rand() % 2即可。连续n次随机到0的概率就是1/(2^n)，中途只要随机到1就立即返回0即可。
+
+(10) http://www.fgdsb.com/2015/01/11/why-we-dont-get-error-anymore/
+There is a code with a runtime error. We add printf to display the value of a variable and we don’t get the
+runtime error anymore. explain what the reason can be.
+
+这也是一道出现过多次的Google面试题。CareerCup上提供了一段很有意思的C语言代码:
+#include <cstdio>
+#include <cstring>
+
+int main()
+{
+    const void* res = memchr("Syshsh Pavlik", 's', 8);
+    printf("%p\n", res);  // uncomment this line and see what happens
+    return !*(int*)res;
+}
+对于C/C++这类内存可以灵活掌控的语言来说，这个问题并不算特别罕见。比如错误的static_cast转换一个对象后，
+在调用这个指针的成员，是可能触发一些未知错误的。在加上printf后，改变了内存布局，有可能这个runtime error就不会触发了。
+
+(11) http://www.fgdsb.com/2015/01/08/min-distance-sum/
+二维矩阵里面有obstacle，已知有k个点，求房间中离这k个点距离之和最短的那个点。
+
+对所有的K个点做一次BFS，记录下每个点的最短距离和，最后扫一遍找出最小值即可。复杂度是O(K*N^2)，感觉有更优的解。
+
+(12)
