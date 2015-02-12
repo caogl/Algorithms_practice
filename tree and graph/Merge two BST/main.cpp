@@ -120,18 +120,28 @@ TreeNode* merge(TreeNode* root1, TreeNode* root2)
 	if(!root1)	return root2;
 	if(!root2)	return root1;
 
-	if(root1->val<root2->val)
+	TreeNode* sudoHead=new TreeNode(-1);
+	TreeNode* head=sudoHead;
+	while(root1 && root2)
 	{
-		root1->right=merge(root1->right, root2);
-		root1->right->left=root1; // adjust the left link !!!
-		return root1;
+		if(root1->val<root2->val)
+		{
+			head->right=root1;
+			root1=root1->right;
+			head->right->left=head;
+			head=head->right;
+		}
+		else
+		{
+			head->right=root2;
+			root2=root2->right;
+			head->right->left=head;
+			head=head->right;
+		}
 	}
-	else
-	{
-		root2->right=merge(root2->right, root1);
-		root2->right->left=root2;
-		return root2;
-	}
+	head=sudoHead->right;
+	delete sudoHead;
+	return head;
 }
 
 TreeNode* flattenBST(TreeNode* root)
