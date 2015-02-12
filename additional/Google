@@ -77,4 +77,8 @@ output: all the source nodes: (A1, A3, A4)
 
 G家电面题。反向建图，然后从终点做BFS，路过的点就push到结果里。见图片示例: http://www.fgdsb.com/2015/01/16/find-all-sources/
 
-(9)
+(9) http://www.fgdsb.com/2015/01/14/randomly-return-0-or-1/
+Write a function to get a positive integer n as input and return 0 or 1. 
+The probability of returning 1 should be 1/(2^n)
+
+G家的题。因为是1/2^n，那么执行最多n次rand() % 2即可。连续n次随机到0的概率就是1/(2^n)，中途只要随机到1就立即返回0即可。
