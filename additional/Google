@@ -82,3 +82,27 @@ Write a function to get a positive integer n as input and return 0 or 1.
 The probability of returning 1 should be 1/(2^n)
 
 G家的题。因为是1/2^n，那么执行最多n次rand() % 2即可。连续n次随机到0的概率就是1/(2^n)，中途只要随机到1就立即返回0即可。
+
+(10) http://www.fgdsb.com/2015/01/11/why-we-dont-get-error-anymore/
+There is a code with a runtime error. We add printf to display the value of a variable and we don’t get the
+runtime error anymore. explain what the reason can be.
+
+这也是一道出现过多次的Google面试题。CareerCup上提供了一段很有意思的C语言代码:
+#include <cstdio>
+#include <cstring>
+
+int main()
+{
+    const void* res = memchr("Syshsh Pavlik", 's', 8);
+    printf("%p\n", res);  // uncomment this line and see what happens
+    return !*(int*)res;
+}
+对于C/C++这类内存可以灵活掌控的语言来说，这个问题并不算特别罕见。比如错误的static_cast转换一个对象后，
+在调用这个指针的成员，是可能触发一些未知错误的。在加上printf后，改变了内存布局，有可能这个runtime error就不会触发了。
+
+(11) http://www.fgdsb.com/2015/01/08/min-distance-sum/
+二维矩阵里面有obstacle，已知有k个点，求房间中离这k个点距离之和最短的那个点。
+
+对所有的K个点做一次BFS，记录下每个点的最短距离和，最后扫一遍找出最小值即可。复杂度是O(K*N^2)，感觉有更优的解。
+
+(12)
