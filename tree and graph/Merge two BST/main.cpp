@@ -56,7 +56,6 @@ TreeNode* mergeBST(TreeNode* root1, TreeNode* root2)
 
         TreeNode* root11=flattenBST(root1);
         TreeNode* root22=flattenBST(root2);
-	TreeNode* root=merge(root11, root22);
 	return listToBST(merge(root11, root22));
 }
 
@@ -74,17 +73,23 @@ TreeNode* middle(TreeNode* begin, TreeNode* end)
 
 TreeNode* listToBST(TreeNode* begin, TreeNode* end)
 {
-	if(!begin || begin==end) // nothing to adjust
-		return begin;
-	if(begin->right=end) // the right pointer must be pointing to its parent
+	if(begin==end) // nothing to adjust
 	{
 		begin->left=nullptr;
 		begin->right=nullptr;
 		return begin;
 	}
-	
-	TreeNode* mid=middle(begin, end);
-	mid->left=listToBST(begin, mid);
+	if(begin->right==end)
+	{
+		begin->right=nullptr;
+		begin->left=nullptr;
+		end->right=nullptr;
+		return end;
+	}
+
+        TreeNode* mid=middle(begin, end);
+	cout<<mid->val<<endl;
+	mid->left=listToBST(begin, mid->left);
 	mid->right=listToBST(mid->right, end);
 	return mid;
 }
@@ -92,7 +97,10 @@ TreeNode* listToBST(TreeNode* begin, TreeNode* end)
 TreeNode* listToBST(TreeNode* head)
 {
 	if(!head)	return head;
-	listToBST(head, nullptr); 
+	TreeNode* end=head;
+	while(end && end->right)
+		end=end->right;
+	listToBST(head, end); 
 }
 
 TreeNode* merge(TreeNode* root1, TreeNode* root2)
@@ -103,11 +111,13 @@ TreeNode* merge(TreeNode* root1, TreeNode* root2)
 	if(root1->val<root2->val)
 	{
 		root1->right=merge(root1->right, root2);
+		root1->right->left=root1; // adjust the left link !!!
 		return root1;
 	}
 	else
 	{
 		root2->right=merge(root2->right, root1);
+		root2->right->left=root2;
 		return root2;
 	}
 }
