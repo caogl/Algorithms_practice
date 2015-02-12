@@ -100,7 +100,6 @@ TreeNode* listToBST(TreeNode* begin, TreeNode* end)
 	}
 
         TreeNode* mid=middle(begin, end);
-	cout<<mid->val<<endl;
 	mid->left=listToBST(begin, mid->left);
 	mid->right=listToBST(mid->right, end);
 	return mid;
