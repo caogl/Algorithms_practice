@@ -60,4 +60,13 @@ otherwise just return zero.
 
 G家题，实际上就是有向图找最大环。POJ有类似题。用一个DFS走一遍就好，用两个数组，一个记录visited，一个记录走过的长度。
 
-(7) 
+(7) http://www.fgdsb.com/2015/01/17/segregate-even-and-odd/
+Given an array A[], write a function that segregates even and odd numbers. The functions should put all
+even numbers first, and then odd numbers.
+Example
+Input = {12, 34, 45, 9, 8, 90, 3}
+Output = {12, 34, 8, 90, 45, 9, 3}
+
+G家题。就是2-way partitioning，sort colors的变种题。
+
+(8)
