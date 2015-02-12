@@ -138,6 +138,16 @@ TreeNode* merge(TreeNode* root1, TreeNode* root2)
 			head=head->right;
 		}
 	}
+	if(root1)
+	{
+		head->right=root1;
+		head->right->left=head;
+	}
+	if(root2)
+	{
+		head->right=root2;
+		head->right->left=head;
+	}
 	head=sudoHead->right;
 	delete sudoHead;
 	return head;
