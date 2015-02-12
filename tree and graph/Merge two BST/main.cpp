@@ -1,3 +1,15 @@
+// Google interview questions
+// reference: http://www.fgdsb.com/2015/01/18/merge-BST/
+
+/* You are given two balanced binary search trees. Write a function that merges the two given balanced BSTs
+   into a balanced binary search tree. Your merge function should take O(M+N) time and O(1) space.
+   
+   Solution: divide into 3 sub-problems
+             (1) BST to sorted doubly linked list in place
+             (2) Merge two double linked list in place
+             (3) Sorted doubly linked list to BST in place
+*/
+
 #include<iostream>
 using namespace std;
 
