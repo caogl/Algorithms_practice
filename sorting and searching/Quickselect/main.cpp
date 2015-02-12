@@ -16,9 +16,6 @@ int pivot(vector<int>& vec, int left, int right);
 int main()
 {
 	vector<int> vec={5,24,7,40,0,19,31,32,33,30,13,39,15,29,12,28,4,2,38,22,37,23,27,21,41,9,36,18,1,17,26,11,25,16,6,10,8,34,14,3,20,35};	
-	for(int i=0; i<vec.size(); i++)
-		vec[i]+=50;
-
 	int k;
 	cout<<"input k: "<<endl;
 	cin>>k;
@@ -43,7 +40,6 @@ vector<int> kSmallest(vector<int>& vec, int k)
 vector<int> kSmallest(vector<int>& vec, int k, int left, int right)
 {
 	int pos=randomPartition(vec, left, right);
-	
 	if(pos==k-1) // k-1 rather than k!
 	{
 		vector<int> result(k);
