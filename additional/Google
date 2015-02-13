@@ -105,4 +105,17 @@ int main()
 
 对所有的K个点做一次BFS，记录下每个点的最短距离和，最后扫一遍找出最小值即可。复杂度是O(K*N^2)，感觉有更优的解。
 
-(12)
+(12) http://www.fgdsb.com/2015/01/07/search-longest-string-in-dict/
+给一个dictionary, 一个string,找出dict 里能全部用string里的letter 表示的所有最长的词。
+For example:
+字典包含如下单词：
+abcde, abc, abbbc, abbbccca, abbbcccabbcx
+给string = "abc"，最长单词应为"abbbccca"
+
+也是给一个字典，所以建trie比较合适，避免重复搜索字符。
+
+(13) http://www.fgdsb.com/2015/01/07/search-pattern/
+给一个dictionary, 再给一个set of coding string （g5, goo3, goog2, go2le………). 
+return all string from dictionary that can be matched with the coding string. 要求尽量减少dictionary look up 次数。
+
+因为给了一个字典，可能包含单词非常多，可以用trie来预处理。
