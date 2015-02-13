@@ -19,9 +19,10 @@ using namespace std;
 
 struct QuadNode 
 {
-    QuadNode(int num_ones = 0) : ones(num_ones) {}
     int ones{ 0 }; // number of ones for the subtree starting with this node
     QuadNode* child[4]{ nullptr };
+    
+    QuadNode(int num_ones = 0) : ones(num_ones) {}
 };
 
 QuadNode* buildTree(vector<vector<int> >& matrix);
