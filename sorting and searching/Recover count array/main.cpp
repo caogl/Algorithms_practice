@@ -36,7 +36,7 @@ vector<int> recover(vector<int>& count)
 	vector<pair<int, int> > vec;
 	for(int i=0; i<count.size(); i++)
 		vec.push_back(make_pair(count[i], i));
-	// can also use counting sort in O(n) time
+	// can use counting sort in O(n) time
 	compare comp;
 	sort(vec.begin(), vec.end(), comp);
 	vector<int> result(count.size());
