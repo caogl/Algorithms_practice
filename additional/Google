@@ -119,3 +119,13 @@ abcde, abc, abbbc, abbbccca, abbbcccabbcx
 return all string from dictionary that can be matched with the coding string. 要求尽量减少dictionary look up 次数。
 
 因为给了一个字典，可能包含单词非常多，可以用trie来预处理。
+
+(14) http://www.fgdsb.com/2015/01/05/max-dif-of-two-subarrays/
+Given an array of integers. Find two disjoint contiguous subarrays such that the absolute difference between the sum of two subarray is maximum.
+Note: The subarrays should not overlap.
+For example:
+Array: { 2, -1, -2, 1, -4, 2, 8 }
+Result subarrays: {-1, -2, 1, -4 }, { 2, 8 }
+Maximum difference = 16
+
+插split point,与best time to buy and sell stocks(III)相同
