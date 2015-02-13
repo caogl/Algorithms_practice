@@ -17,12 +17,18 @@ Given two such quadtrees with same depth, please write a function to calculate h
 #include<vector>
 using namespace std;
 
+// change the struct def like this is clear
 struct QuadNode 
 {
-    int ones{ 0 }; // number of ones for the subtree starting with this node
-    QuadNode* child[4]{ nullptr };
+    int ones; // number of ones for the subtree starting with this node
+    QuadNode* child[4];
     
-    QuadNode(int num_ones = 0) : ones(num_ones) {}
+    QuadNode(int num_ones)
+    {
+    	ones=num_ones;
+    	for(int i=0; i<4; i++)
+    		child[i]=nullptr;
+    }
 };
 
 QuadNode* buildTree(vector<vector<int> >& matrix);
