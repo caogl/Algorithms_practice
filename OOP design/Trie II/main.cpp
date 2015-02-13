@@ -1,9 +1,9 @@
 // reference: http://www.geeksforgeeks.org/trie-insert-and-search/
-/* trie is an efficient information retrieval data structure. Using trie, search complexities can be brought to optimal limit 
- * (key length). If we store keys in binary search tree, a well balanced BST will need time proportional to O(M*logN), 
- * where M is maximum string length and N is number of keys in tree. Using trie, we can search the key in O(M) time
- * Insert and search costs O(key_length), however the memory requirements of trie is O(ALPHABET_SIZE * key_length * N),
- * where N is number of keys in trie. */
+/* trie is an efficient information retrieval data structure. Using trie, search complexities can be brought to optimal
+ * limit(key length). If we store keys in binary search tree, a well balanced BST will need time proportional to 
+ * O(M*logN), where M is maximum string length and N is number of keys in tree. Using trie, we can search the key in 
+ * O(M) time, Insert and search costs O(key_length), however the memory requirements of trie is 
+ * O(ALPHABET_SIZE * key_length * N), where N is number of keys in trie. */
 
 /* Question (1): word search engine in the web or pdf: find all the words in the dictionary that there is part in query
                  --> the code here is a solution! */
