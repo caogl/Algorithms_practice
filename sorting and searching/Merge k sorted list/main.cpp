@@ -4,13 +4,19 @@
 using namespace std;
 
 /*
- * In order to merge k sort lists, there are many solutions.Time complexity analysed based on a simplified situation that that are m lists and each of them contains n elements.
+ * In order to merge k sort lists, there are many solutions.
+   Time complexity analysed based on a simplified situation that that are m lists and each of them contains n elements.
        
-   (1)each time merge two lists, and then merge the result list with another one until no list. If so the time complexity is O(m*m*n). 
-      However if use binary merge that first we merge all the original lists into n/2 lists and then merge these n/2 lists into n/4 and so forth until only one list left. This could be more efficient.
-   (2)One straightforward solution is just store all the elements in a vector, and then sort them. It's simple but works with O((n*m)*log(n*m)), but as for memory, except for the return list, there are O(m*n) extra memory.
-   (3)A good solution in theoretical perspective is that we can maintain a priority queue with m elements. Each time we pop up the smallest element in the priority queue in O(1) time and then push in the element,
-      which is the next node of the popped one in O(log(m)) time. The overall time complexity is O((n*m)*log(m)), and it only uses O(m) extra memory.
+   (1)each time merge two lists, and then merge the result list with another one until no list. 
+      If so the time complexity is O(m*m*n). 
+      However if use binary merge that first we merge all the original lists into n/2 lists,
+      and then merge these n/2 lists into n/4 and so forth until only one list left. This could be more efficient.
+   (2)One straightforward solution is just store all the elements in a vector, and then sort them. 
+      It's simple but works with O((n*m)*log(n*m)), but as for memory, except for the return list, there are O(m*n) extra memory.
+   (3)A good solution in theoretical perspective is that we can maintain a priority queue with m elements. 
+      Each time we pop up the smallest element in the priority queue in O(1) time and then push in the element,
+      which is the next node of the popped one in O(log(m)) time. The overall time complexity is O((n*m)*log(m)), 
+      and it only uses O(m) extra memory.
 */
 
 struct ListNode
